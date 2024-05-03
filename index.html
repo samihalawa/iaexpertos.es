@@ -1,0 +1,689 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Megacurso de IA de 0 a 100</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="de425da3-e946-465b-9a50-f139c41b8748" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/gradients_11.jpg" style="object-position:center 40%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Megacurso%20de%20IA%20de%200%20a%20100%20de425da3e946465b9a50f139c41b8748/IMG_2477.png"/></div><h1 class="page-title">Megacurso de IA de 0 a 100</h1><p class="page-description"></p></header><div class="page-body"><h3 id="8ae75f50-6331-436b-ba8d-e0f70fe24334" class=""><em>Temario General </em></h3><p id="ff3c9a52-26a8-4bfa-8a6c-75d5b3f55dbc" class="">
+</p><p id="458d9292-e13e-4ccd-8167-33ca97417c8d" class="">Aprende a integrar la inteligencia artificial en tu vida / negocio / trabajo para incrementar ingresos con el Curso Personalizado de IA de 0 a 100 (Sami Halawa)</p><blockquote id="9ff1f14a-c5b9-4135-a5da-3cd2e6974281" class="block-color-gray_background"><mark class="highlight-orange_background"><a href="https://api.whatsapp.com/send?phone=34679794037&amp;text=Hola.%20Contactaba%20en%20referencia%20a%20los%20Cursos%20de%20IA%20desde%200%20%2F%20Asesoría%20Gratuita%20Profesional.%20¿Podría%20darme%20más%20información%3F%20¡Gracias!"><strong>Solicita tu Temario Personalizado Gratuito Ahora</strong></a></mark></blockquote><figure id="1ce0b577-21ab-4292-8f71-f1149d051384" class="image"><a href="Megacurso%20de%20IA%20de%200%20a%20100%20de425da3e946465b9a50f139c41b8748/Untitled.png"><img style="width:990px" src="Megacurso%20de%20IA%20de%200%20a%20100%20de425da3e946465b9a50f139c41b8748/Untitled.png"/></a></figure><h2 id="764b7f28-5e85-4457-b8d4-be89ec5d5bca" class=""><strong>TEMARIO BASE</strong></h2><p id="c391e4a0-f7b2-4d6c-924f-85081b9820ef" class="">Maximiza tu potencial con +50 Módulos de Aprendizaje de 0 a 100 de formación en IA y ChatGPT. Este es el tema de base que el profesor adaptará las necesidades particulares. </p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="a28ffbb9-04b6-4c86-8230-edf7fc5e8db0"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Las clases son online en directo (individuales &amp; grupos). Primera sesión preparatoria gratuita. <mark class="highlight-teal_background"><strong><a href="https://api.whatsapp.com/send?phone=34679794037&amp;text=Hola.%20Contactaba%20en%20referencia%20a%20los%20Cursos%20de%20IA%20desde%200%20%2F%20Asesor%C3%ADa%20Gratuita%20Profesional.%20%C2%BFPodr%C3%ADa%20darme%20m%C3%A1s%20informaci%C3%B3n%3F%20%C2%A1Gracias!">Escríbenos por Whatsapp</a></strong></mark></div></figure><h3 id="69637b45-2992-40cf-bd01-43f30773f899" class=""><strong>Módulo 1: Fundamentos de IA para la Automatización Profesional</strong></h3><p id="befe473e-ebd3-4b63-8cf1-61b7b07618a3" class=""><strong>Automatiza tareas</strong> y ahorra horas de trabajo con una introducción sólida a la IA aplicada.</p><h3 id="b61d3d60-e888-4434-92a3-054d9377cb56" class=""><strong>Módulo 2: Optimización de Emails con ChatGPT</strong></h3><p id="56ec5058-b173-4b5e-ac75-05ca603ff468" class="">Eleva la calidad de tus comunicaciones con <strong>emails inteligentes</strong>que captan la atención.</p><figure id="c3f7a5d2-8e6f-4346-a3e0-920749d4af3f" class="image"><a href="Megacurso%20de%20IA%20de%200%20a%20100%20de425da3e946465b9a50f139c41b8748/%25E6%2588%25AA%25E5%25B1%258F2024-05-03_%25E4%25B8%258B%25E5%258D%25886.28.43.png"><img style="width:708px" src="Megacurso%20de%20IA%20de%200%20a%20100%20de425da3e946465b9a50f139c41b8748/%25E6%2588%25AA%25E5%25B1%258F2024-05-03_%25E4%25B8%258B%25E5%258D%25886.28.43.png"/></a></figure><p id="a976a459-2d11-4efb-8a89-08c5c1f6a4dd" class="">
+</p><h3 id="92f5df1f-fa97-47cd-93a6-0fd9d8926fd5" class=""><strong>Módulo 3: IA en Marketing Digital</strong></h3><p id="b796b03f-8cb9-4062-b170-b91ce3b87b54" class="">Impulsa tus campañas con <strong>estrategias de marketing</strong>mejoradas por la IA.</p><h3 id="2dcf3894-62c8-47da-931b-da12c66faf0d" class=""><strong>Módulo 4: Gestión de Redes Sociales con IA</strong></h3><p id="35875e05-83e4-4318-9517-3e15d8a2eb3d" class="">Crea contenido relevante y gestionar tus redes con eficiencia con <strong>herramientas de IA.</strong></p><h3 id="b509c118-ac06-4f3f-9df2-8489c9019c5e" class=""><strong>Módulo 5: Automatización y Análisis en Excel y Google Sheets</strong></h3><p id="79a7ef08-f37a-4ffc-91ac-5577d5563fa1" class="">Analiza datos complejos y <strong>optimiza hojas de cálculo</strong> con técnicas de IA.</p><h3 id="f4396c5f-1191-4716-9c80-03edd68935ca" class=""><strong>Módulo 6: Producción de Contenido Creativo con IA</strong></h3><p id="e7b28f1c-9f2c-4a63-9e31-fdadce4f65e6" class="">Desarrolla habilidades para <strong>generar contenido visual y escrito</strong>con herramientas avanzadas de IA.</p><p id="cac65a4f-e19e-4b6e-831c-54b2f6fa5a8d" class="">
+</p><h3 id="5fef73b1-31eb-4e87-a00f-d24863ec3db4" class=""><strong>Módulo 7: Diseño Web Asistido por IA</strong></h3><p id="48e864fe-eff3-40d2-809a-9f3901d74ea6" class=""><strong>Crea sitios web</strong> atractivos y funcionales con plataformas de diseño IA.</p><h3 id="4c3e896b-f545-42d7-b708-69fe637e5bb3" class=""><strong>Módulo 8: Edición de Video Acelerada con IA</strong></h3><p id="79d3d74b-544d-4ec5-ac6b-9c8858219838" class="">Produce videos de alta calidad en menos tiempo utilizando <strong>software de IA.</strong></p><h3 id="3ae7f33f-7663-441d-8e1e-74cbe6d8b626" class=""><strong>Módulo 9: Procesos Empresariales y Automatización con IA</strong></h3><p id="2af2e50f-9d34-481f-acaf-75324e474c2d" class="">Revoluciona la eficiencia operativa aplicando <strong>sistemas de IA</strong> en tu empresa.</p><p id="592b5d5b-aac0-4bd0-b1e3-e63a78e6c3e4" class=""> </p><figure id="c29a18bb-fbb2-4d2b-92bd-ca753ce08049" class="image"><a href="Megacurso%20de%20IA%20de%200%20a%20100%20de425da3e946465b9a50f139c41b8748/Untitled%201.png"><img style="width:686px" src="Megacurso%20de%20IA%20de%200%20a%20100%20de425da3e946465b9a50f139c41b8748/Untitled%201.png"/></a></figure><h3 id="13034688-996c-4990-9962-ec97a91e63f6" class=""><strong>Módulo 10: Predicciones Precisas con IA</strong></h3><p id="9ef6dcf2-ef8a-4a76-a393-9b2cd8169e27" class="">Aprende a predecir tendencias de mercado, comportamiento del cliente y más con modelos predictivos avanzados.</p><p id="7d280b66-f343-406f-8810-d7bc43faa2b2" class="">
+</p><h2 id="5d3ea88c-81dd-4298-9872-5cca2def56df" class=""><mark class="highlight-brown_background"><a href="https://www.notion.so/M-ster-Ai-mbapro-a352b9e586a8432d9ca542b23a2a9028?pvs=21">Solicita tu Temario Individual (Whatsap Sami Halawa)</a></mark></h2><h3 id="a0d6dcd5-a16e-4c0b-a2d5-46ce9f9e6c12" class=""><strong>Módulo 11: Automatización de Ventas Inteligente</strong></h3><p id="b8fdf065-48bb-4c80-a6a3-4a5f6906f29a" class="">Descubre cómo crear secuencias de ventas automáticas y recomendaciones personalizadas con IA.</p><h3 id="bc5ed81d-6e36-41ce-9224-c2de4d6c65e0" class=""><strong>Módulo 12: Gestión de Proyectos con Asistentes Virtuales</strong></h3><p id="27e736aa-b29d-4d13-9efd-6b0fb1c1cc83" class="">Implementa asistentes virtuales para mantener el control de proyectos complejos y mantener a tu equipo enfocado.</p><h3 id="ecb54ce7-ebd9-4905-a3e6-7cefb99b8478" class=""><strong>Módulo 13: Reclutamiento con Filtrado Automático</strong></h3><p id="709c8436-6023-42bf-95d2-649cca83bf94" class="">Utiliza IA para filtrar y seleccionar candidatos ideales de manera eficiente, eliminando sesgos y acelerando el proceso.</p><h3 id="f0df13fb-c107-4b2a-840e-4ef33fbbd38c" class=""><strong>Módulo 14: Optimización de Tiendas Online con Recomendaciones Personalizadas</strong></h3><p id="35eafe02-e659-434e-970c-272bf0f14a44" class="">Crea experiencias únicas para los clientes con sistemas de recomendación impulsados por IA.</p><h3 id="a195e8c5-ca11-44fd-b604-b0dc741caaf5" class=""><strong>Módulo 15: Chatbots para Atención al Cliente 24/7</strong></h3><p id="e416b0af-13b7-47b9-a777-6ae87b7d2e08" class="">Configura chatbots efectivos para brindar soporte inmediato a tus clientes, resolviendo problemas y respondiendo consultas.</p><figure id="98d341d3-f5eb-4480-a740-cca7c7da7f80" class="image"><a href="Megacurso%20de%20IA%20de%200%20a%20100%20de425da3e946465b9a50f139c41b8748/%25E6%2588%25AA%25E5%25B1%258F2024-05-03_%25E4%25B8%258B%25E5%258D%25886.22.27.png"><img style="width:708px" src="Megacurso%20de%20IA%20de%200%20a%20100%20de425da3e946465b9a50f139c41b8748/%25E6%2588%25AA%25E5%25B1%258F2024-05-03_%25E4%25B8%258B%25E5%258D%25886.22.27.png"/></a></figure><h3 id="859e5690-91b6-4732-b211-7f713f51d8bd" class=""><strong>Módulo 16: Simplificación de Procesos con RPA</strong></h3><p id="e06a1011-bf75-415d-9889-395b0f06d348" class="">Implementa Automatización Robótica de Procesos (RPA) para liberar tiempo y mejorar la eficiencia en tus operaciones diarias.</p><h3 id="251c44d2-2a60-457d-8726-0ac974de11fc" class=""><strong>Módulo 17: Creación de Aplicaciones IA-Driven</strong></h3><p id="2817f832-0403-4f4e-818f-8942a5a1d3fa" class="">Aprende a construir aplicaciones innovadoras que integren IA para ofrecer soluciones más inteligentes y efectivas.</p><h3 id="52df69c9-39f4-4460-b440-61e7f6c95476" class=""><strong>Módulo 18: Crecimiento Startup con IA</strong></h3><p id="e916e11b-6cbc-4365-a854-b3c0003111b5" class="">Explora cómo las startups pueden aprovechar herramientas de IA para escalar rápidamente y mantenerse competitivas.</p><h3 id="acc7c19b-f56f-477c-8257-1e1f603988bf" class=""><strong>Módulo 19: Protección de Datos con Análisis Inteligente</strong></h3><p id="dea6d7b4-49b8-4628-953c-a9d4b1df6321" class="">Implementa soluciones de IA para detectar amenazas y proteger datos sensibles, cumpliendo con las regulaciones.</p><h3 id="f6af7423-26df-428e-85a6-3ae6695098f9" class=""><strong>Módulo 20: Innovación con Análisis de Datos</strong></h3><p id="41735c1b-39a0-4ff3-a4bf-8db9bddef62f" class="">Utiliza IA para identificar oportunidades de innovación y mejorar productos y servicios existentes.</p><h3 id="5c82a843-56af-492d-be51-26480a6d1485" class=""><strong>Módulo 21: Gestión Financiera Personalizada con IA</strong></h3><p id="6222f7be-c01b-42ba-87b1-9b02538a4566" class="">Desarrolla habilidades para gestionar tus finanzas con aplicaciones de IA que ofrecen asesoramiento y planificación financiera.</p><h3 id="4c801211-4e58-42b1-bd22-7e64c14fa2fa" class=""><strong>Módulo 22: Inversiones Inteligentes con Análisis Avanzado</strong></h3><p id="eabc8afa-bf87-49eb-a8cb-db103aea0f14" class="">Utiliza la inteligencia artificial para analizar datos de mercado y tomar decisiones de inversión más informadas.</p><h3 id="3b3d2bb9-52b2-4560-b08e-4dfa68398446" class=""><strong>Módulo 23: Impacto Social con IA</strong></h3><p id="8fe2a113-5890-4644-b741-9f0e4e381e35" class="">Descubre cómo las ONG y organizaciones sin fines de lucro pueden utilizar la IA para maximizar su impacto y eficiencia.</p><p id="5e89af44-7a86-4590-b7f9-c6ba4c90e1e7" class="">
+</p><figure id="ed1e90e7-4a4d-40b3-acbc-38b533895179" class="image"><a href="Megacurso%20de%20IA%20de%200%20a%20100%20de425da3e946465b9a50f139c41b8748/%25E6%2588%25AA%25E5%25B1%258F2024-05-03_%25E4%25B8%258B%25E5%258D%25886.20.44.png"><img style="width:604px" src="Megacurso%20de%20IA%20de%200%20a%20100%20de425da3e946465b9a50f139c41b8748/%25E6%2588%25AA%25E5%25B1%258F2024-05-03_%25E4%25B8%258B%25E5%258D%25886.20.44.png"/></a></figure><h3 id="a8b17d4d-84e1-4863-89f1-225e3b8b2ebe" class=""><strong>Módulo 24: IA para la Creación Artística</strong></h3><p id="0c3f8757-cfa8-4bad-a74d-b57cf6de6cad" class="">Explora cómo las herramientas de IA pueden potenciar la creatividad en la música, el arte y otras formas de expresión.</p><h3 id="0adeabe5-35be-472a-b9a3-8bbef889d700" class=""><strong>Módulo 25: Salud y Bienestar con IA Personalizada</strong></h3><p id="7e963dc5-48f7-4251-be02-a30410cefd93" class="">Aprende a usar la IA para monitorear la salud, prevenir enfermedades y mejorar el bienestar general.</p><h3 id="1cefdf0c-e90a-494e-bf4f-6571b3db7226" class=""><strong>Módulo 26: Sostenibilidad y Medio Ambiente con IA</strong></h3><p id="3225ff1a-53ec-4fd2-bb6e-8c298c55ccc7" class="">Descubre cómo la IA puede ayudar a resolver problemas ambientales y promover la sostenibilidad.</p><h3 id="131a5a72-dded-4719-b4b4-8e857ae98ca3" class=""><strong>Módulo 27: Automatización Legal con Documentos Inteligentes</strong></h3><p id="77da55b4-f986-4800-b306-a9641dc964a5" class="">Automatiza la gestión y el análisis de documentos legales con soluciones de IA para ahorrar tiempo y mejorar la precisión.</p><p id="591fd5cb-a2da-4ce5-a001-c0fc010d7860" class="">
+</p><h3 id="bc079b7a-d821-4b4f-a479-2d78bdac5523" class=""><strong>Módulo 28: Construcción Eficiente con Diseño Asistido</strong></h3><p id="6f79c248-b461-4dfe-b41c-6e396ee19ada" class="">Utiliza IA para optimizar el diseño y la planificación de proyectos de construcción, mejorando la eficiencia y reduciendo costos.</p><h3 id="669dc513-239c-4725-8560-c654a77b557e" class=""><strong>Módulo 29: Experiencias Turísticas Personalizadas con IA</strong></h3><p id="a4eb8bad-4ed7-4116-8d10-08bdbec171d8" class="">Implementa IA para personalizar la experiencia de los turistas y mejorar la gestión de operaciones en el sector de la hospitalidad.</p><p id="cd3a5b5e-05c5-448a-a430-0f624f51c1d8" class="">
+</p><h2 id="fa05456a-5721-4a7b-a80f-a3ef4ccc331c" class=""><mark class="highlight-brown_background"><a href="https://api.whatsapp.com/send?phone=34679794037&amp;text=Hola.%20Contactaba%20en%20referencia%20a%20los%20Cursos%20de%20IA%20desde%200%20%2F%20Asesoría%20Gratuita%20Profesional.%20¿Podría%20darme%20más%20información%3F%20¡Gracias!">Solicita tu Temario Individual (Whatsap Sami Halawa)</a></mark></h2><p id="fdc00eec-b4d4-4ac4-b65e-9e3d7dd231b4" class="">
+</p><h3 id="8cdce236-023b-4139-9d73-25b93b00917e" class=""><strong>Módulo 30: Fabricación Inteligente con Robots IA</strong></h3><p id="f9e33c3f-5930-4b2d-9d44-07bffc63a90c" class="">Descubre cómo utilizar robots inteligentes y automatización para mejorar la eficiencia en la fabricación.</p><h3 id="0b7a4660-7e19-4d8f-a76d-f3d00efd1bca" class=""><strong>Módulo 31: Agricultura de Precisión con IA</strong></h3><p id="1486ecfd-c4de-4d71-a4f3-040c31198b2a" class="">Utiliza IA para monitorear cultivos, optimizar recursos y mejorar la productividad agrícola.</p><h3 id="01318ca7-be80-4787-87f1-6cea1fdfe523" class=""><strong>Módulo 32: Análisis de Rendimiento Deportivo con IA</strong></h3><p id="e2a266d7-4d4a-4d59-9bd8-02cc46cde738" class="">Implementa soluciones de IA para analizar el rendimiento de atletas y equipos, mejorando el rendimiento y reduciendo lesiones.</p><h3 id="0b61a15c-b39d-45b1-a47a-880260af234e" class=""><strong>Módulo 33: Diseño Arquitectónico con Modelado IA</strong></h3><p id="6c2cb3c3-7bbc-4240-8bc1-a57292b4b55d" class="">Explora cómo la IA puede ayudar a crear diseños arquitectónicos innovadores y sostenibles.</p><h3 id="b18b91a1-d0ae-4d65-b60e-17b69debd6c9" class=""><strong>Módulo 34: Tendencias de Moda con IA Predictiva</strong></h3><p id="d071d105-55a5-4e11-b769-8ca7bd87b8ec" class="">Descubre cómo predecir tendencias de moda y personalizar la experiencia del cliente en la industria de la moda con IA.</p><h3 id="ad407101-a882-4a7e-b994-d099fa862fa9" class=""><strong>Módulo 35: Composición Musical con IA</strong></h3><p id="4c2d4e7f-f04b-4e12-a6b0-0a6296d23f64" class="">Utiliza IA para componer música original y explorar nuevas formas de expresión artística.</p><h3 id="66c8d304-f47d-4036-9e04-22e2cace4c6d" class=""><strong>Módulo 36: Efectos Visuales de Cine con IA</strong></h3><p id="4b4fc6e5-9e1a-44ba-b0af-00282e4d86d0" class="">Aprende a crear efectos visuales impresionantes y a mejorar la postproducción con herramientas de IA.</p><h3 id="a644cdc2-88ae-466b-a744-58bbd5922430" class=""><strong>Módulo 37: Educación Personalizada con Tutores IA</strong></h3><p id="b17f43bf-5771-48c7-92bd-854752ef99ef" class="">Desarrolla soluciones de tutoría personalizada con IA para mejorar el aprendizaje y la retención de estudiantes.</p><h3 id="f533ab1a-4d43-42d5-91c1-6fa94a0644e7" class=""><strong>Módulo 38: Optimización Logística con IA Predictiva</strong></h3><p id="4e02a92c-a2b7-4527-a36b-dd86047c4c7e" class="">Utiliza IA para optimizar rutas, gestionar inventarios y mejorar la eficiencia en la cadena de suministro.</p><h3 id="af8d3be6-d866-4f9a-8066-d517f90de0fe" class=""><strong>Módulo 39: Bienestar Animal con Monitoreo IA</strong></h3><p id="a6b45c10-a698-44a2-a322-648644dfd08b" class="">Implementa soluciones de IA para monitorear y mejorar el bienestar de los animales en diversos contextos.</p><h3 id="d2d09e08-c1f6-42fc-b890-8bdc9542e2c7" class=""><strong>Módulo 40: Seguridad Inteligente con Análisis Predictivo</strong></h3><p id="70aca0e5-3f42-4e6f-929c-755891091826" class="">Utiliza IA para predecir y prevenir riesgos de seguridad, desde ciberseguridad hasta amenazas físicas.</p><h3 id="0c7aab74-fb97-44cb-820e-97be2db24c77" class=""><strong>+50 Módulos de Aprendizaje </strong></h3><p id="a4e456e9-71ac-4f0b-b573-1329d46132d8" class="">AI Para Imágenes, Ofimática, CRM, Atención al Cliente, Blogging, Facebook... 35h. El Máster Más Completo de toda la red. <strong>Adaptado a tus necesidades y preferencias para ser lo más útil y efectivo posible.</strong></p><p id="f3f8b225-d5cd-47d6-9c46-4f731c5d77db" class="">
+</p><p id="b132bb4c-cdc5-4ae0-8d50-436776fe3037" class="">Aprende a integrar la inteligencia artificial en tu negocio / trabajo para incrementar ingresos con el Curso Personalizado de IA de 0 a 100 (Sami Halawa)</p><p id="62c8dfe2-021a-4da5-a932-a620e99a53bd" class="">
+</p><p id="04f069fd-79b8-49ac-94c2-7815a58c1654" class="">
+</p><h2 id="a1f1c82f-3723-4516-8ed6-a619c7135c08" class=""><a href="https://www.notion.so/BestResourcesAI-com-Recursos-para-subir-ah-ee82e176935848d3a2d2556f33ab9901?pvs=21"><mark class="highlight-brown_background">Solicita tu Temario Individual (Whatsap Sami Halawa)</mark></a></h2><p id="0d5c23ef-f2fb-4ccd-b2bc-997ddfa285d4" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
