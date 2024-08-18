@@ -35,6 +35,39 @@
             color: green;
             font-weight: bold;
         }
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -132,19 +165,23 @@
             <h2 class="text-3xl font-bold mb-6 text-center">Syllabus Completo</h2>
             <div id="syllabusModules" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Modules dynamically generated here -->
-            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                     <h3 class="text-xl font-bold mb-2">Fundamentos de IA</h3>
                     <p class="text-gray-600 mb-4">Automatiza tareas con IA aplicada.</p>
-                </div><div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                     <h3 class="text-xl font-bold mb-2">Optimización de Emails</h3>
                     <p class="text-gray-600 mb-4">Mejora comunicaciones con IA.</p>
-                </div><div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                     <h3 class="text-xl font-bold mb-2">IA en Marketing Digital</h3>
                     <p class="text-gray-600 mb-4">Impulsa tus campañas con IA.</p>
-                </div><div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                     <h3 class="text-xl font-bold mb-2">Gestión de Redes Sociales</h3>
                     <p class="text-gray-600 mb-4">Crea contenido y gestiona redes con IA.</p>
-                </div></div>
+                </div>
+            </div>
         </section>
 
         <!-- Free Apps Section -->
@@ -152,103 +189,44 @@
             <!-- Tool Cards -->
             <div class="md:w-1/3 flex flex-col space-y-6" id="toolCards">
                 <!-- Cards dynamically generated here -->
-            <div class="app-card bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+                <div class="app-card bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer">
                     <span class="text-4xl">📝</span>
                     <div>
                         <h3 class="text-xl font-bold">Generación de Texto</h3>
                         <p class="text-gray-600">Genera texto a partir de un prompt. Ideal para crear contenido automáticamente, como artículos, historias o cualquier tipo de texto.</p>
                         <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2" onclick="showPaymentOptions()">Apuntarse</button>
                     </div>
-                </div><div class="app-card bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+                </div>
+                <div class="app-card bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer">
                     <span class="text-4xl">📷</span>
                     <div>
                         <h3 class="text-xl font-bold">Clasificación de Imágenes</h3>
                         <p class="text-gray-600">Clasifica imágenes en diferentes categorías. Permite identificar objetos en imágenes.</p>
                         <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2" onclick="showPaymentOptions()">Apuntarse</button>
                     </div>
-                </div><div class="app-card bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+                </div>
+                <div class="app-card bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer">
                     <span class="text-4xl">😊</span>
                     <div>
                         <h3 class="text-xl font-bold">Análisis de Sentimientos</h3>
                         <p class="text-gray-600">Analiza el sentimiento de un texto. Permite determinar la emoción detrás de un texto.</p>
                         <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2" onclick="showPaymentOptions()">Apuntarse</button>
                     </div>
-                </div><div class="app-card bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+                </div>
+                <div class="app-card bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer">
                     <span class="text-4xl">🚗</span>
                     <div>
                         <h3 class="text-xl font-bold">Detección de Objetos</h3>
                         <p class="text-gray-600">Detecta objetos dentro de una imagen. Ideal para aplicaciones de seguridad y vigilancia.</p>
                         <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2" onclick="showPaymentOptions()">Apuntarse</button>
                     </div>
-                </div><div class="app-card bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                    <span class="text-4xl">🌐</span>
-                    <div>
-                        <h3 class="text-xl font-bold">Traducción de Idiomas</h3>
-                        <p class="text-gray-600">Traduce texto entre diferentes idiomas. Útil para quienes trabajan en entornos multilingües.</p>
-                        <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2" onclick="showPaymentOptions()">Apuntarse</button>
-                    </div>
-                </div><div class="app-card bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                    <span class="text-4xl">❓</span>
-                    <div>
-                        <h3 class="text-xl font-bold">Pregunta a Texto</h3>
-                        <p class="text-gray-600">Genera texto basado en una pregunta. Ideal para responder preguntas complejas.</p>
-                        <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2" onclick="showPaymentOptions()">Apuntarse</button>
-                    </div>
-                </div><div class="app-card bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                    <span class="text-4xl">🎤</span>
-                    <div>
-                        <h3 class="text-xl font-bold">Reconocimiento de Voz</h3>
-                        <p class="text-gray-600">Convierte voz a texto. Ideal para transcripciones automáticas.</p>
-                        <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2" onclick="showPaymentOptions()">Apuntarse</button>
-                    </div>
-                </div><div class="app-card bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                    <span class="text-4xl">🤖</span>
-                    <div>
-                        <h3 class="text-xl font-bold">Chatbot Inteligente</h3>
-                        <p class="text-gray-600">Crea un chatbot que responde preguntas automáticamente.</p>
-                        <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2" onclick="showPaymentOptions()">Apuntarse</button>
-                    </div>
-                </div><div class="app-card bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                    <span class="text-4xl">🖼️</span>
-                    <div>
-                        <h3 class="text-xl font-bold">Generación de Imágenes</h3>
-                        <p class="text-gray-600">Genera imágenes a partir de descripciones textuales.</p>
-                        <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2" onclick="showPaymentOptions()">Apuntarse</button>
-                    </div>
-                </div><div class="app-card bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                    <span class="text-4xl">🎥</span>
-                    <div>
-                        <h3 class="text-xl font-bold">Análisis de Video</h3>
-                        <p class="text-gray-600">Analiza videos para detectar eventos o acciones.</p>
-                        <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2" onclick="showPaymentOptions()">Apuntarse</button>
-                    </div>
-                </div><div class="app-card bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                    <span class="text-4xl">📊</span>
-                    <div>
-                        <h3 class="text-xl font-bold">Visualización de Datos</h3>
-                        <p class="text-gray-600">Crea gráficos y visualizaciones a partir de datos.</p>
-                        <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2" onclick="showPaymentOptions()">Apuntarse</button>
-                    </div>
-                </div><div class="app-card bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                    <span class="text-4xl">⭐</span>
-                    <div>
-                        <h3 class="text-xl font-bold">Sistema de Recomendación</h3>
-                        <p class="text-gray-600">Recomienda productos o servicios basados en preferencias.</p>
-                        <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2" onclick="showPaymentOptions()">Apuntarse</button>
-                    </div>
-                </div><div class="app-card bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                    <span class="text-4xl">⚠️</span>
-                    <div>
-                        <h3 class="text-xl font-bold">Detección de Anomalías</h3>
-                        <p class="text-gray-600">Detecta anomalías en conjuntos de datos.</p>
-                        <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2" onclick="showPaymentOptions()">Apuntarse</button>
-                    </div>
-                </div></div>
+                </div>
+            </div>
 
             <!-- Tool Details -->
             <div id="toolContainer" class="md:w-2/3 mt-8 md:mt-0 ml-0 md:ml-6">
                 <!-- Tool details dynamically generated here -->
-            <div id="textGeneration" class="tool-section bg-white p-6 rounded-lg shadow-md">
+                <div id="textGeneration" class="tool-section bg-white p-6 rounded-lg shadow-md">
                     <h2 class="text-3xl font-bold mb-4">Generación de Texto</h2>
                     <p class="text-gray-700 mb-4">La generación de texto es una técnica de IA que permite crear texto automáticamente.</p>
                     <div class="mb-4">
@@ -257,7 +235,8 @@
                     </div>
                     <button class="btn btn-primary px-6 py-3 bg-blue-700 text-white font-semibold rounded hover:bg-blue-800 transition" onclick="runTool('textGeneration', 'gpt2', 'text')">Ejecutar</button>
                     <div class="output bg-gray-100 p-4 mt-4 rounded" id="outputtextGeneration"></div>
-                </div><div id="imageClassification" class="tool-section bg-white p-6 rounded-lg shadow-md hidden">
+                </div>
+                <div id="imageClassification" class="tool-section bg-white p-6 rounded-lg shadow-md hidden">
                     <h2 class="text-3xl font-bold mb-4">Clasificación de Imágenes</h2>
                     <p class="text-gray-700 mb-4">La clasificación de imágenes permite identificar y categorizar objetos dentro de una imagen.</p>
                     <div class="mb-4">
@@ -266,7 +245,8 @@
                     </div>
                     <button class="btn btn-primary px-6 py-3 bg-blue-700 text-white font-semibold rounded hover:bg-blue-800 transition" onclick="runTool('imageClassification', 'resnet50', 'file')">Ejecutar</button>
                     <div class="output bg-gray-100 p-4 mt-4 rounded" id="outputimageClassification"></div>
-                </div><div id="sentimentAnalysis" class="tool-section bg-white p-6 rounded-lg shadow-md hidden">
+                </div>
+                <div id="sentimentAnalysis" class="tool-section bg-white p-6 rounded-lg shadow-md hidden">
                     <h2 class="text-3xl font-bold mb-4">Análisis de Sentimientos</h2>
                     <p class="text-gray-700 mb-4">El análisis de sentimientos permite determinar la emoción detrás de un texto.</p>
                     <div class="mb-4">
@@ -275,7 +255,8 @@
                     </div>
                     <button class="btn btn-primary px-6 py-3 bg-blue-700 text-white font-semibold rounded hover:bg-blue-800 transition" onclick="runTool('sentimentAnalysis', 'distilbert-base-uncased-finetuned-sst-2-english', 'text')">Ejecutar</button>
                     <div class="output bg-gray-100 p-4 mt-4 rounded" id="outputsentimentAnalysis"></div>
-                </div><div id="objectDetection" class="tool-section bg-white p-6 rounded-lg shadow-md hidden">
+                </div>
+                <div id="objectDetection" class="tool-section bg-white p-6 rounded-lg shadow-md hidden">
                     <h2 class="text-3xl font-bold mb-4">Detección de Objetos</h2>
                     <p class="text-gray-700 mb-4">La detección de objetos permite identificar y localizar objetos específicos dentro de una imagen.</p>
                     <div class="mb-4">
@@ -284,88 +265,8 @@
                     </div>
                     <button class="btn btn-primary px-6 py-3 bg-blue-700 text-white font-semibold rounded hover:bg-blue-800 transition" onclick="runTool('objectDetection', 'yolov5', 'file')">Ejecutar</button>
                     <div class="output bg-gray-100 p-4 mt-4 rounded" id="outputobjectDetection"></div>
-                </div><div id="languageTranslation" class="tool-section bg-white p-6 rounded-lg shadow-md hidden">
-                    <h2 class="text-3xl font-bold mb-4">Traducción de Idiomas</h2>
-                    <p class="text-gray-700 mb-4">La traducción de idiomas permite convertir texto de un idioma a otro.</p>
-                    <div class="mb-4">
-                        <label for="inputlanguageTranslation" class="block mb-2 font-semibold">Entrada de Datos</label>
-                        <input type="text" class="form-control block w-full p-2 border border-gray-300 rounded" id="inputlanguageTranslation" placeholder="Escribe aquí...">
-                    </div>
-                    <button class="btn btn-primary px-6 py-3 bg-blue-700 text-white font-semibold rounded hover:bg-blue-800 transition" onclick="runTool('languageTranslation', 't5-base', 'text')">Ejecutar</button>
-                    <div class="output bg-gray-100 p-4 mt-4 rounded" id="outputlanguageTranslation"></div>
-                </div><div id="questionToText" class="tool-section bg-white p-6 rounded-lg shadow-md hidden">
-                    <h2 class="text-3xl font-bold mb-4">Pregunta a Texto</h2>
-                    <p class="text-gray-700 mb-4">Genera una respuesta detallada basada en una pregunta dada.</p>
-                    <div class="mb-4">
-                        <label for="inputquestionToText" class="block mb-2 font-semibold">Entrada de Datos</label>
-                        <input type="text" class="form-control block w-full p-2 border border-gray-300 rounded" id="inputquestionToText" placeholder="Escribe aquí...">
-                    </div>
-                    <button class="btn btn-primary px-6 py-3 bg-blue-700 text-white font-semibold rounded hover:bg-blue-800 transition" onclick="runTool('questionToText', 'bert-large-uncased-whole-word-masking-finetuned-squad', 'text')">Ejecutar</button>
-                    <div class="output bg-gray-100 p-4 mt-4 rounded" id="outputquestionToText"></div>
-                </div><div id="voiceRecognition" class="tool-section bg-white p-6 rounded-lg shadow-md hidden">
-                    <h2 class="text-3xl font-bold mb-4">Reconocimiento de Voz</h2>
-                    <p class="text-gray-700 mb-4">El reconocimiento de voz permite convertir audio en texto.</p>
-                    <div class="mb-4">
-                        <label for="inputvoiceRecognition" class="block mb-2 font-semibold">Entrada de Datos</label>
-                        <input type="text" class="form-control block w-full p-2 border border-gray-300 rounded" id="inputvoiceRecognition" placeholder="Sube un archivo">
-                    </div>
-                    <button class="btn btn-primary px-6 py-3 bg-blue-700 text-white font-semibold rounded hover:bg-blue-800 transition" onclick="runTool('voiceRecognition', 'wav2vec2', 'file')">Ejecutar</button>
-                    <div class="output bg-gray-100 p-4 mt-4 rounded" id="outputvoiceRecognition"></div>
-                </div><div id="chatbot" class="tool-section bg-white p-6 rounded-lg shadow-md hidden">
-                    <h2 class="text-3xl font-bold mb-4">Chatbot Inteligente</h2>
-                    <p class="text-gray-700 mb-4">Un chatbot que puede interactuar con los usuarios y responder preguntas.</p>
-                    <div class="mb-4">
-                        <label for="inputchatbot" class="block mb-2 font-semibold">Entrada de Datos</label>
-                        <input type="text" class="form-control block w-full p-2 border border-gray-300 rounded" id="inputchatbot" placeholder="Escribe aquí...">
-                    </div>
-                    <button class="btn btn-primary px-6 py-3 bg-blue-700 text-white font-semibold rounded hover:bg-blue-800 transition" onclick="runTool('chatbot', 'gpt3', 'text')">Ejecutar</button>
-                    <div class="output bg-gray-100 p-4 mt-4 rounded" id="outputchatbot"></div>
-                </div><div id="imageGeneration" class="tool-section bg-white p-6 rounded-lg shadow-md hidden">
-                    <h2 class="text-3xl font-bold mb-4">Generación de Imágenes</h2>
-                    <p class="text-gray-700 mb-4">Genera imágenes basadas en descripciones proporcionadas.</p>
-                    <div class="mb-4">
-                        <label for="inputimageGeneration" class="block mb-2 font-semibold">Entrada de Datos</label>
-                        <input type="text" class="form-control block w-full p-2 border border-gray-300 rounded" id="inputimageGeneration" placeholder="Escribe aquí...">
-                    </div>
-                    <button class="btn btn-primary px-6 py-3 bg-blue-700 text-white font-semibold rounded hover:bg-blue-800 transition" onclick="runTool('imageGeneration', 'dall-e', 'text')">Ejecutar</button>
-                    <div class="output bg-gray-100 p-4 mt-4 rounded" id="outputimageGeneration"></div>
-                </div><div id="videoAnalysis" class="tool-section bg-white p-6 rounded-lg shadow-md hidden">
-                    <h2 class="text-3xl font-bold mb-4">Análisis de Video</h2>
-                    <p class="text-gray-700 mb-4">Analiza videos para identificar acciones o eventos específicos.</p>
-                    <div class="mb-4">
-                        <label for="inputvideoAnalysis" class="block mb-2 font-semibold">Entrada de Datos</label>
-                        <input type="text" class="form-control block w-full p-2 border border-gray-300 rounded" id="inputvideoAnalysis" placeholder="Sube un archivo">
-                    </div>
-                    <button class="btn btn-primary px-6 py-3 bg-blue-700 text-white font-semibold rounded hover:bg-blue-800 transition" onclick="runTool('videoAnalysis', 'video-model', 'file')">Ejecutar</button>
-                    <div class="output bg-gray-100 p-4 mt-4 rounded" id="outputvideoAnalysis"></div>
-                </div><div id="dataVisualization" class="tool-section bg-white p-6 rounded-lg shadow-md hidden">
-                    <h2 class="text-3xl font-bold mb-4">Visualización de Datos</h2>
-                    <p class="text-gray-700 mb-4">Genera visualizaciones a partir de conjuntos de datos.</p>
-                    <div class="mb-4">
-                        <label for="inputdataVisualization" class="block mb-2 font-semibold">Entrada de Datos</label>
-                        <input type="text" class="form-control block w-full p-2 border border-gray-300 rounded" id="inputdataVisualization" placeholder="Escribe aquí...">
-                    </div>
-                    <button class="btn btn-primary px-6 py-3 bg-blue-700 text-white font-semibold rounded hover:bg-blue-800 transition" onclick="runTool('dataVisualization', 'data-visualization-model', 'text')">Ejecutar</button>
-                    <div class="output bg-gray-100 p-4 mt-4 rounded" id="outputdataVisualization"></div>
-                </div><div id="recommendationSystem" class="tool-section bg-white p-6 rounded-lg shadow-md hidden">
-                    <h2 class="text-3xl font-bold mb-4">Sistema de Recomendación</h2>
-                    <p class="text-gray-700 mb-4">Genera recomendaciones personalizadas para los usuarios.</p>
-                    <div class="mb-4">
-                        <label for="inputrecommendationSystem" class="block mb-2 font-semibold">Entrada de Datos</label>
-                        <input type="text" class="form-control block w-full p-2 border border-gray-300 rounded" id="inputrecommendationSystem" placeholder="Escribe aquí...">
-                    </div>
-                    <button class="btn btn-primary px-6 py-3 bg-blue-700 text-white font-semibold rounded hover:bg-blue-800 transition" onclick="runTool('recommendationSystem', 'recommendation-model', 'text')">Ejecutar</button>
-                    <div class="output bg-gray-100 p-4 mt-4 rounded" id="outputrecommendationSystem"></div>
-                </div><div id="anomalyDetection" class="tool-section bg-white p-6 rounded-lg shadow-md hidden">
-                    <h2 class="text-3xl font-bold mb-4">Detección de Anomalías</h2>
-                    <p class="text-gray-700 mb-4">Identifica datos que se desvían de la norma.</p>
-                    <div class="mb-4">
-                        <label for="inputanomalyDetection" class="block mb-2 font-semibold">Entrada de Datos</label>
-                        <input type="text" class="form-control block w-full p-2 border border-gray-300 rounded" id="inputanomalyDetection" placeholder="Escribe aquí...">
-                    </div>
-                    <button class="btn btn-primary px-6 py-3 bg-blue-700 text-white font-semibold rounded hover:bg-blue-800 transition" onclick="runTool('anomalyDetection', 'anomaly-detection-model', 'text')">Ejecutar</button>
-                    <div class="output bg-gray-100 p-4 mt-4 rounded" id="outputanomalyDetection"></div>
-                </div></div>
+                </div>
+            </div>
         </section>
     </main>
 
@@ -631,6 +532,4 @@
         generateToolSections();
         loadSyllabusModules();
     </script>
-
-
 </body></html>
