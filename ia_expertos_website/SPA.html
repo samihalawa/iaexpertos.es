@@ -267,24 +267,24 @@
                     ${tool.id === 'questionAnswering' ? `
                     <div class="mb-4">
                         <label for="context${tool.id}" class="block mb-2 font-semibold">Contexto</label>
-                        <textarea class="form-control block w-full p-2 border border-gray-300 rounded" id="context${tool.id}"></textarea>
+                        <textarea class="form-control block w-full p-2 border border-gray-300 rounded" id="context${tool.id}" placeholder="Introduce el contexto aquí..."></textarea>
                     </div>
                     <div class="mb-4">
                         <label for="question${tool.id}" class="block mb-2 font-semibold">Pregunta</label>
-                        <input type="text" class="form-control block w-full p-2 border border-gray-300 rounded" id="question${tool.id}">
+                        <input type="text" class="form-control block w-full p-2 border border-gray-300 rounded" id="question${tool.id}" placeholder="Introduce tu pregunta aquí...">
                     </div>
                     ` : tool.id === 'translation' ? `
                     <div class="mb-4">
                         <label for="sourceLang${tool.id}" class="block mb-2 font-semibold">Idioma de Origen</label>
-                        <input type="text" class="form-control block w-full p-2 border border-gray-300 rounded" id="sourceLang${tool.id}" value="es">
+                        <input type="text" class="form-control block w-full p-2 border border-gray-300 rounded" id="sourceLang${tool.id}" value="es" placeholder="Idioma de origen (ej. es)">
                     </div>
                     <div class="mb-4">
                         <label for="targetLang${tool.id}" class="block mb-2 font-semibold">Idioma de Destino</label>
-                        <input type="text" class="form-control block w-full p-2 border border-gray-300 rounded" id="targetLang${tool.id}" value="en">
+                        <input type="text" class="form-control block w-full p-2 border border-gray-300 rounded" id="targetLang${tool.id}" value="en" placeholder="Idioma de destino (ej. en)">
                     </div>
                     <div class="mb-4">
                         <label for="input${tool.id}" class="block mb-2 font-semibold">Texto a Traducir</label>
-                        <textarea class="form-control block w-full p-2 border border-gray-300 rounded" id="input${tool.id}"></textarea>
+                        <textarea class="form-control block w-full p-2 border border-gray-300 rounded" id="input${tool.id}" placeholder="Introduce el texto a traducir aquí..."></textarea>
                     </div>
                     ` : tool.inputType === 'file' ? `
                     <div class="mb-4">
@@ -294,7 +294,7 @@
                     ` : `
                     <div class="mb-4">
                         <label for="input${tool.id}" class="block mb-2 font-semibold">Entrada de Datos</label>
-                        <textarea class="form-control block w-full p-2 border border-gray-300 rounded" id="input${tool.id}"></textarea>
+                        <textarea class="form-control block w-full p-2 border border-gray-300 rounded" id="input${tool.id}" placeholder="Introduce el texto aquí..."></textarea>
                     </div>
                     `}
                     <button class="btn btn-primary px-6 py-3 bg-blue-700 text-white font-semibold rounded hover:bg-blue-800 transition" onclick="runTool('${tool.id}', '${tool.model}', '${tool.inputType}')">Ejecutar</button>
@@ -356,21 +356,14 @@
                     return;
                 }
                 requestBody = JSON.stringify({ inputs: inputData, source_lang: sourceLang, target_lang: targetLang });
-            } else if (toolId === 'tokenClassification') {
+            } else if (toolId === 'textGeneration' || toolId === 'summarization' || toolId === 'fillMask' || toolId === 'zeroShotClassification' || toolId === 'tokenClassification' || toolId === 'textGenerationStream') {
                 inputData = inputElement.value;
                 if (!inputData) {
                     output.textContent = 'Por favor, introduce texto antes de ejecutar la herramienta.';
                     return;
                 }
                 requestBody = JSON.stringify({ inputs: inputData });
-            } else if (toolId === 'textGenerationStream') {
-                inputData = inputElement.value;
-                if (!inputData) {
-                    output.textContent = 'Por favor, introduce texto antes de ejecutar la herramienta.';
-                    return;
-                }
-                requestBody = JSON.stringify({ inputs: inputData });
-            } else if (toolId === 'speechRecognition') {
+            } else if (toolId === 'speechRecognition' || toolId === 'visualQuestionAnswering' || toolId === 'imageClassification') {
                 const file = inputElement.files[0];
                 if (!file) {
                     output.textContent = 'Por favor, sube un archivo antes de ejecutar la herramienta.';
@@ -378,30 +371,6 @@
                 }
                 inputData = await file.arrayBuffer();
                 requestBody = inputData;
-            } else if (toolId === 'visualQuestionAnswering') {
-                const file = inputElement.files[0];
-                if (!file) {
-                    output.textContent = 'Por favor, sube un archivo antes de ejecutar la herramienta.';
-                    return;
-                }
-                inputData = await file.arrayBuffer();
-                requestBody = inputData;
-                if (inputType === 'file') {
-                    const file = inputElement.files[0];
-                    if (!file) {
-                        output.textContent = 'Por favor, sube un archivo antes de ejecutar la herramienta.';
-                        return;
-                    }
-                    inputData = await file.arrayBuffer();
-                    requestBody = inputData;
-                } else {
-                    inputData = inputElement.value;
-                    if (!inputData) {
-                        output.textContent = 'Por favor, introduce texto antes de ejecutar la herramienta.';
-                        return;
-                    }
-                    requestBody = JSON.stringify({ inputs: inputData });
-                }
             }
 
             try {
@@ -445,25 +414,25 @@
         generateToolSections();
 
         // Dynamic Module Loading
-        function loadSyllabusModules() {
-            const syllabusModules = [
-                { title: "Fundamentos de IA para la Automatización Profesional", description: "Automatiza tareas y ahorra horas de trabajo con una introducción sólida a la IA aplicada." },
-                { title: "Optimización de Emails con ChatGPT", description: "Eleva la calidad de tus comunicaciones con emails inteligentes que captan la atención." },
-                { title: "IA en Marketing Digital", description: "Impulsa tus campañas con estrategias de marketing mejoradas por la IA." },
-                { title: "Gestión de Redes Sociales con IA", description: "Crea contenido relevante y gestiona tus redes con eficiencia con herramientas de IA." },
-            ];
+        async function loadSyllabusModules() {
+            try {
+                const response = await fetch('syllabus.json');
+                const syllabusModules = await response.json();
 
-            const moduleContainer = document.getElementById('syllabusModules');
+                const moduleContainer = document.getElementById('syllabusModules');
 
-            syllabusModules.forEach(module => {
-                const moduleCard = document.createElement('div');
-                moduleCard.className = 'bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow';
-                moduleCard.innerHTML = `
-                    <h3 class="text-xl font-bold mb-2">${module.title}</h3>
-                    <p class="text-gray-600 mb-4">${module.description}</p>
-                `;
-                moduleContainer.appendChild(moduleCard);
-            });
+                syllabusModules.forEach(module => {
+                    const moduleCard = document.createElement('div');
+                    moduleCard.className = 'bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow';
+                    moduleCard.innerHTML = `
+                        <h3 class="text-xl font-bold mb-2">${module.title}</h3>
+                        <p class="text-gray-600 mb-4">${module.description}</p>
+                    `;
+                    moduleContainer.appendChild(moduleCard);
+                });
+            } catch (error) {
+                console.error('Error loading syllabus modules:', error);
+            }
         }
 
         loadSyllabusModules();
