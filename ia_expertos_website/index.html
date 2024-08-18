@@ -24,13 +24,6 @@
     <div id="footer"></div>
 
     <script>
-        // Load Header and Footer
-        fetch('header-footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header').innerHTML = data.split('<!-- Footer -->')[0];
-                document.getElementById('footer').innerHTML = data.split('<!-- Footer -->')[1];
-            });
 
         // Dynamic Module Loading
         const syllabusModules = [

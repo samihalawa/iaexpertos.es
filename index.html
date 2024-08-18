@@ -11,9 +11,7 @@
 <body class="bg-gray-50 text-gray-900">
 
     <!-- Include Header -->
-    <div id="header">
-        <!-- Header content from ia_expertos_website/header-footer.html -->
-    </div>
+    <div id="header"></div>
 
     <main class="container mx-auto p-6">
         <section class="text-center py-8">
@@ -29,12 +27,17 @@
     </main>
 
     <!-- Include Footer -->
-    <div id="footer">
-        <!-- Footer content from ia_expertos_website/header-footer.html -->
-    </div>
+    <div id="footer"></div>
 
     <script>
-        // Load dynamic syllabus modules
+        // Load Header and Footer
+        fetch('header-footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data.split('<!-- Footer -->')[0];
+                document.getElementById('footer').innerHTML = data.split('<!-- Footer -->')[1];
+            });
+
         const syllabusModules = [
             {
                 title: "Fundamentos de IA para la Automatización Profesional",
