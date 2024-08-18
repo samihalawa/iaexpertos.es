@@ -129,22 +129,40 @@
                 icon: '🌐'
             },
             {
-                id: 'zeroShotClassification',
-                name: 'Clasificación Zero-shot',
-                description: 'Clasifica texto sin entrenamiento previo.',
-                model: 'facebook/bart-large-mnli',
+                id: 'textGeneration',
+                name: 'Generación de Texto',
+                description: 'Genera texto a partir de un prompt usando GPT-2.',
+                model: 'gpt2',
                 inputType: 'text',
-                details: 'La clasificación Zero-shot permite categorizar texto en diferentes etiquetas sin necesidad de entrenamiento previo. Ejemplo: <span class="example" data-example="Este producto es excelente">Clasificar una reseña de producto como positiva o negativa sin haber entrenado al modelo en esos datos.</span>',
-                icon: '⚡'
+                details: 'La generación de texto es una técnica de IA que permite crear texto de manera automática. Es útil para generar artículos, descripciones, o cualquier contenido textual a partir de unas pocas palabras. Ejemplo: <span class="example" data-example="Escribe un artículo sobre IA">Escribir un artículo completo sobre un tema específico a partir de un título dado.</span>',
+                icon: '📝'
             },
             {
                 id: 'imageClassification',
                 name: 'Clasificación de Imágenes',
-                description: 'Clasifica imágenes en categorías.',
+                description: 'Clasifica imágenes en categorías usando ViT.',
                 model: 'google/vit-base-patch16-224',
                 inputType: 'file',
                 details: 'La clasificación de imágenes es una aplicación de visión por computadora que permite identificar y categorizar objetos dentro de una imagen. Ejemplo: Subir una imagen y detectar si contiene un perro, un gato o un automóvil.',
                 icon: '🖼️'
+            },
+            {
+                id: 'summarization',
+                name: 'Resumir Texto',
+                description: 'Genera un resumen corto de un texto largo usando BART.',
+                model: 'facebook/bart-large-cnn',
+                inputType: 'text',
+                details: 'El resumen de texto es una aplicación de IA que permite reducir un documento largo a sus ideas principales. Es útil para obtener un resumen rápido de artículos, informes, o libros. Ejemplo: <span class="example" data-example="Resumen del informe sobre IA">Resumir un informe de 20 páginas en un párrafo corto.</span>',
+                icon: '🔍'
+            },
+            {
+                id: 'translation',
+                name: 'Traducción',
+                description: 'Traduce texto entre idiomas usando Opus MT.',
+                model: 'Helsinki-NLP/opus-mt-en-es',
+                inputType: 'text',
+                details: 'La traducción automática es una herramienta de IA que convierte texto de un idioma a otro. Ejemplo: <span class="example" data-example="Hello, how are you?">Traducir un documento de inglés a español con alta precisión.</span>',
+                icon: '🌐'
             },
             {
                 id: 'sentenceSimilarity',
@@ -154,6 +172,69 @@
                 inputType: 'text',
                 details: 'La similitud de oraciones mide qué tan parecidas son dos frases en su significado. Ejemplo: <span class="example" data-example="El gato está durmiendo en la cama|Un felino reposa en la cama">Evaluar si "El gato está durmiendo en la cama" y "Un felino reposa en la cama" significan lo mismo.</span>',
                 icon: '🔄'
+            },
+            {
+                id: 'questionAnswering',
+                name: 'Responder Preguntas',
+                description: 'Responde preguntas sobre un texto dado.',
+                model: 'distilbert-base-uncased-distilled-squad',
+                inputType: 'text',
+                details: 'La respuesta a preguntas es una aplicación de IA que permite responder preguntas específicas basadas en un texto proporcionado. Ejemplo: <span class="example" data-example="¿Quién fue el primer presidente de los Estados Unidos?">Proporcionar un párrafo y preguntar "¿Quién fue el primer presidente de los Estados Unidos?" para obtener la respuesta.</span>',
+                icon: '❓'
+            },
+            {
+                id: 'fillMask',
+                name: 'Rellenar Máscara',
+                description: 'Rellena el texto enmascarado.',
+                model: 'bert-base-uncased',
+                inputType: 'text',
+                details: 'El relleno de máscaras es una técnica de procesamiento de lenguaje natural (NLP) que completa automáticamente una frase en la que faltan algunas palabras. Ejemplo: <span class="example" data-example="El [MASK] es el mejor amigo del hombre">Completar la oración "El [MASK] es el mejor amigo del hombre".</span>',
+                icon: '🔗'
+            },
+            {
+                id: 'zeroShotClassification',
+                name: 'Clasificación Zero-shot',
+                description: 'Clasifica texto en categorías sin entrenamiento previo.',
+                model: 'facebook/bart-large-mnli',
+                inputType: 'text',
+                details: 'La clasificación Zero-shot permite categorizar texto en diferentes etiquetas sin necesidad de entrenamiento previo. Ejemplo: <span class="example" data-example="Este producto es excelente">Clasificar una reseña de producto como positiva o negativa sin haber entrenado al modelo en esos datos.</span>',
+                icon: '⚡'
+            },
+            {
+                id: 'tokenClassification',
+                name: 'Clasificación de Tokens',
+                description: 'Clasifica tokens en una oración.',
+                model: 'dbmdz/bert-large-cased-finetuned-conll03-english',
+                inputType: 'text',
+                details: 'La clasificación de tokens permite identificar y etiquetar palabras individuales en una oración. Ejemplo: <span class="example" data-example="John vive en Nueva York">Identificar entidades como nombres de personas y lugares en una oración.</span>',
+                icon: '🔠'
+            },
+            {
+                id: 'textGenerationStream',
+                name: 'Generación de Texto (Stream)',
+                description: 'Genera texto en streaming usando GPT-2.',
+                model: 'gpt2',
+                inputType: 'text',
+                details: 'La generación de texto en streaming permite crear texto de manera continua a partir de un prompt. Ejemplo: <span class="example" data-example="Escribe una historia sobre un dragón">Escribir una historia continua sobre un tema específico.</span>',
+                icon: '📝'
+            },
+            {
+                id: 'speechRecognition',
+                name: 'Reconocimiento de Voz',
+                description: 'Transcribe el audio en texto.',
+                model: 'facebook/wav2vec2-large-960h',
+                inputType: 'file',
+                details: 'El reconocimiento de voz convierte el audio en texto. Ejemplo: Subir un archivo de audio y obtener la transcripción del mismo.',
+                icon: '🎤'
+            },
+            {
+                id: 'visualQuestionAnswering',
+                name: 'Respuesta a Preguntas Visuales',
+                description: 'Responde preguntas sobre imágenes.',
+                model: 'dandelin/vilt-b32-finetuned-vqa',
+                inputType: 'file',
+                details: 'La respuesta a preguntas visuales permite responder preguntas específicas basadas en una imagen proporcionada. Ejemplo: Subir una imagen y preguntar "¿Qué hay en la imagen?".',
+                icon: '🖼️'
             }
         ];
 
@@ -205,10 +286,15 @@
                         <label for="input${tool.id}" class="block mb-2 font-semibold">Texto a Traducir</label>
                         <textarea class="form-control block w-full p-2 border border-gray-300 rounded" id="input${tool.id}"></textarea>
                     </div>
+                    ` : tool.inputType === 'file' ? `
+                    <div class="mb-4">
+                        <label for="input${tool.id}" class="block mb-2 font-semibold">Sube un archivo</label>
+                        <input type="file" class="form-control block w-full p-2 border border-gray-300 rounded" id="input${tool.id}">
+                    </div>
                     ` : `
                     <div class="mb-4">
                         <label for="input${tool.id}" class="block mb-2 font-semibold">Entrada de Datos</label>
-                        ${tool.inputType === 'file' ? '<input type="file" class="form-control block w-full p-2 border border-gray-300 rounded" id="input' + tool.id + '">' : '<textarea class="form-control block w-full p-2 border border-gray-300 rounded" id="input' + tool.id + '"></textarea>'}
+                        <textarea class="form-control block w-full p-2 border border-gray-300 rounded" id="input${tool.id}"></textarea>
                     </div>
                     `}
                     <button class="btn btn-primary px-6 py-3 bg-blue-700 text-white font-semibold rounded hover:bg-blue-800 transition" onclick="runTool('${tool.id}', '${tool.model}', '${tool.inputType}')">Ejecutar</button>
@@ -270,7 +356,36 @@
                     return;
                 }
                 requestBody = JSON.stringify({ inputs: inputData, source_lang: sourceLang, target_lang: targetLang });
-            } else {
+            } else if (toolId === 'tokenClassification') {
+                inputData = inputElement.value;
+                if (!inputData) {
+                    output.textContent = 'Por favor, introduce texto antes de ejecutar la herramienta.';
+                    return;
+                }
+                requestBody = JSON.stringify({ inputs: inputData });
+            } else if (toolId === 'textGenerationStream') {
+                inputData = inputElement.value;
+                if (!inputData) {
+                    output.textContent = 'Por favor, introduce texto antes de ejecutar la herramienta.';
+                    return;
+                }
+                requestBody = JSON.stringify({ inputs: inputData });
+            } else if (toolId === 'speechRecognition') {
+                const file = inputElement.files[0];
+                if (!file) {
+                    output.textContent = 'Por favor, sube un archivo antes de ejecutar la herramienta.';
+                    return;
+                }
+                inputData = await file.arrayBuffer();
+                requestBody = inputData;
+            } else if (toolId === 'visualQuestionAnswering') {
+                const file = inputElement.files[0];
+                if (!file) {
+                    output.textContent = 'Por favor, sube un archivo antes de ejecutar la herramienta.';
+                    return;
+                }
+                inputData = await file.arrayBuffer();
+                requestBody = inputData;
                 if (inputType === 'file') {
                     const file = inputElement.files[0];
                     if (!file) {
