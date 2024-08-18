@@ -35,22 +35,33 @@
         <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Solicita tu Temario</a>
     </section>
 
-    <main class="container mx-auto p-6 flex flex-col md:flex-row">
-        <!-- Left Section: Tool Cards -->
-        <section class="md:w-1/3 flex flex-col space-y-6">
-            <div id="toolCards" class="space-y-6"></div>
-        </section>
-
-        <!-- Right Section: Tool Details -->
-        <section id="toolContainer" class="md:w-2/3 mt-8 md:mt-0 ml-0 md:ml-6">
-            <!-- Tool Sections will be injected here -->
-        </section>
-    </main>
-
     <main class="container mx-auto p-6">
-        <!-- Dynamic Syllabus Modules -->
-        <section id="syllabusModules" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Syllabus modules will be injected here -->
+        <!-- Home Section -->
+        <section id="home" class="text-center py-8">
+            <h1 class="text-5xl font-bold">Megacurso de IA de 0 a 100</h1>
+            <p class="mt-4 text-xl">Aprende a integrar la inteligencia artificial en tu vida, negocio o trabajo para incrementar ingresos.</p>
+            <a href="https://api.whatsapp.com/send?phone=34679794037&text=Hola.%20Contactaba%20en%20referencia%20a%20los%20Cursos%20de%20IA%20desde%200%20%2F%20Asesoría%20Gratuita%20Profesional.%20¿Podría%20darme%20más%20información%3F%20¡Gracias!" class="mt-4 inline-block px-8 py-4 bg-blue-600 text-white rounded-full font-semibold shadow-lg hover:bg-blue-700 transition">Solicita tu Temario</a>
+        </section>
+
+        <!-- Syllabus Section -->
+        <section id="syllabus" class="hidden">
+            <h2 class="text-3xl font-bold mb-4">Syllabus Completo</h2>
+            <div id="syllabusModules" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Syllabus modules will be injected here -->
+            </div>
+        </section>
+
+        <!-- Free Apps Section -->
+        <section id="apps" class="hidden flex flex-col md:flex-row">
+            <!-- Left Section: Tool Cards -->
+            <div class="md:w-1/3 flex flex-col space-y-6">
+                <div id="toolCards" class="space-y-6"></div>
+            </div>
+
+            <!-- Right Section: Tool Details -->
+            <div id="toolContainer" class="md:w-2/3 mt-8 md:mt-0 ml-0 md:ml-6">
+                <!-- Tool Sections will be injected here -->
+            </div>
         </section>
     </main>
 
@@ -251,6 +262,16 @@
                 output.textContent = `Error: ${error.message}`;
             }
         }
+
+        function showSection(sectionId) {
+            document.querySelectorAll('main > section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        // Show the home section by default
+        showSection('home');
 
         generateToolCards();
         generateToolSections();
