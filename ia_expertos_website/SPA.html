@@ -416,79 +416,6 @@
                 output.textContent = `Error: ${error.message}`;
             }
         }
-            const inputElement = document.getElementById(`input${toolId}`);
-            const output = document.getElementById(`output${toolId}`);
-            output.textContent = 'Procesando...';
-
-            let inputData;
-            let requestBody;
-
-            if (toolId === 'questionAnswering') {
-                const context = document.getElementById(`context${toolId}`).value;
-                const question = document.getElementById(`question${toolId}`).value;
-                if (!context || !question) {
-                    output.textContent = 'Por favor, introduce el contexto y la pregunta antes de ejecutar la herramienta.';
-                    return;
-                }
-                requestBody = JSON.stringify({ context, question });
-            } else if (toolId === 'translation') {
-                const sourceLang = document.getElementById(`sourceLang${toolId}`).value;
-                const targetLang = document.getElementById(`targetLang${toolId}`).value;
-                inputData = inputElement.value;
-                if (!inputData) {
-                    output.textContent = 'Por favor, introduce el texto a traducir antes de ejecutar la herramienta.';
-                    return;
-                }
-                requestBody = JSON.stringify({ inputs: inputData, source_lang: sourceLang, target_lang: targetLang });
-            } else if (toolId === 'textGeneration' || toolId === 'summarization' || toolId === 'fillMask' || toolId === 'zeroShotClassification' || toolId === 'tokenClassification' || toolId === 'textGenerationStream') {
-                inputData = inputElement.value;
-                if (!inputData) {
-                    output.textContent = 'Por favor, introduce texto antes de ejecutar la herramienta.';
-                    return;
-                }
-                requestBody = JSON.stringify({ inputs: inputData });
-            } else if (toolId === 'speechRecognition' || toolId === 'visualQuestionAnswering' || toolId === 'imageClassification') {
-                const file = inputElement.files[0];
-                if (!file) {
-                    output.textContent = 'Por favor, sube un archivo antes de ejecutar la herramienta.';
-                    return;
-                }
-                inputData = await file.arrayBuffer();
-                requestBody = inputData;
-            }
-
-            try {
-                const response = await fetch(`${apiUrl}${model}`, {
-                    method: 'POST',
-                    headers: {
-                        Authorization: `Bearer ${apiKey}`,
-                        'Content-Type': inputType === 'file' ? 'application/octet-stream' : 'application/json',
-                    },
-                    body: requestBody,
-                });
-
-                if (response.ok) {
-                    const result = await response.json();
-                    switch (toolId) {
-                        case 'questionAnswering':
-                            output.textContent = result.answer;
-                            break;
-                        case 'translation':
-                            output.textContent = result.translations[0].text;
-                            break;
-                        case 'imageClassification':
-                            output.innerHTML = result.map(item => `<p>${item.label}: ${item.score.toFixed(2)}</p>`).join('');
-                            break;
-                        default:
-                            output.textContent = JSON.stringify(result, null, 2);
-                    }
-                } else {
-                    throw new Error(`Error: ${response.status} ${response.statusText}`);
-                }
-            } catch (error) {
-                output.textContent = `Error: ${error.message}`;
-            }
-        }
 
         function showSection(sectionId) {
             document.querySelectorAll('main > section').forEach(section => {
@@ -498,8 +425,6 @@
         }
 
         // Show the home section by default
-        showSection('home');
-        showSection('home');
 
         generateToolCards();
         generateToolSections();
