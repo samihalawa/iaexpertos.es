@@ -235,3 +235,60 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#007bff">
+    <meta name="description" content="Ejemplos de aplicaciones de IA.">
+    <title>Ejemplos de Aplicaciones de IA</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <!-- Include Header -->
+    <div id="header"></div>
+
+    <main class="container mx-auto p-6">
+        <!-- Dynamic Syllabus Modules -->
+        <section id="syllabusModules" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Syllabus modules will be injected here -->
+        </section>
+    </main>
+
+    <!-- Include Footer -->
+    <div id="footer"></div>
+
+    <script>
+        // Load Header and Footer
+        fetch('header-footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data.split('<!-- Footer -->')[0];
+                document.getElementById('footer').innerHTML = data.split('<!-- Footer -->')[1];
+            });
+
+        // Dynamic Module Loading
+        const syllabusModules = [
+            { title: "Fundamentos de IA para la Automatización Profesional", description: "Automatiza tareas y ahorra horas de trabajo con una introducción sólida a la IA aplicada." },
+            { title: "Optimización de Emails con ChatGPT", description: "Eleva la calidad de tus comunicaciones con emails inteligentes que captan la atención." },
+            { title: "IA en Marketing Digital", description: "Impulsa tus campañas con estrategias de marketing mejoradas por la IA." },
+            { title: "Gestión de Redes Sociales con IA", description: "Crea contenido relevante y gestiona tus redes con eficiencia con herramientas de IA." },
+        ];
+
+        const moduleContainer = document.getElementById('syllabusModules');
+
+        syllabusModules.forEach(module => {
+            const moduleCard = document.createElement('div');
+            moduleCard.className = 'bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow';
+            moduleCard.innerHTML = `
+                <h3 class="text-xl font-bold mb-2">${module.title}</h3>
+                <p class="text-gray-600 mb-4">${module.description}</p>
+            `;
+            moduleContainer.appendChild(moduleCard);
+        });
+    </script>
+
+</body>
+</html>
