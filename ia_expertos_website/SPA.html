@@ -185,7 +185,7 @@
                     <p class="text-gray-700 mb-4">${tool.details}</p>
                     <div class="mb-4">
                         <label for="input${tool.id}" class="block mb-2 font-semibold">Entrada de Datos</label>
-                        <input type="${tool.inputType === 'file' ? 'file' : 'text'}" class="form-control block w-full p-2 border border-gray-300 rounded" id="input${tool.id}">
+                        ${tool.inputType === 'file' ? '<input type="file" class="form-control block w-full p-2 border border-gray-300 rounded" id="input' + tool.id + '">' : '<textarea class="form-control block w-full p-2 border border-gray-300 rounded" id="input' + tool.id + '"></textarea>'}
                     </div>
                     <button class="btn btn-primary px-6 py-3 bg-blue-700 text-white font-semibold rounded hover:bg-blue-800 transition" onclick="runTool('${tool.id}', '${tool.model}', '${tool.inputType}')">Ejecutar</button>
                     <div class="output bg-gray-100 p-4 mt-4 rounded" id="output${tool.id}"></div>
@@ -205,7 +205,7 @@
             document.querySelectorAll('.tool-section').forEach(section => section.classList.add('hidden'));
             document.querySelectorAll('.app-card').forEach(card => card.classList.remove('selected'));
             document.getElementById(toolId).classList.remove('hidden');
-            document.querySelector(`.app-card:contains("${toolId}")`).classList.add('selected');
+            document.querySelector(`.app-card:has(span:contains("${toolId}"))`).classList.add('selected');
         }
 
         function prefillInput(toolId, exampleText) {
@@ -277,24 +277,28 @@
         generateToolSections();
 
         // Dynamic Module Loading
-        const syllabusModules = [
-            { title: "Fundamentos de IA para la Automatización Profesional", description: "Automatiza tareas y ahorra horas de trabajo con una introducción sólida a la IA aplicada." },
-            { title: "Optimización de Emails con ChatGPT", description: "Eleva la calidad de tus comunicaciones con emails inteligentes que captan la atención." },
-            { title: "IA en Marketing Digital", description: "Impulsa tus campañas con estrategias de marketing mejoradas por la IA." },
-            { title: "Gestión de Redes Sociales con IA", description: "Crea contenido relevante y gestiona tus redes con eficiencia con herramientas de IA." },
-        ];
+        function loadSyllabusModules() {
+            const syllabusModules = [
+                { title: "Fundamentos de IA para la Automatización Profesional", description: "Automatiza tareas y ahorra horas de trabajo con una introducción sólida a la IA aplicada." },
+                { title: "Optimización de Emails con ChatGPT", description: "Eleva la calidad de tus comunicaciones con emails inteligentes que captan la atención." },
+                { title: "IA en Marketing Digital", description: "Impulsa tus campañas con estrategias de marketing mejoradas por la IA." },
+                { title: "Gestión de Redes Sociales con IA", description: "Crea contenido relevante y gestiona tus redes con eficiencia con herramientas de IA." },
+            ];
 
-        const moduleContainer = document.getElementById('syllabusModules');
+            const moduleContainer = document.getElementById('syllabusModules');
 
-        syllabusModules.forEach(module => {
-            const moduleCard = document.createElement('div');
-            moduleCard.className = 'bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow';
-            moduleCard.innerHTML = `
-                <h3 class="text-xl font-bold mb-2">${module.title}</h3>
-                <p class="text-gray-600 mb-4">${module.description}</p>
-            `;
-            moduleContainer.appendChild(moduleCard);
-        });
+            syllabusModules.forEach(module => {
+                const moduleCard = document.createElement('div');
+                moduleCard.className = 'bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow';
+                moduleCard.innerHTML = `
+                    <h3 class="text-xl font-bold mb-2">${module.title}</h3>
+                    <p class="text-gray-600 mb-4">${module.description}</p>
+                `;
+                moduleContainer.appendChild(moduleCard);
+            });
+        }
+
+        loadSyllabusModules();
     </script>
 </body>
 </html>
