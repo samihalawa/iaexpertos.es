@@ -20,6 +20,16 @@
         .error {
             color: red;
         }
+        .benefits {
+            background-color: #f0f4f8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .countdown {
+            font-weight: bold;
+            color: red;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -98,6 +108,15 @@
                 <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded-full" onclick="confirmPayment()">Confirmar Pago</button>
             </div>
             <div id="paymentFeedback" class="error hidden"></div>
+            <div class="benefits">
+                <h3 class="font-bold">Beneficios de Inscribirte:</h3>
+                <ul>
+                    <li>Acceso a contenido exclusivo</li>
+                    <li>Soporte continuo</li>
+                    <li>Descuentos en futuros cursos</li>
+                </ul>
+                <p class="countdown">¡Oferta válida por tiempo limitado!</p>
+            </div>
         </section>
 
         <!-- Syllabus Section -->
@@ -137,28 +156,28 @@
             {
                 id: 'textGeneration',
                 name: 'Generación de Texto',
-                description: 'Genera texto a partir de un prompt. Ideal para crear contenido automáticamente, como artículos, historias o cualquier tipo de texto. Por ejemplo, puedes escribir un artículo sobre IA simplemente proporcionando un título.',
+                description: 'Genera texto a partir de un prompt. Ideal para crear contenido automáticamente, como artículos, historias o cualquier tipo de texto.',
                 model: 'gpt2',
                 inputType: 'text',
-                details: 'La generación de texto es una técnica de IA que permite crear texto automáticamente. Ejemplo: Escribir un artículo completo a partir de un título dado.',
+                details: 'La generación de texto es una técnica de IA que permite crear texto automáticamente.',
                 icon: '📝'
             },
             {
                 id: 'imageClassification',
                 name: 'Clasificación de Imágenes',
-                description: 'Clasifica imágenes en diferentes categorías. Permite identificar objetos en imágenes, útil en diversas áreas como la seguridad y el marketing.',
+                description: 'Clasifica imágenes en diferentes categorías. Permite identificar objetos en imágenes.',
                 model: 'resnet50',
                 inputType: 'file',
-                details: 'La clasificación de imágenes permite identificar y categorizar objetos dentro de una imagen. Ejemplo: Clasificar una imagen de un perro o un gato.',
+                details: 'La clasificación de imágenes permite identificar y categorizar objetos dentro de una imagen.',
                 icon: '📷'
             },
             {
                 id: 'sentimentAnalysis',
                 name: 'Análisis de Sentimientos',
-                description: 'Analiza el sentimiento de un texto. Permite determinar la emoción detrás de un texto, útil para análisis de opiniones.',
+                description: 'Analiza el sentimiento de un texto. Permite determinar la emoción detrás de un texto.',
                 model: 'distilbert-base-uncased-finetuned-sst-2-english',
                 inputType: 'text',
-                details: 'El análisis de sentimientos permite determinar la emoción detrás de un texto. Ejemplo: Analizar si una reseña es positiva o negativa.',
+                details: 'El análisis de sentimientos permite determinar la emoción detrás de un texto.',
                 icon: '😊'
             },
             {
@@ -167,7 +186,7 @@
                 description: 'Detecta objetos dentro de una imagen. Ideal para aplicaciones de seguridad y vigilancia.',
                 model: 'yolov5',
                 inputType: 'file',
-                details: 'La detección de objetos permite identificar y localizar objetos específicos dentro de una imagen. Ejemplo: Detectar coches en una imagen de una calle.',
+                details: 'La detección de objetos permite identificar y localizar objetos específicos dentro de una imagen.',
                 icon: '🚗'
             },
             {
@@ -176,7 +195,7 @@
                 description: 'Traduce texto entre diferentes idiomas. Útil para quienes trabajan en entornos multilingües.',
                 model: 't5-base',
                 inputType: 'text',
-                details: 'La traducción de idiomas permite convertir texto de un idioma a otro. Ejemplo: Traducir un párrafo de inglés a español.',
+                details: 'La traducción de idiomas permite convertir texto de un idioma a otro.',
                 icon: '🌐'
             },
             {
@@ -185,8 +204,72 @@
                 description: 'Genera texto basado en una pregunta. Ideal para responder preguntas complejas.',
                 model: 'bert-large-uncased-whole-word-masking-finetuned-squad',
                 inputType: 'text',
-                details: 'Genera una respuesta detallada basada en una pregunta dada. Ejemplo: Responder a "¿Qué es la inteligencia artificial?" con un párrafo explicativo.',
+                details: 'Genera una respuesta detallada basada en una pregunta dada.',
                 icon: '❓'
+            },
+            // Additional tools added here
+            {
+                id: 'voiceRecognition',
+                name: 'Reconocimiento de Voz',
+                description: 'Convierte voz a texto. Ideal para transcripciones automáticas.',
+                model: 'wav2vec2',
+                inputType: 'file',
+                details: 'El reconocimiento de voz permite convertir audio en texto.',
+                icon: '🎤'
+            },
+            {
+                id: 'chatbot',
+                name: 'Chatbot Inteligente',
+                description: 'Crea un chatbot que responde preguntas automáticamente.',
+                model: 'gpt3',
+                inputType: 'text',
+                details: 'Un chatbot que puede interactuar con los usuarios y responder preguntas.',
+                icon: '🤖'
+            },
+            {
+                id: 'imageGeneration',
+                name: 'Generación de Imágenes',
+                description: 'Genera imágenes a partir de descripciones textuales.',
+                model: 'dall-e',
+                inputType: 'text',
+                details: 'Genera imágenes basadas en descripciones proporcionadas.',
+                icon: '🖼️'
+            },
+            {
+                id: 'videoAnalysis',
+                name: 'Análisis de Video',
+                description: 'Analiza videos para detectar eventos o acciones.',
+                model: 'video-model',
+                inputType: 'file',
+                details: 'Analiza videos para identificar acciones o eventos específicos.',
+                icon: '🎥'
+            },
+            {
+                id: 'dataVisualization',
+                name: 'Visualización de Datos',
+                description: 'Crea gráficos y visualizaciones a partir de datos.',
+                model: 'data-visualization-model',
+                inputType: 'text',
+                details: 'Genera visualizaciones a partir de conjuntos de datos.',
+                icon: '📊'
+            },
+            {
+                id: 'recommendationSystem',
+                name: 'Sistema de Recomendación',
+                description: 'Recomienda productos o servicios basados en preferencias.',
+                model: 'recommendation-model',
+                inputType: 'text',
+                details: 'Genera recomendaciones personalizadas para los usuarios.',
+                icon: '⭐'
+            },
+            {
+                id: 'anomalyDetection',
+                name: 'Detección de Anomalías',
+                description: 'Detecta anomalías en conjuntos de datos.',
+                model: 'anomaly-detection-model',
+                inputType: 'text',
+                details: 'Identifica datos que se desvían de la norma.',
+                icon: '⚠️'
             }
         ];
 
@@ -221,6 +304,7 @@
                     <div>
                         <h3 class="text-xl font-bold">${tool.name}</h3>
                         <p class="text-gray-600">${tool.description}</p>
+                        <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2" onclick="showPaymentOptions()">Apuntarse</button>
                     </div>
                 `;
                 card.onclick = () => showTool(tool.id);
@@ -278,7 +362,7 @@
 
                 if (response.ok) {
                     const result = await response.json();
-                    output.textContent = JSON.stringify(result, null, 2);
+                    output.textContent = `Resultado: ${JSON.stringify(result, null, 2)}`; // Display user-friendly output
                 } else {
                     throw new Error(`Error: ${response.status} ${response.statusText}`);
                 }
