@@ -52,7 +52,7 @@
         }
         .modal-content {
             background-color: #fefefe;
-            margin: 5% auto;
+            margin: 15% auto;
             padding: 20px;
             border: 1px solid #888;
             width: 80%;
@@ -127,7 +127,7 @@
 
     <main class="container mx-auto p-6">
         <!-- Home Section -->
-        <section id="home" class="text-center py-8" role="main">
+        <section id="home" class="text-center py-8 grid grid-cols-1 md:grid-cols-2 gap-6" role="main">
             <h2 class="text-4xl font-bold">¡Domina la Inteligencia Artificial!</h2>
             <p class="mt-4 text-xl">Nuestro curso de IA abarca desde lo más básico hasta aplicaciones avanzadas que puedes usar en tu día a día.</p>
             <p class="mt-4 text-xl">¿Buscas mejorar tus campañas de marketing? ¿O tal vez automatizar tareas tediosas? Conviértete en un experto en IA y maximiza tu potencial.</p>
@@ -153,14 +153,16 @@
         <section id="syllabus" class="hidden">
             <h2 class="text-3xl font-bold mb-6 text-center">Temario Completo</h2>
             <p class="text-center mb-4">Maximiza tu potencial con +50 Módulos de Aprendizaje de 0 a 100 de formación en IA y ChatGPT.</p>
-            <div class="flex">
-                <div class="accordion w-1/2">
+            <div class="flex flex-wrap justify-center">
+                <div class="accordion w-full md:w-1/2 lg:w-1/3">
                     <div class="accordion-item">
                         <div class="accordion-header" onclick="toggleAccordion(this)">
                             <span class="text-2xl">🤖</span> Módulo 1: Fundamentos de IA para la Automatización Profesional
                         </div>
                         <div class="accordion-content">
                             <p>Automatiza tareas y ahorra horas de trabajo con una introducción sólida a la IA aplicada.</p>
+                            <img src="public/fundamentos.jpg" alt="Fundamentos de IA" class="w-full h-auto">
+                            <p class="mt-2">Resumen: En la IA, hay muchos enfoques que se pueden dar. Hay usuarios que les apasiona los vídeos, la generación de código o el estudio del Machine Learning.</p>
                         </div>
                     </div>
                     <div class="accordion-item">
@@ -237,7 +239,7 @@
                     </div>
                     <!-- Add more modules as needed -->
                 </div>
-                <div class="slider w-1/2">
+                <div class="slider w-full md:w-1/2 lg:w-1/3">
                     <div class="slides">
                         <div class="slide"><img src="public/fundamentos.jpg" alt="Fundamentos de IA" class="w-full h-auto"></div>
                         <div class="slide"><img src="public/optimizacion.jpg" alt="Optimización de Emails" class="w-full h-auto"></div>
