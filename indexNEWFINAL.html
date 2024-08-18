@@ -30,6 +30,9 @@
             font-weight: bold;
             color: red;
         }
+        .session-started {
+            color: gray;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -116,6 +119,9 @@
                     <li>Descuentos en futuros cursos</li>
                 </ul>
                 <p class="countdown">¡Oferta válida por tiempo limitado!</p>
+            </div>
+            <div class="mt-4">
+                <button class="bg-gray-600 text-white font-bold py-2 px-4 rounded-full" onclick="showPaidMessage()">He Pagado</button>
             </div>
         </section>
 
@@ -292,6 +298,12 @@
             const feedback = document.getElementById('paymentFeedback');
             feedback.classList.remove('hidden');
             feedback.textContent = 'Pago confirmado. ¡Gracias por inscribirte!';
+        }
+
+        function showPaidMessage() {
+            const feedback = document.getElementById('paymentFeedback');
+            feedback.classList.remove('hidden');
+            feedback.textContent = '¡He Pagado! Gracias por tu compra.';
         }
 
         function generateToolCards() {
