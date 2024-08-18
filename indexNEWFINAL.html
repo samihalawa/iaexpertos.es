@@ -135,6 +135,7 @@
                 icon: '❓'
             }
         ];
+        const tools = [
             {
                 id: 'textGeneration',
                 name: 'Generación de Texto',
@@ -170,6 +171,24 @@
                 inputType: 'file',
                 details: 'La detección de objetos permite identificar y localizar objetos específicos dentro de una imagen. Ejemplo: Detectar coches en una imagen de una calle.',
                 icon: '🚗'
+            },
+            {
+                id: 'languageTranslation',
+                name: 'Traducción de Idiomas',
+                description: 'Traduce texto entre diferentes idiomas.',
+                model: 't5-base',
+                inputType: 'text',
+                details: 'La traducción de idiomas permite convertir texto de un idioma a otro. Ejemplo: Traducir un párrafo de inglés a español.',
+                icon: '🌐'
+            },
+            {
+                id: 'questionToText',
+                name: 'Pregunta a Texto',
+                description: 'Genera texto basado en una pregunta.',
+                model: 'bert-large-uncased-whole-word-masking-finetuned-squad',
+                inputType: 'text',
+                details: 'Genera una respuesta detallada basada en una pregunta dada. Ejemplo: Responder a "¿Qué es la inteligencia artificial?" con un párrafo explicativo.',
+                icon: '❓'
             }
         ];
 
