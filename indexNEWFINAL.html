@@ -46,7 +46,51 @@
             <h2 class="text-4xl font-bold">¡Domina la Inteligencia Artificial!</h2>
             <p class="mt-4 text-xl">Nuestro curso de IA abarca desde lo más básico hasta aplicaciones avanzadas que puedes usar en tu día a día.</p>
             <p class="mt-4 text-xl">¿Buscas mejorar tus campañas de marketing? ¿O tal vez automatizar tareas tediosas? Conviértete en un experto en IA y maximiza tu potencial.</p>
-            <a href="https://api.whatsapp.com/send?phone=34679794037&text=Quiero%20hablar%20sobre%20el%20curso%20de%20IA" class="mt-4 inline-block px-8 py-4 bg-blue-600 text-white rounded-full font-semibold shadow-lg hover:bg-blue-700 transition">Habla con un Asesor</a>
+            <p class="mt-4 text-xl">Este curso incluye:</p>
+            <ul class="list-disc list-inside text-left mx-auto max-w-lg">
+                <li>Asistencia Individual con el Profesor Personalizada</li>
+                <li>Clases grabadas por si faltas a alguna clase</li>
+                <li>Diploma oficial final (certificado por Megacursos.com)</li>
+            </ul>
+            <div class="mt-6">
+                <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded-full" onclick="showPurchaseOptions()">¡Inscríbete Ahora!</button>
+            </div>
+        </section>
+
+        <!-- Purchase Options Section -->
+        <section id="purchaseOptions" class="hidden text-center py-8">
+            <h2 class="text-3xl font-bold">Opciones de Inscripción</h2>
+            <p class="mt-4 text-xl">Elige tu sesión de inicio:</p>
+            <div class="mt-4">
+                <select id="sessionSelect" class="border border-gray-300 rounded p-2">
+                    <option value="completed">Sesión Actual (Completada)</option>
+                    <option value="next">1 Mes - 1 Clase por Día</option>
+                </select>
+            </div>
+            <div class="mt-4">
+                <p class="text-lg">Horarios disponibles:</p>
+                <ul class="list-disc list-inside text-left mx-auto max-w-lg">
+                    <li>14:00 Madrid</li>
+                    <li>19:00 Madrid</li>
+                </ul>
+            </div>
+            <div class="mt-4">
+                <p class="text-lg">Precio: <span class="font-bold">1499€</span> (Ahora solo <span class="font-bold">499€</span>)</p>
+            </div>
+            <div class="mt-6">
+                <button class="bg-green-600 text-white font-bold py-2 px-4 rounded-full" onclick="showPaymentOptions()">Proceder al Pago</button>
+            </div>
+        </section>
+
+        <!-- Payment Options Section -->
+        <section id="paymentOptions" class="hidden text-center py-8">
+            <h2 class="text-3xl font-bold">Opciones de Pago</h2>
+            <p class="mt-4 text-lg">Puedes pagar a través de:</p>
+            <ul class="list-disc list-inside text-left mx-auto max-w-lg">
+                <li>Bizum: <span class="font-bold">+34 679794037</span></li>
+                <li>Transferencia Bancaria</li>
+            </ul>
+            <p class="mt-4">Por favor, asegúrate de enviar el comprobante de pago a nuestro WhatsApp.</p>
         </section>
 
         <!-- Syllabus Section -->
@@ -86,7 +130,7 @@
             {
                 id: 'textGeneration',
                 name: 'Generación de Texto',
-                description: 'Genera texto a partir de un prompt.',
+                description: 'Genera texto a partir de un prompt. Ideal para crear contenido automáticamente, como artículos, historias o cualquier tipo de texto. Por ejemplo, puedes escribir un artículo sobre IA simplemente proporcionando un título.',
                 model: 'gpt2',
                 inputType: 'text',
                 details: 'La generación de texto es una técnica de IA que permite crear texto automáticamente. Ejemplo: Escribir un artículo completo a partir de un título dado.',
@@ -95,7 +139,7 @@
             {
                 id: 'imageClassification',
                 name: 'Clasificación de Imágenes',
-                description: 'Clasifica imágenes en diferentes categorías.',
+                description: 'Clasifica imágenes en diferentes categorías. Permite identificar objetos en imágenes, útil en diversas áreas como la seguridad y el marketing.',
                 model: 'resnet50',
                 inputType: 'file',
                 details: 'La clasificación de imágenes permite identificar y categorizar objetos dentro de una imagen. Ejemplo: Clasificar una imagen de un perro o un gato.',
@@ -104,7 +148,7 @@
             {
                 id: 'sentimentAnalysis',
                 name: 'Análisis de Sentimientos',
-                description: 'Analiza el sentimiento de un texto.',
+                description: 'Analiza el sentimiento de un texto. Permite determinar la emoción detrás de un texto, útil para análisis de opiniones.',
                 model: 'distilbert-base-uncased-finetuned-sst-2-english',
                 inputType: 'text',
                 details: 'El análisis de sentimientos permite determinar la emoción detrás de un texto. Ejemplo: Analizar si una reseña es positiva o negativa.',
@@ -113,7 +157,7 @@
             {
                 id: 'objectDetection',
                 name: 'Detección de Objetos',
-                description: 'Detecta objetos dentro de una imagen.',
+                description: 'Detecta objetos dentro de una imagen. Ideal para aplicaciones de seguridad y vigilancia.',
                 model: 'yolov5',
                 inputType: 'file',
                 details: 'La detección de objetos permite identificar y localizar objetos específicos dentro de una imagen. Ejemplo: Detectar coches en una imagen de una calle.',
@@ -122,7 +166,7 @@
             {
                 id: 'languageTranslation',
                 name: 'Traducción de Idiomas',
-                description: 'Traduce texto entre diferentes idiomas.',
+                description: 'Traduce texto entre diferentes idiomas. Útil para quienes trabajan en entornos multilingües.',
                 model: 't5-base',
                 inputType: 'text',
                 details: 'La traducción de idiomas permite convertir texto de un idioma a otro. Ejemplo: Traducir un párrafo de inglés a español.',
@@ -131,7 +175,7 @@
             {
                 id: 'questionToText',
                 name: 'Pregunta a Texto',
-                description: 'Genera texto basado en una pregunta.',
+                description: 'Genera texto basado en una pregunta. Ideal para responder preguntas complejas.',
                 model: 'bert-large-uncased-whole-word-masking-finetuned-squad',
                 inputType: 'text',
                 details: 'Genera una respuesta detallada basada en una pregunta dada. Ejemplo: Responder a "¿Qué es la inteligencia artificial?" con un párrafo explicativo.',
@@ -144,6 +188,14 @@
                 section.classList.add('hidden');
             });
             document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        function showPurchaseOptions() {
+            document.getElementById('purchaseOptions').classList.remove('hidden');
+        }
+
+        function showPaymentOptions() {
+            document.getElementById('paymentOptions').classList.remove('hidden');
         }
 
         function generateToolCards() {
@@ -174,7 +226,7 @@
                     <p class="text-gray-700 mb-4">${tool.details}</p>
                     <div class="mb-4">
                         <label for="input${tool.id}" class="block mb-2 font-semibold">Entrada de Datos</label>
-                        ${tool.inputType === 'file' ? '<input type="file" class="form-control block w-full p-2 border border-gray-300 rounded" id="input' + tool.id + '">' : tool.id === 'questionToText' ? '<textarea class="form-control block w-full p-2 border border-gray-300 rounded" id="input' + tool.id + '">¿Qué es la inteligencia artificial?</textarea><input type="text" class="form-control block w-full p-2 border border-gray-300 rounded mt-2" id="question' + tool.id + '" placeholder="Escribe tu pregunta aquí">' : '<textarea class="form-control block w-full p-2 border border-gray-300 rounded" id="input' + tool.id + '"></textarea>'}
+                        <input type="text" class="form-control block w-full p-2 border border-gray-300 rounded" id="input${tool.id}" placeholder="${tool.inputType === 'file' ? 'Sube un archivo' : 'Escribe aquí...'}">
                     </div>
                     <button class="btn btn-primary px-6 py-3 bg-blue-700 text-white font-semibold rounded hover:bg-blue-800 transition" onclick="runTool('${tool.id}', '${tool.model}', '${tool.inputType}')">Ejecutar</button>
                     <div class="output bg-gray-100 p-4 mt-4 rounded" id="output${tool.id}"></div>
@@ -197,12 +249,6 @@
             let inputData;
             if (inputType === 'file') {
                 inputData = await inputElement.files[0].arrayBuffer();
-            } else if (toolId === 'questionToText') {
-                const questionElement = document.getElementById(`question${toolId}`);
-                inputData = {
-                    context: inputElement.value,
-                    question: questionElement.value
-                };
             } else {
                 inputData = inputElement.value;
             }
