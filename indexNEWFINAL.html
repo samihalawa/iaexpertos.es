@@ -89,7 +89,33 @@
                 details: 'La generación de texto es una técnica de IA que permite crear texto automáticamente. Ejemplo: Escribir un artículo completo a partir de un título dado.',
                 icon: '📝'
             },
-            // Add other tools similarly...
+            {
+                id: 'imageClassification',
+                name: 'Clasificación de Imágenes',
+                description: 'Clasifica imágenes en diferentes categorías.',
+                model: 'resnet50',
+                inputType: 'file',
+                details: 'La clasificación de imágenes permite identificar y categorizar objetos dentro de una imagen. Ejemplo: Clasificar una imagen de un perro o un gato.',
+                icon: '📷'
+            },
+            {
+                id: 'sentimentAnalysis',
+                name: 'Análisis de Sentimientos',
+                description: 'Analiza el sentimiento de un texto.',
+                model: 'distilbert-base-uncased-finetuned-sst-2-english',
+                inputType: 'text',
+                details: 'El análisis de sentimientos permite determinar la emoción detrás de un texto. Ejemplo: Analizar si una reseña es positiva o negativa.',
+                icon: '😊'
+            },
+            {
+                id: 'objectDetection',
+                name: 'Detección de Objetos',
+                description: 'Detecta objetos dentro de una imagen.',
+                model: 'yolov5',
+                inputType: 'file',
+                details: 'La detección de objetos permite identificar y localizar objetos específicos dentro de una imagen. Ejemplo: Detectar coches en una imagen de una calle.',
+                icon: '🚗'
+            }
         ];
 
         function showSection(sectionId) {
