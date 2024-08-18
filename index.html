@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
+<html lang="es"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#007bff">
     <meta name="description" content="Megacurso de IA de 0 a 100. Aprende a integrar la inteligencia artificial en tu vida, negocio o trabajo para incrementar ingresos.">
+    <meta name="keywords" content="curso de IA, inteligencia artificial, aprendizaje, automatización, marketing digital">
     <title>Megacurso de IA de 0 a 100</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
@@ -37,13 +36,79 @@
             color: green;
             font-weight: bold;
         }
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        /* Slider styles */
+        .slider {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            overflow: hidden;
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+        .accordion {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .accordion-item {
+            border-bottom: 1px solid #ccc;
+        }
+        .accordion-header {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #f0f0f0;
+        }
+        .accordion-content {
+            padding: 10px;
+            display: none;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
 
     <!-- Header -->
     <header>
-        <nav class="bg-gray-200 p-4 flex justify-between items-center">
+        <nav class="bg-gray-200 p-4 flex justify-between items-center" role="navigation">
             <a href="#" class="text-lg font-bold clickable" onclick="showSection('home')">IA Expertos</a>
             <ul class="flex justify-end items-center space-x-4">
                 <li><a href="#" class="text-lg font-bold clickable" onclick="showSection('home')">Inicio</a></li>
@@ -57,12 +122,12 @@
     <section class="text-center py-8 bg-blue-500 text-white">
         <h1 class="text-5xl font-bold">Megacurso de IA de 0 a 100</h1>
         <p class="mt-4 text-xl">Integra la IA en tu vida, negocio o trabajo para maximizar tus ingresos.</p>
-        <a href="https://api.whatsapp.com/send?phone=34679794037&text=Solicito%20más%20información%20sobre%20el%20megacurso%20de%20IA%20de%200%20a%20100" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full mt-6 inline-block">Solicita tu Temario</a>
+        <a href="https://api.whatsapp.com/send?phone=34679794037&amp;text=Solicito%20más%20información%20sobre%20el%20megacurso%20de%20IA%20de%200%20a%20100" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full mt-6 inline-block">Solicita tu Temario</a>
     </section>
 
     <main class="container mx-auto p-6">
         <!-- Home Section -->
-        <section id="home" class="text-center py-8">
+        <section id="home" class="text-center py-8 grid grid-cols-1 md:grid-cols-2 gap-6" role="main">
             <h2 class="text-4xl font-bold">¡Domina la Inteligencia Artificial!</h2>
             <p class="mt-4 text-xl">Nuestro curso de IA abarca desde lo más básico hasta aplicaciones avanzadas que puedes usar en tu día a día.</p>
             <p class="mt-4 text-xl">¿Buscas mejorar tus campañas de marketing? ¿O tal vez automatizar tareas tediosas? Conviértete en un experto en IA y maximiza tu potencial.</p>
@@ -74,6 +139,115 @@
             </ul>
             <div class="mt-6">
                 <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded-full" onclick="showPurchaseOptions()">¡Inscríbete Ahora!</button>
+            </div>
+            <div class="mt-8">
+                <h3 class="text-2xl font-bold">Introducción al Curso</h3>
+                <h4 class="text-xl font-semibold">Explorando la IA</h4>
+                <p class="mt-2">En la IA, hay muchos enfoques que se pueden dar. Hay usuarios que les apasiona los vídeos, la generación de código o el estudio del Machine Learning. Por ello, el temario del Megacurso de IA de 0 a 100 es variado, y no incluye directamente programación. Aun así, es muy recomendable si es empresa o un particular decidido con la IA que se ponga en contacto con <a href="https://api.whatsapp.com/send?phone=34679794037" class="text-blue-600">Sami Halawa</a> para poder orientarle si ve que hay muchos temas no incluidos o que le gustaría cambiar. Sami Halawa ofrece clases personalizadas con estudio gratuito, que son lo más adecuado si, por ejemplo, te interesaría usar la IA para programación.</p>
+                <h4 class="text-xl font-semibold">FAQ</h4>
+                <p class="mt-2">¿Necesito alguna base? No, es de 0 a 100.</p>
+            </div>
+        </section>
+
+        <!-- New Syllabus Section -->
+        <section id="syllabus" class="hidden">
+            <h2 class="text-3xl font-bold mb-6 text-center">Temario Completo</h2>
+            <p class="text-center mb-4">Maximiza tu potencial con +50 Módulos de Aprendizaje de 0 a 100 de formación en IA y ChatGPT.</p>
+            <div class="flex flex-wrap justify-center">
+                <div class="accordion w-full md:w-1/2 lg:w-1/3">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span class="text-2xl">🤖</span> Módulo 1: Fundamentos de IA para la Automatización Profesional
+                        </div>
+                        <div class="accordion-content">
+                            <p>Automatiza tareas y ahorra horas de trabajo con una introducción sólida a la IA aplicada.</p>
+                            <img src="public/fundamentos.jpg" alt="Fundamentos de IA" class="w-full h-auto">
+                            <p class="mt-2">Resumen: En la IA, hay muchos enfoques que se pueden dar. Hay usuarios que les apasiona los vídeos, la generación de código o el estudio del Machine Learning.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span class="text-2xl">✉️</span> Módulo 2: Optimización de Emails con ChatGPT
+                        </div>
+                        <div class="accordion-content">
+                            <p>Eleva la calidad de tus comunicaciones con emails inteligentes que captan la atención.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span class="text-2xl">📈</span> Módulo 3: IA en Marketing Digital
+                        </div>
+                        <div class="accordion-content">
+                            <p>Impulsa tus campañas con estrategias de marketing mejoradas por la IA.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span class="text-2xl">📱</span> Módulo 4: Gestión de Redes Sociales con IA
+                        </div>
+                        <div class="accordion-content">
+                            <p>Crea contenido relevante y gestiona tus redes con eficiencia con herramientas de IA.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span class="text-2xl">📊</span> Módulo 5: Automatización y Análisis en Excel y Google Sheets
+                        </div>
+                        <div class="accordion-content">
+                            <p>Analiza datos complejos y optimiza hojas de cálculo con técnicas de IA.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span class="text-2xl">🎨</span> Módulo 6: Producción de Contenido Creativo con IA
+                        </div>
+                        <div class="accordion-content">
+                            <p>Desarrolla habilidades para generar contenido visual y escrito con herramientas avanzadas de IA.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span class="text-2xl">🌐</span> Módulo 7: Diseño Web Asistido por IA
+                        </div>
+                        <div class="accordion-content">
+                            <p>Crea sitios web atractivos y funcionales con plataformas de diseño IA.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span class="text-2xl">🎥</span> Módulo 8: Edición de Video Acelerada con IA
+                        </div>
+                        <div class="accordion-content">
+                            <p>Produce videos de alta calidad en menos tiempo utilizando software de IA.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span class="text-2xl">🏢</span> Módulo 9: Procesos Empresariales y Automatización con IA
+                        </div>
+                        <div class="accordion-content">
+                            <p>Revoluciona la eficiencia operativa aplicando sistemas de IA en tu empresa.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span class="text-2xl">🔮</span> Módulo 10: Predicciones Precisas con IA
+                        </div>
+                        <div class="accordion-content">
+                            <p>Aprende a predecir tendencias de mercado, comportamiento del cliente y más con modelos predictivos avanzados.</p>
+                        </div>
+                    </div>
+                    <!-- Add more modules as needed -->
+                </div>
+                <div class="slider w-full md:w-1/2 lg:w-1/3">
+                    <div class="slides">
+                        <div class="slide"><img src="public/fundamentos.jpg" alt="Fundamentos de IA" class="w-full h-auto"></div>
+                        <div class="slide"><img src="public/optimizacion.jpg" alt="Optimización de Emails" class="w-full h-auto"></div>
+                        <div class="slide"><img src="public/marketing.jpg" alt="IA en Marketing Digital" class="w-full h-auto"></div>
+                        <div class="slide"><img src="public/redes.jpg" alt="Gestión de Redes Sociales" class="w-full h-auto"></div>
+                        <!-- Add more images as needed -->
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -129,36 +303,30 @@
             </div>
         </section>
 
-        <!-- Syllabus Section -->
-        <section id="syllabus" class="hidden">
-            <h2 class="text-3xl font-bold mb-6 text-center">Syllabus Completo</h2>
-            <div id="syllabusModules" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Modules dynamically generated here -->
-            </div>
-        </section>
-
         <!-- Free Apps Section -->
         <section id="apps" class="hidden flex flex-col md:flex-row">
             <!-- Tool Cards -->
             <div class="md:w-1/3 flex flex-col space-y-6" id="toolCards">
-                <!-- Cards dynamically generated here -->
+                <!-- Tool cards will be generated here -->
             </div>
 
             <!-- Tool Details -->
             <div id="toolContainer" class="md:w-2/3 mt-8 md:mt-0 ml-0 md:ml-6">
-                <!-- Tool details dynamically generated here -->
+                <!-- Tool sections will be generated here -->
             </div>
         </section>
     </main>
 
     <!-- Footer -->
     <footer class="bg-gray-200 p-4 text-center">
-        <p class="text-sm text-gray-600">&copy; 2023 IA Expertos. Todos los derechos reservados.</p>
+        <p class="text-sm text-gray-600">© 2023 IA Expertos. Todos los derechos reservados.</p>
+        <p class="text-xs text-gray-500">El contenido de este curso es solo para fines educativos y no garantiza resultados específicos.</p>
         <ul class="flex justify-center items-center space-x-4 mt-2">
-            <li><a href="#" class="text-lg font-bold clickable">Facebook</a></li>
-            <li><a href="#" class="text-lg font-bold clickable">Twitter</a></li>
-            <li><a href="#" class="text-lg font-bold clickable">Instagram</a></li>
+            <li><a href="https://facebook.com" class="text-lg font-bold clickable">Facebook</a></li>
+            <li><a href="https://twitter.com" class="text-lg font-bold clickable">Twitter</a></li>
+            <li><a href="https://instagram.com" class="text-lg font-bold clickable">Instagram</a></li>
         </ul>
+        <p class="text-xs text-gray-500">Política de privacidad</p>
     </footer>
 
     <script>
@@ -198,88 +366,6 @@
                 inputType: 'file',
                 details: 'La detección de objetos permite identificar y localizar objetos específicos dentro de una imagen.',
                 icon: '🚗'
-            },
-            {
-                id: 'languageTranslation',
-                name: 'Traducción de Idiomas',
-                description: 'Traduce texto entre diferentes idiomas. Útil para quienes trabajan en entornos multilingües.',
-                model: 't5-base',
-                inputType: 'text',
-                details: 'La traducción de idiomas permite convertir texto de un idioma a otro.',
-                icon: '🌐'
-            },
-            {
-                id: 'questionToText',
-                name: 'Pregunta a Texto',
-                description: 'Genera texto basado en una pregunta. Ideal para responder preguntas complejas.',
-                model: 'bert-large-uncased-whole-word-masking-finetuned-squad',
-                inputType: 'text',
-                details: 'Genera una respuesta detallada basada en una pregunta dada.',
-                icon: '❓'
-            },
-            // Additional tools added here
-            {
-                id: 'voiceRecognition',
-                name: 'Reconocimiento de Voz',
-                description: 'Convierte voz a texto. Ideal para transcripciones automáticas.',
-                model: 'wav2vec2',
-                inputType: 'file',
-                details: 'El reconocimiento de voz permite convertir audio en texto.',
-                icon: '🎤'
-            },
-            {
-                id: 'chatbot',
-                name: 'Chatbot Inteligente',
-                description: 'Crea un chatbot que responde preguntas automáticamente.',
-                model: 'gpt3',
-                inputType: 'text',
-                details: 'Un chatbot que puede interactuar con los usuarios y responder preguntas.',
-                icon: '🤖'
-            },
-            {
-                id: 'imageGeneration',
-                name: 'Generación de Imágenes',
-                description: 'Genera imágenes a partir de descripciones textuales.',
-                model: 'dall-e',
-                inputType: 'text',
-                details: 'Genera imágenes basadas en descripciones proporcionadas.',
-                icon: '🖼️'
-            },
-            {
-                id: 'videoAnalysis',
-                name: 'Análisis de Video',
-                description: 'Analiza videos para detectar eventos o acciones.',
-                model: 'video-model',
-                inputType: 'file',
-                details: 'Analiza videos para identificar acciones o eventos específicos.',
-                icon: '🎥'
-            },
-            {
-                id: 'dataVisualization',
-                name: 'Visualización de Datos',
-                description: 'Crea gráficos y visualizaciones a partir de datos.',
-                model: 'data-visualization-model',
-                inputType: 'text',
-                details: 'Genera visualizaciones a partir de conjuntos de datos.',
-                icon: '📊'
-            },
-            {
-                id: 'recommendationSystem',
-                name: 'Sistema de Recomendación',
-                description: 'Recomienda productos o servicios basados en preferencias.',
-                model: 'recommendation-model',
-                inputType: 'text',
-                details: 'Genera recomendaciones personalizadas para los usuarios.',
-                icon: '⭐'
-            },
-            {
-                id: 'anomalyDetection',
-                name: 'Detección de Anomalías',
-                description: 'Detecta anomalías en conjuntos de datos.',
-                model: 'anomaly-detection-model',
-                inputType: 'text',
-                details: 'Identifica datos que se desvían de la norma.',
-                icon: '⚠️'
             }
         ];
 
@@ -288,6 +374,15 @@
                 section.classList.add('hidden');
             });
             document.getElementById(sectionId).classList.remove('hidden');
+            if (sectionId === 'apps') {
+                generateToolCards();
+                generateToolSections();
+            }
+        }
+
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
         }
 
         function showPurchaseOptions() {
@@ -409,9 +504,6 @@
 
         // Initialize SPA
         showSection('home');
-        generateToolCards();
-        generateToolSections();
         loadSyllabusModules();
     </script>
-</body>
-</html>
+</body></html>
