@@ -29,11 +29,6 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="text-center py-8">
-        <h1 class="text-5xl font-bold">Megacurso de IA de 0 a 100</h1>
-        <p class="mt-4 text-xl">Aprende a integrar la inteligencia artificial en tu vida, negocio o trabajo para incrementar ingresos.</p>
-        <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Solicita tu Temario</a>
-    </section>
 
     <main class="container mx-auto p-6">
         <!-- Home Section -->
@@ -298,7 +293,7 @@
                     </div>
                     `}
                     <button class="btn btn-primary px-6 py-3 bg-blue-700 text-white font-semibold rounded hover:bg-blue-800 transition" onclick="runTool('${tool.id}', '${tool.model}', '${tool.inputType}')">Ejecutar</button>
-                    <div class="output bg-gray-100 p-4 mt-4 rounded" id="output${tool.id}"></div>
+                    <div class="output bg-gray-100 p-4 mt-4 rounded whitespace-pre-wrap" id="output${tool.id}"></div>
                     <div class="mt-6 flex space-x-4">
                         <a href="https://api.whatsapp.com/send?phone=34679794037&text=Pido%20mi%20temario%20para%20${tool.name}" class="block px-6 py-3 bg-green-600 text-white font-semibold rounded-full shadow hover:bg-green-700 transition">Pide tu temario</a>
                         <a href="https://api.whatsapp.com/send?phone=34679794037&text=Hablar%20con%20profesor%20sobre%20${tool.name}" class="block px-6 py-3 bg-blue-600 text-white font-semibold rounded-full shadow hover:bg-blue-700 transition">Habla con el profesor</a>
@@ -385,12 +380,18 @@
 
                 if (response.ok) {
                     const result = await response.json();
-                    if (toolId === 'questionAnswering') {
-                        output.textContent = result.answer;
-                    } else if (toolId === 'translation') {
-                        output.textContent = result.translations[0].text;
-                    } else {
-                        output.textContent = JSON.stringify(result, null, 2);
+                    switch (toolId) {
+                        case 'questionAnswering':
+                            output.textContent = result.answer;
+                            break;
+                        case 'translation':
+                            output.textContent = result.translations[0].text;
+                            break;
+                        case 'imageClassification':
+                            output.innerHTML = result.map(item => `<p>${item.label}: ${item.score.toFixed(2)}</p>`).join('');
+                            break;
+                        default:
+                            output.textContent = JSON.stringify(result, null, 2);
                     }
                 } else {
                     throw new Error(`Error: ${response.status} ${response.statusText}`);
