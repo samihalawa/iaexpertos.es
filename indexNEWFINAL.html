@@ -14,6 +14,9 @@
         .hidden {
             display: none;
         }
+        .clickable {
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -21,11 +24,11 @@
     <!-- Header -->
     <header>
         <nav class="bg-gray-200 p-4 flex justify-between items-center">
-            <a href="#" class="text-lg font-bold" onclick="showSection('home')">IA Expertos</a>
+            <a href="#" class="text-lg font-bold clickable" onclick="showSection('home')">IA Expertos</a>
             <ul class="flex justify-end items-center space-x-4">
-                <li><a href="#" class="text-lg font-bold" onclick="showSection('home')">Inicio</a></li>
-                <li><a href="#" class="text-lg font-bold" onclick="showSection('syllabus')">Syllabus</a></li>
-                <li><a href="#" class="text-lg font-bold" onclick="showSection('apps')">Free Apps</a></li>
+                <li><a href="#" class="text-lg font-bold clickable" onclick="showSection('home')">Inicio</a></li>
+                <li><a href="#" class="text-lg font-bold clickable" onclick="showSection('syllabus')">Syllabus</a></li>
+                <li><a href="#" class="text-lg font-bold clickable" onclick="showSection('apps')">Free Apps</a></li>
             </ul>
         </nav>
     </header>
@@ -72,69 +75,13 @@
     <footer class="bg-gray-200 p-4 text-center">
         <p class="text-sm text-gray-600">&copy; 2023 IA Expertos. Todos los derechos reservados.</p>
         <ul class="flex justify-center items-center space-x-4 mt-2">
-            <li><a href="#" class="text-lg font-bold">Facebook</a></li>
-            <li><a href="#" class="text-lg font-bold">Twitter</a></li>
-            <li><a href="#" class="text-lg font-bold">Instagram</a></li>
+            <li><a href="#" class="text-lg font-bold clickable">Facebook</a></li>
+            <li><a href="#" class="text-lg font-bold clickable">Twitter</a></li>
+            <li><a href="#" class="text-lg font-bold clickable">Instagram</a></li>
         </ul>
     </footer>
 
     <script>
-        const tools = [
-            {
-                id: 'textGeneration',
-                name: 'Generación de Texto',
-                description: 'Genera texto a partir de un prompt.',
-                model: 'gpt2',
-                inputType: 'text',
-                details: 'La generación de texto es una técnica de IA que permite crear texto automáticamente. Ejemplo: Escribir un artículo completo a partir de un título dado.',
-                icon: '📝'
-            },
-            {
-                id: 'imageClassification',
-                name: 'Clasificación de Imágenes',
-                description: 'Clasifica imágenes en diferentes categorías.',
-                model: 'resnet50',
-                inputType: 'file',
-                details: 'La clasificación de imágenes permite identificar y categorizar objetos dentro de una imagen. Ejemplo: Clasificar una imagen de un perro o un gato.',
-                icon: '📷'
-            },
-            {
-                id: 'sentimentAnalysis',
-                name: 'Análisis de Sentimientos',
-                description: 'Analiza el sentimiento de un texto.',
-                model: 'distilbert-base-uncased-finetuned-sst-2-english',
-                inputType: 'text',
-                details: 'El análisis de sentimientos permite determinar la emoción detrás de un texto. Ejemplo: Analizar si una reseña es positiva o negativa.',
-                icon: '😊'
-            },
-            {
-                id: 'objectDetection',
-                name: 'Detección de Objetos',
-                description: 'Detecta objetos dentro de una imagen.',
-                model: 'yolov5',
-                inputType: 'file',
-                details: 'La detección de objetos permite identificar y localizar objetos específicos dentro de una imagen. Ejemplo: Detectar coches en una imagen de una calle.',
-                icon: '🚗'
-            },
-            {
-                id: 'languageTranslation',
-                name: 'Traducción de Idiomas',
-                description: 'Traduce texto entre diferentes idiomas.',
-                model: 't5-base',
-                inputType: 'text',
-                details: 'La traducción de idiomas permite convertir texto de un idioma a otro. Ejemplo: Traducir un párrafo de inglés a español.',
-                icon: '🌐'
-            },
-            {
-                id: 'questionToText',
-                name: 'Pregunta a Texto',
-                description: 'Genera texto basado en una pregunta.',
-                model: 'bert-large-uncased-whole-word-masking-finetuned-squad',
-                inputType: 'text',
-                details: 'Genera una respuesta detallada basada en una pregunta dada. Ejemplo: Responder a "¿Qué es la inteligencia artificial?" con un párrafo explicativo.',
-                icon: '❓'
-            }
-        ];
         const tools = [
             {
                 id: 'textGeneration',
