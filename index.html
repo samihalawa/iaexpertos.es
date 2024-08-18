@@ -4,71 +4,414 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#007bff">
-    <meta name="description" content="Aprende a integrar la inteligencia artificial en tu vida y negocio para incrementar tus ingresos.">
+    <meta name="description" content="Megacurso de IA de 0 a 100. Aprende a integrar la inteligencia artificial en tu vida, negocio o trabajo para incrementar ingresos.">
     <title>Megacurso de IA de 0 a 100</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .app-card.selected {
+            border: 2px solid #3b82f6;
+        }
+        .hidden {
+            display: none;
+        }
+        .clickable {
+            cursor: pointer;
+        }
+        .error {
+            color: red;
+        }
+        .benefits {
+            background-color: #f0f4f8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .countdown {
+            font-weight: bold;
+            color: red;
+        }
+        .session-started {
+            color: gray;
+        }
+        .discount {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
 
-    <!-- Include Header -->
-    <div id="header"></div>
+    <!-- Header -->
+    <header>
+        <nav class="bg-gray-200 p-4 flex justify-between items-center">
+            <a href="#" class="text-lg font-bold clickable" onclick="showSection('home')">IA Expertos</a>
+            <ul class="flex justify-end items-center space-x-4">
+                <li><a href="#" class="text-lg font-bold clickable" onclick="showSection('home')">Inicio</a></li>
+                <li><a href="#" class="text-lg font-bold clickable" onclick="showSection('syllabus')">Syllabus</a></li>
+                <li><a href="#" class="text-lg font-bold clickable" onclick="showSection('apps')">Free Apps</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="text-center py-8 bg-blue-500 text-white">
+        <h1 class="text-5xl font-bold">Megacurso de IA de 0 a 100</h1>
+        <p class="mt-4 text-xl">Integra la IA en tu vida, negocio o trabajo para maximizar tus ingresos.</p>
+        <a href="https://api.whatsapp.com/send?phone=34679794037&text=Solicito%20más%20información%20sobre%20el%20megacurso%20de%20IA%20de%200%20a%20100" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full mt-6 inline-block">Solicita tu Temario</a>
+    </section>
 
     <main class="container mx-auto p-6">
-        <section class="text-center py-8">
-            <h1 class="text-5xl font-bold">Megacurso de IA de 0 a 100</h1>
-            <p class="mt-4 text-xl">Aprende a integrar la inteligencia artificial en tu vida, negocio o trabajo para incrementar tus ingresos.</p>
-            <a href="https://api.whatsapp.com/send?phone=34679794037&text=Hola.%20Contactaba%20en%20referencia%20a%20los%20Cursos%20de%20IA%20desde%200%20%2F%20Asesoría%20Gratuita%20Profesional.%20¿Podría%20darme%20más%20información%3F%20¡Gracias!" class="mt-4 inline-block px-8 py-4 bg-blue-600 text-white rounded-full font-semibold shadow-lg hover:bg-blue-700 transition">Solicita más información</a>
+        <!-- Home Section -->
+        <section id="home" class="text-center py-8">
+            <h2 class="text-4xl font-bold">¡Domina la Inteligencia Artificial!</h2>
+            <p class="mt-4 text-xl">Nuestro curso de IA abarca desde lo más básico hasta aplicaciones avanzadas que puedes usar en tu día a día.</p>
+            <p class="mt-4 text-xl">¿Buscas mejorar tus campañas de marketing? ¿O tal vez automatizar tareas tediosas? Conviértete en un experto en IA y maximiza tu potencial.</p>
+            <p class="mt-4 text-xl">Este curso incluye:</p>
+            <ul class="list-disc list-inside text-left mx-auto max-w-lg">
+                <li>Asistencia Individual con el Profesor Personalizada</li>
+                <li>Clases grabadas por si faltas a alguna clase</li>
+                <li>Diploma oficial final (certificado por Megacursos.com)</li>
+            </ul>
+            <div class="mt-6">
+                <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded-full" onclick="showPurchaseOptions()">¡Inscríbete Ahora!</button>
+            </div>
         </section>
 
-        <!-- Dynamic Syllabus Modules -->
-        <section id="syllabusModules" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Syllabus modules will be injected here -->
+        <!-- Purchase Options Section -->
+        <section id="purchaseOptions" class="hidden text-center py-8">
+            <h2 class="text-3xl font-bold">Opciones de Inscripción</h2>
+            <p class="mt-4 text-xl">Elige tu sesión de inicio:</p>
+            <div class="mt-4">
+                <select id="sessionSelect" class="border border-gray-300 rounded p-2">
+                    <option value="completed">Sesión Actual (Completada)</option>
+                    <option value="next">1 Mes - 1 Clase por Día</option>
+                </select>
+            </div>
+            <div class="mt-4">
+                <p class="text-lg">Horarios disponibles:</p>
+                <ul class="list-disc list-inside text-left mx-auto max-w-lg">
+                    <li>14:00 Madrid</li>
+                    <li>19:00 Madrid</li>
+                </ul>
+            </div>
+            <div class="mt-4">
+                <p class="text-lg">Precio: <span class="font-bold discount">1499€</span> (Ahora solo <span class="font-bold">499€</span>)</p>
+            </div>
+            <div class="mt-6">
+                <button class="bg-green-600 text-white font-bold py-2 px-4 rounded-full" onclick="showPaymentOptions()">Proceder al Pago</button>
+            </div>
+        </section>
+
+        <!-- Payment Options Section -->
+        <section id="paymentOptions" class="hidden text-center py-8">
+            <h2 class="text-3xl font-bold">Opciones de Pago</h2>
+            <p class="mt-4 text-lg">Puedes pagar a través de:</p>
+            <ul class="list-disc list-inside text-left mx-auto max-w-lg">
+                <li>Bizum: <span class="font-bold">+34 679794037</span></li>
+                <li>Transferencia Bancaria</li>
+            </ul>
+            <p class="mt-4">Por favor, asegúrate de enviar el comprobante de pago a nuestro WhatsApp.</p>
+            <div class="mt-4">
+                <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded-full" onclick="confirmPayment()">Confirmar Pago</button>
+            </div>
+            <div id="paymentFeedback" class="error hidden"></div>
+            <div class="benefits">
+                <h3 class="font-bold">Beneficios de Inscribirte:</h3>
+                <ul>
+                    <li>Acceso a contenido exclusivo</li>
+                    <li>Soporte continuo</li>
+                    <li>Descuentos en futuros cursos</li>
+                </ul>
+                <p class="countdown">¡Oferta válida por tiempo limitado!</p>
+            </div>
+            <div class="mt-4">
+                <button class="bg-gray-600 text-white font-bold py-2 px-4 rounded-full" onclick="showPaidMessage()">He Pagado</button>
+            </div>
+        </section>
+
+        <!-- Syllabus Section -->
+        <section id="syllabus" class="hidden">
+            <h2 class="text-3xl font-bold mb-6 text-center">Syllabus Completo</h2>
+            <div id="syllabusModules" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Modules dynamically generated here -->
+            </div>
+        </section>
+
+        <!-- Free Apps Section -->
+        <section id="apps" class="hidden flex flex-col md:flex-row">
+            <!-- Tool Cards -->
+            <div class="md:w-1/3 flex flex-col space-y-6" id="toolCards">
+                <!-- Cards dynamically generated here -->
+            </div>
+
+            <!-- Tool Details -->
+            <div id="toolContainer" class="md:w-2/3 mt-8 md:mt-0 ml-0 md:ml-6">
+                <!-- Tool details dynamically generated here -->
+            </div>
         </section>
     </main>
 
-    <!-- Include Footer -->
-    <div id="footer"></div>
+    <!-- Footer -->
+    <footer class="bg-gray-200 p-4 text-center">
+        <p class="text-sm text-gray-600">&copy; 2023 IA Expertos. Todos los derechos reservados.</p>
+        <ul class="flex justify-center items-center space-x-4 mt-2">
+            <li><a href="#" class="text-lg font-bold clickable">Facebook</a></li>
+            <li><a href="#" class="text-lg font-bold clickable">Twitter</a></li>
+            <li><a href="#" class="text-lg font-bold clickable">Instagram</a></li>
+        </ul>
+    </footer>
 
     <script>
-        // Load Header and Footer
-        fetch('header-footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header').innerHTML = data.split('<!-- Footer -->')[0];
-                document.getElementById('footer').innerHTML = data.split('<!-- Footer -->')[1];
-            });
-
-        const syllabusModules = [
+        const tools = [
             {
-                title: "Fundamentos de IA para la Automatización Profesional",
-                description: "Automatiza tareas y ahorra horas de trabajo con una introducción sólida a la IA aplicada."
+                id: 'textGeneration',
+                name: 'Generación de Texto',
+                description: 'Genera texto a partir de un prompt. Ideal para crear contenido automáticamente, como artículos, historias o cualquier tipo de texto.',
+                model: 'gpt2',
+                inputType: 'text',
+                details: 'La generación de texto es una técnica de IA que permite crear texto automáticamente.',
+                icon: '📝'
             },
             {
-                title: "Optimización de Emails con ChatGPT",
-                description: "Eleva la calidad de tus comunicaciones con emails inteligentes que captan la atención."
+                id: 'imageClassification',
+                name: 'Clasificación de Imágenes',
+                description: 'Clasifica imágenes en diferentes categorías. Permite identificar objetos en imágenes.',
+                model: 'resnet50',
+                inputType: 'file',
+                details: 'La clasificación de imágenes permite identificar y categorizar objetos dentro de una imagen.',
+                icon: '📷'
             },
             {
-                title: "IA en Marketing Digital",
-                description: "Impulsa tus campañas con estrategias de marketing mejoradas por la IA."
+                id: 'sentimentAnalysis',
+                name: 'Análisis de Sentimientos',
+                description: 'Analiza el sentimiento de un texto. Permite determinar la emoción detrás de un texto.',
+                model: 'distilbert-base-uncased-finetuned-sst-2-english',
+                inputType: 'text',
+                details: 'El análisis de sentimientos permite determinar la emoción detrás de un texto.',
+                icon: '😊'
             },
             {
-                title: "Gestión de Redes Sociales con IA",
-                description: "Crea contenido relevante y gestiona tus redes con eficiencia con herramientas de IA."
+                id: 'objectDetection',
+                name: 'Detección de Objetos',
+                description: 'Detecta objetos dentro de una imagen. Ideal para aplicaciones de seguridad y vigilancia.',
+                model: 'yolov5',
+                inputType: 'file',
+                details: 'La detección de objetos permite identificar y localizar objetos específicos dentro de una imagen.',
+                icon: '🚗'
             },
+            {
+                id: 'languageTranslation',
+                name: 'Traducción de Idiomas',
+                description: 'Traduce texto entre diferentes idiomas. Útil para quienes trabajan en entornos multilingües.',
+                model: 't5-base',
+                inputType: 'text',
+                details: 'La traducción de idiomas permite convertir texto de un idioma a otro.',
+                icon: '🌐'
+            },
+            {
+                id: 'questionToText',
+                name: 'Pregunta a Texto',
+                description: 'Genera texto basado en una pregunta. Ideal para responder preguntas complejas.',
+                model: 'bert-large-uncased-whole-word-masking-finetuned-squad',
+                inputType: 'text',
+                details: 'Genera una respuesta detallada basada en una pregunta dada.',
+                icon: '❓'
+            },
+            // Additional tools added here
+            {
+                id: 'voiceRecognition',
+                name: 'Reconocimiento de Voz',
+                description: 'Convierte voz a texto. Ideal para transcripciones automáticas.',
+                model: 'wav2vec2',
+                inputType: 'file',
+                details: 'El reconocimiento de voz permite convertir audio en texto.',
+                icon: '🎤'
+            },
+            {
+                id: 'chatbot',
+                name: 'Chatbot Inteligente',
+                description: 'Crea un chatbot que responde preguntas automáticamente.',
+                model: 'gpt3',
+                inputType: 'text',
+                details: 'Un chatbot que puede interactuar con los usuarios y responder preguntas.',
+                icon: '🤖'
+            },
+            {
+                id: 'imageGeneration',
+                name: 'Generación de Imágenes',
+                description: 'Genera imágenes a partir de descripciones textuales.',
+                model: 'dall-e',
+                inputType: 'text',
+                details: 'Genera imágenes basadas en descripciones proporcionadas.',
+                icon: '🖼️'
+            },
+            {
+                id: 'videoAnalysis',
+                name: 'Análisis de Video',
+                description: 'Analiza videos para detectar eventos o acciones.',
+                model: 'video-model',
+                inputType: 'file',
+                details: 'Analiza videos para identificar acciones o eventos específicos.',
+                icon: '🎥'
+            },
+            {
+                id: 'dataVisualization',
+                name: 'Visualización de Datos',
+                description: 'Crea gráficos y visualizaciones a partir de datos.',
+                model: 'data-visualization-model',
+                inputType: 'text',
+                details: 'Genera visualizaciones a partir de conjuntos de datos.',
+                icon: '📊'
+            },
+            {
+                id: 'recommendationSystem',
+                name: 'Sistema de Recomendación',
+                description: 'Recomienda productos o servicios basados en preferencias.',
+                model: 'recommendation-model',
+                inputType: 'text',
+                details: 'Genera recomendaciones personalizadas para los usuarios.',
+                icon: '⭐'
+            },
+            {
+                id: 'anomalyDetection',
+                name: 'Detección de Anomalías',
+                description: 'Detecta anomalías en conjuntos de datos.',
+                model: 'anomaly-detection-model',
+                inputType: 'text',
+                details: 'Identifica datos que se desvían de la norma.',
+                icon: '⚠️'
+            }
         ];
 
-        const moduleContainer = document.getElementById('syllabusModules');
+        function showSection(sectionId) {
+            document.querySelectorAll('main > section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
 
-        syllabusModules.forEach(module => {
-            const moduleCard = document.createElement('div');
-            moduleCard.className = 'bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow';
-            moduleCard.innerHTML = `
-                <h3 class="text-xl font-bold mb-2">${module.title}</h3>
-                <p class="text-gray-600 mb-4">${module.description}</p>
-            `;
-            moduleContainer.appendChild(moduleCard);
-        });
+        function showPurchaseOptions() {
+            document.getElementById('purchaseOptions').classList.remove('hidden');
+        }
+
+        function showPaymentOptions() {
+            document.getElementById('paymentOptions').classList.remove('hidden');
+        }
+
+        function confirmPayment() {
+            const feedback = document.getElementById('paymentFeedback');
+            feedback.classList.remove('hidden');
+            feedback.textContent = 'Pago confirmado. ¡Gracias por inscribirte!';
+        }
+
+        function showPaidMessage() {
+            const feedback = document.getElementById('paymentFeedback');
+            feedback.classList.remove('hidden');
+            feedback.textContent = '¡He Pagado! Gracias por tu compra.';
+        }
+
+        function generateToolCards() {
+            const toolCardsContainer = document.getElementById('toolCards');
+            tools.forEach(tool => {
+                const card = document.createElement('div');
+                card.className = 'app-card bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer';
+                card.innerHTML = `
+                    <span class="text-4xl">${tool.icon}</span>
+                    <div>
+                        <h3 class="text-xl font-bold">${tool.name}</h3>
+                        <p class="text-gray-600">${tool.description}</p>
+                        <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2" onclick="showPaymentOptions()">Apuntarse</button>
+                    </div>
+                `;
+                card.onclick = () => showTool(tool.id);
+                toolCardsContainer.appendChild(card);
+            });
+        }
+
+        function generateToolSections() {
+            const toolContainer = document.getElementById('toolContainer');
+            tools.forEach((tool, index) => {
+                const section = document.createElement('div');
+                section.id = tool.id;
+                section.className = 'tool-section bg-white p-6 rounded-lg shadow-md' + (index === 0 ? '' : ' hidden');
+                section.innerHTML = `
+                    <h2 class="text-3xl font-bold mb-4">${tool.name}</h2>
+                    <p class="text-gray-700 mb-4">${tool.details}</p>
+                    <div class="mb-4">
+                        <label for="input${tool.id}" class="block mb-2 font-semibold">Entrada de Datos</label>
+                        <input type="text" class="form-control block w-full p-2 border border-gray-300 rounded" id="input${tool.id}" placeholder="${tool.inputType === 'file' ? 'Sube un archivo' : 'Escribe aquí...'}">
+                    </div>
+                    <button class="btn btn-primary px-6 py-3 bg-blue-700 text-white font-semibold rounded hover:bg-blue-800 transition" onclick="runTool('${tool.id}', '${tool.model}', '${tool.inputType}')">Ejecutar</button>
+                    <div class="output bg-gray-100 p-4 mt-4 rounded" id="output${tool.id}"></div>
+                `;
+                toolContainer.appendChild(section);
+            });
+            showTool(tools[0].id);
+        }
+
+        function showTool(toolId) {
+            document.querySelectorAll('.tool-section').forEach(section => section.classList.add('hidden'));
+            document.getElementById(toolId).classList.remove('hidden');
+        }
+
+        async function runTool(toolId, model, inputType) {
+            const inputElement = document.getElementById(`input${toolId}`);
+            const output = document.getElementById(`output${toolId}`);
+            output.textContent = 'Procesando...';
+
+            let inputData;
+            if (inputType === 'file') {
+                inputData = await inputElement.files[0].arrayBuffer();
+            } else {
+                inputData = inputElement.value;
+            }
+
+            try {
+                const response = await fetch(`https://api-inference.huggingface.co/models/${model}`, {
+                    method: 'POST',
+                    headers: {
+                        Authorization: `Bearer YOUR_HUGGINGFACE_API_KEY`,
+                        'Content-Type': inputType === 'file' ? 'application/octet-stream' : 'application/json',
+                    },
+                    body: inputType === 'file' ? inputData : JSON.stringify({ inputs: inputData }),
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    output.textContent = `Resultado: ${JSON.stringify(result, null, 2)}`; // Display user-friendly output
+                } else {
+                    throw new Error(`Error: ${response.status} ${response.statusText}`);
+                }
+            } catch (error) {
+                output.textContent = `Error: ${error.message}`;
+            }
+        }
+
+        function loadSyllabusModules() {
+            const syllabusModules = [
+                { title: "Fundamentos de IA", description: "Automatiza tareas con IA aplicada." },
+                { title: "Optimización de Emails", description: "Mejora comunicaciones con IA." },
+                { title: "IA en Marketing Digital", description: "Impulsa tus campañas con IA." },
+                { title: "Gestión de Redes Sociales", description: "Crea contenido y gestiona redes con IA." },
+            ];
+
+            const moduleContainer = document.getElementById('syllabusModules');
+            syllabusModules.forEach(module => {
+                const moduleCard = document.createElement('div');
+                moduleCard.className = 'bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow';
+                moduleCard.innerHTML = `
+                    <h3 class="text-xl font-bold mb-2">${module.title}</h3>
+                    <p class="text-gray-600 mb-4">${module.description}</p>
+                `;
+                moduleContainer.appendChild(moduleCard);
+            });
+        }
+
+        // Initialize SPA
+        showSection('home');
+        generateToolCards();
+        generateToolSections();
+        loadSyllabusModules();
     </script>
-
 </body>
 </html>

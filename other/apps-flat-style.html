@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#007bff">
+    <meta name="description" content="IA EXPERTOS - Playground de Apps de IA. Aprende IA de 0 a 100 con esta app interactiva gratuita y explora algunas de las aplicaciones y conceptos del curso.">
+    <meta property="og:title" content="IA EXPERTOS - Playground de Apps de IA">
+    <meta property="og:description" content="Explora las aplicaciones y conceptos del Megacurso de IA desde 0 a 100 en IAExpertos.es.">
+    <meta property="og:url" content="https://iaexpertos.es/playground">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://iaexpertos.es/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="IA EXPERTOS - Playground de Apps de IA">
+    <meta name="twitter:description" content="Explora las aplicaciones del curso en esta app interactiva.">
+    <meta name="twitter:image" content="https://iaexpertos.es/twitter-image.jpg">
+    <title>IA EXPERTOS - Playground de Apps de IA</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .sticky-container {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+        }
+        .output-container {
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            margin: 5% auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <header class="bg-blue-600 text-white text-center py-8">
+        <h1 class="text-4xl font-bold">IA EXPERTOS - Playground de Apps de IA</h1>
+        <p class="mt-2 text-lg">Explora aplicaciones y conceptos del Megacurso de IA desde 0 a 100 en IAExpertos.es.</p>
+        <div class="mt-4 space-x-4">
+            <a href="https://iaexpertos.es" class="inline-block px-4 py-2 bg-white text-blue-600 rounded-full font-semibold shadow-md">Visitar Megacurso</a>
+            <button onclick="openModal()" class="inline-block px-4 py-2 bg-blue-500 text-white rounded-full font-semibold shadow-md">Ver Temario</button>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 flex flex-col md:flex-row">
+        <!-- Left Column: Cards -->
+        <section class="w-full md:w-1/2 md:pr-4 space-y-4">
+            <div id="toolCards" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Tool Cards will be injected here -->
+            </div>
+        </section>
+
+        <!-- Right Column: Sticky Results and Execution -->
+        <section class="w-full md:w-1/2 sticky-container">
+            <div class="bg-white p-6 rounded-lg shadow-md" id="toolContent">
+                <h2 class="text-2xl font-bold mb-4" id="toolTitle">Seleccione una Aplicación</h2>
+                <p class="text-gray-700 mb-4" id="toolDescription">Seleccione una aplicación a la izquierda para comenzar.</p>
+                <div class="mb-4" id="inputContainer"></div>
+                <button class="btn btn-primary px-6 py-2 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700 transition hidden" id="executeBtn">Ejecutar</button>
+                <div class="output-container bg-gray-100 p-4 mt-4 rounded hidden" id="outputContainer"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-blue-600 text-white text-center py-4">
+        <p>&copy; 2024 IA EXPERTOS - Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Modal for Syllabus -->
+    <div id="syllabusModal" class="modal">
+        <div class="modal-content">
+            <span onclick="closeModal()" class="close text-right text-red-600 cursor-pointer">&times;</span>
+            <h2 class="text-xl font-bold mb-4">Temario del Megacurso</h2>
+            <iframe src="https://iaexpertos.es/syllabus" width="100%" height="400px"></iframe>
+        </div>
+    </div>
+
+    <script>
+        const apiUrl = 'https://api-inference.huggingface.co/models/';
+        const apiKey = 'YOUR_HUGGINGFACE_API_KEY'; // Replace with your Hugging Face API key
+
+        const tools = [
+            { id: 'textGeneration', name: 'Generación de Texto', description: 'Genera texto a partir de un prompt usando GPT-2.', model: 'gpt2', inputType: 'text', inputLabel: 'Introduce tu prompt aquí', icon: 'fas fa-keyboard' },
+            { id: 'imageClassification', name: 'Clasificación de Imágenes', description: 'Clasifica imágenes en categorías usando ViT.', model: 'google/vit-base-patch16-224', inputType: 'file', inputLabel: 'Sube una imagen para clasificar', icon: 'fas fa-image' },
+            { id: 'summarization', name: 'Resumir Texto', description: 'Genera un resumen corto de un texto largo usando BART.', model: 'facebook/bart-large-cnn', inputType: 'textarea', inputLabel: 'Introduce tu texto aquí para resumir', icon: 'fas fa-align-left' },
+            { id: 'translation', name: 'Traducción', description: 'Traduce texto entre idiomas usando Opus MT.', model: 'Helsinki-NLP/opus-mt-en-es', inputType: 'textarea', inputLabel: 'Introduce el texto a traducir', icon: 'fas fa-language' },
+            { id: 'sentenceSimilarity', name: 'Similitud de Oraciones', description: 'Calcula la similitud entre dos oraciones.', model: 'sentence-transformers/paraphrase-xlm-r-multilingual-v1', inputType: 'textarea', inputLabel: 'Introduce dos oraciones separadas por un punto y coma', icon: 'fas fa-exchange-alt' },
+            { id: 'questionAnswering', name: 'Responder Preguntas', description: 'Responde preguntas sobre un texto dado.', model: 'distilbert-base-uncased-distilled-squad', inputType: 'textarea', inputLabel: 'Introduce el texto con la pregunta', icon: 'fas fa-question-circle' },
+            { id: 'fillMask', name: 'Rellenar Máscara', description: 'Rellena el texto enmascarado.', model: 'bert-base-uncased', inputType: 'text', inputLabel: 'Introduce el texto con la máscara', icon: 'fas fa-mask' },
+            { id: 'zeroShotClassification', name: 'Clasificación Zero-shot', description: 'Clasifica texto en categorías sin entrenamiento previo.', model: 'facebook/bart-large-mnli', inputType: 'textarea', inputLabel: 'Introduce el texto para clasificar', icon: 'fas fa-tags' },
+            { id: 'tokenClassification', name: 'Clasificación de Tokens', description: 'Clasifica tokens en una oración.', model: 'dbmdz/bert-large-cased-finetuned-conll03-english', inputType: 'textarea', inputLabel: 'Introduce el texto para la clasificación de tokens', icon: 'fas fa-font' },
+            { id: 'textGenerationStream', name: 'Generación de Texto (Stream)', description: 'Genera texto en streaming usando GPT-2.', model: 'gpt2', inputType: 'text', inputLabel: 'Introduce tu prompt aquí', icon: 'fas fa-keyboard' },
+            { id: 'automaticSpeechRecognition', name: 'Reconocimiento de Voz', description: 'Transcribe el audio en texto.', model: 'facebook/wav2vec2-base-960h', inputType: 'file', inputLabel: 'Sube un archivo de audio para transcribir', icon: 'fas fa-microphone' },
+            { id: 'visualQuestionAnswering', name: 'Respuesta a Preguntas Visuales', description: 'Responde preguntas sobre imágenes.', model: 'dandelin/vilt-b32-finetuned-vqa', inputType: 'file', inputLabel: 'Sube una imagen para analizar', icon: 'fas fa-eye' }
+        ];
+
+        function generateToolCards() {
+            const toolCardsContainer = document.getElementById('toolCards');
+            tools.forEach(tool => {
+                const card = document.createElement('div');
+                card.className = 'app-card bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer flex items-center space-x-4';
+                card.innerHTML = `
+                    <i class="${tool.icon} text-blue-600 text-3xl"></i>
+                    <div>
+                        <h3 class="text-md font-bold">${tool.name}</h3>
+                        <p class="text-gray-600 text-sm">${tool.description}</p>
+                    </div>
+                `;
+                card.onclick = () => showTool(tool);
+                toolCardsContainer.appendChild(card);
+            });
+
+            // Automatically show the first tool on load
+            showTool(tools[0]);
+        }
+
+        function showTool(tool) {
+            document.getElementById('toolTitle').innerText = tool.name;
+            document.getElementById('toolDescription').innerText = tool.description;
+            document.getElementById('inputContainer').innerHTML = generateInputField(tool);
+            document.getElementById('executeBtn').classList.remove('hidden');
+            document.getElementById('executeBtn').onclick = () => runTool(tool.id, tool.model, tool.inputType);
+
+            document.getElementById('toolContent').classList.remove('hidden');
+            document.getElementById('outputContainer').classList.add('hidden');
+        }
+
+        function generateInputField(tool) {
+            if (tool.inputType === 'text') {
+                return `<input type="text" class="form-control block w-full p-2 border border-gray-300 rounded" id="input${tool.id}" placeholder="${tool.inputLabel}">`;
+            } else if (tool.inputType === 'file') {
+                return `<input type="file" class="form-control block w-full p-2 border border-gray-300 rounded" id="input${tool.id}">`;
+            } else if (tool.inputType === 'textarea') {
+                return `<textarea class="form-control block w-full p-2 border border-gray-300 rounded" id="input${tool.id}" rows="4" placeholder="${tool.inputLabel}"></textarea>`;
+            }
+        }
+
+        async function runTool(toolId, model, inputType) {
+            const inputElement = document.getElementById(`input${toolId}`);
+            const outputContainer = document.getElementById('outputContainer');
+            outputContainer.classList.remove('hidden');
+            outputContainer.textContent = 'Procesando...';
+
+            let inputData;
+            if (inputType === 'file') {
+                const file = inputElement.files[0];
+                inputData = await file.arrayBuffer();
+            } else {
+                inputData = inputElement.value;
+            }
+
+            try {
+                const response = await fetch(`${apiUrl}${model}`, {
+                    method: 'POST',
+                    headers: {
+                        Authorization: `Bearer ${apiKey}`,
+                        'Content-Type': inputType === 'file' ? 'application/octet-stream' : 'application/json',
+                    },
+                    body: inputType === 'file' ? inputData : JSON.stringify({ inputs: inputData }),
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    outputContainer.innerHTML = formatOutput(result);
+                } else {
+                    throw new Error(`Error: ${response.status} ${response.statusText}`);
+                }
+            } catch (error) {
+                outputContainer.textContent = `Error: ${error.message}`;
+            }
+        }
+
+        function formatOutput(result) {
+            if (Array.isArray(result)) {
+                return result.map(item => `<p>${item.label || item.generated_text || JSON.stringify(item)}</p>`).join('');
+            } else if (typeof result === 'object') {
+                return Object.entries(result)
+                    .map(([key, value]) => `<p><strong>${key}:</strong> ${Array.isArray(value) ? value.join(', ') : value}</p>`)
+                    .join('');
+            } else {
+                return `<p>${result}</p>`;
+            }
+        }
+
+        function openModal() {
+            document.getElementById('syllabusModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('syllabusModal').style.display = 'none';
+        }
+
+        generateToolCards();
+    </script>
+</body>
+</html>

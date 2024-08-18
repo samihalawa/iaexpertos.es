@@ -1,0 +1,250 @@
+Ollama [ ]
+Models Search Discord GitHub Download Sign in
+Ollama Blog Discord GitHub
+Models Sign in Download
+[                    ] 
+All Embedding Vision Tools Code
+
+  • llama3.1
+
+    Llama 3.1 is a new state-of-the-art model from Meta available in 8B, 70B
+    and 405B parameter sizes.
+
+    Tools 8B 70B
+
+    1.4M  Pulls 95 Tags Updated  5 days ago
+
+  • gemma2
+
+    Google Gemma 2 is a high-performing and efficient model by now available in
+    three sizes: 2B, 9B, and 27B.
+
+    2B 9B 27B
+
+    872K  Pulls 94 Tags Updated  2 weeks ago
+
+  • mistral-nemo
+
+    A state-of-the-art 12B model with 128k context length, built by Mistral AI
+    in collaboration with NVIDIA.
+
+    Tools 12B
+
+    90.2K  Pulls 17 Tags Updated  12 days ago
+
+  • mistral-large
+
+    Mistral Large 2 is Mistral's new flagship model that is significantly more
+    capable in code generation, mathematics, and reasoning with 128k context
+    window and support for dozens of languages.
+
+    Tools 123B
+
+    41K  Pulls 17 Tags Updated  3 weeks ago
+
+  • qwen2
+
+    Qwen2 is a new series of large language models from Alibaba group
+
+    0.5B 1.5B 7B 72B
+
+    2M  Pulls 97 Tags Updated  2 months ago
+
+  • deepseek-coder-v2
+
+    An open-source Mixture-of-Experts code language model that achieves
+    performance comparable to GPT4-Turbo in code-specific tasks.
+
+    Code 16B 236B
+
+    221K  Pulls 50 Tags Updated  8 weeks ago
+
+  • phi3
+
+    Phi-3 is a family of lightweight 3B (Mini) and 14B (Medium)
+    state-of-the-art open models by Microsoft.
+
+    3B 14B
+
+    2.3M  Pulls 72 Tags Updated  2 weeks ago
+
+  • mistral
+
+    The 7B model released by Mistral AI, updated to version 0.3.
+
+    Tools 7B
+
+    3.2M  Pulls 84 Tags Updated  3 weeks ago
+
+  • mixtral
+
+    A set of Mixture of Experts (MoE) model with open weights by Mistral AI in
+    8x7b and 8x22b parameter sizes.
+
+    Tools 8x7B 8x22B
+
+    375.6K  Pulls 69 Tags Updated  3 weeks ago
+
+  • codegemma
+
+    CodeGemma is a collection of powerful, lightweight models that can perform
+    a variety of coding tasks like fill-in-the-middle code completion, code
+    generation, natural language understanding, mathematical reasoning, and
+    instruction following.
+
+    Code 2B 7B
+
+    225.1K  Pulls 85 Tags Updated  4 weeks ago
+
+  • command-r
+
+    Command R is a Large Language Model optimized for conversational
+    interaction and long context tasks.
+
+    35B
+
+    152.7K  Pulls 17 Tags Updated  4 months ago
+
+  • command-r-plus
+
+    Command R+ is a powerful, scalable large language model purpose-built to
+    excel at real-world enterprise use cases.
+
+    Tools 104B
+
+    89.3K  Pulls 6 Tags Updated  4 weeks ago
+
+  • llava
+
+    🌋 LLaVA is a novel end-to-end trained large multimodal model that combines
+    a vision encoder and Vicuna for general-purpose visual and language
+    understanding. Updated to version 1.6.
+
+    Vision 7B 13B 34B
+
+    634.7K  Pulls 98 Tags Updated  6 months ago
+
+  • llama3
+
+    Meta Llama 3: The most capable openly available LLM to date
+
+    8B 70B
+
+    5.7M  Pulls 68 Tags Updated  2 months ago
+
+  • gemma
+
+    Gemma is a family of lightweight, state-of-the-art open models built by
+    Google DeepMind. Updated to version 1.1
+
+    2B 7B
+
+    4M  Pulls 102 Tags Updated  4 months ago
+
+  • qwen
+
+    Qwen 1.5 is a series of large language models by Alibaba Cloud spanning
+    from 0.5B to 110B parameters
+
+    0.5B 1.8B 4B 32B 72B 110B
+
+    3.7M  Pulls 379 Tags Updated  2 months ago
+
+  • llama2
+
+    Llama 2 is a collection of foundation language models ranging from 7B to
+    70B parameters.
+
+    7B 13B 70B
+
+    2M  Pulls 102 Tags Updated  6 months ago
+
+  • codellama
+
+    A large language model that can use text prompts to generate and discuss
+    code.
+
+    Code 7B 13B 34B 70B
+
+    926.2K  Pulls 199 Tags Updated  4 weeks ago
+
+  • dolphin-mixtral
+
+    Uncensored, 8x7b and 8x22b fine-tuned models based on the Mixtral mixture
+    of experts models that excels at coding tasks. Created by Eric Hartford.
+
+    8x7B 8x22B
+
+    358.4K  Pulls 87 Tags Updated  3 months ago
+
+  • nomic-embed-text
+
+    A high-performing open embedding model with a large token context window.
+
+    Embedding
+
+    334.3K  Pulls 3 Tags Updated  5 months ago
+
+  • llama2-uncensored
+
+    Uncensored Llama 2 model by George Sung and Jarrad Hope.
+
+    7B
+
+    278.8K  Pulls 34 Tags Updated  9 months ago
+
+  • phi
+
+    Phi-2: a 2.7B language model by Microsoft Research that demonstrates
+    outstanding reasoning and language understanding capabilities.
+
+    3B
+
+    268.2K  Pulls 18 Tags Updated  6 months ago
+
+  • deepseek-coder
+
+    DeepSeek Coder is a capable coding model trained on two trillion code and
+    natural language tokens.
+
+    Code 1B 7B 33B
+
+    256.8K  Pulls 102 Tags Updated  7 months ago
+
+  • mxbai-embed-large
+
+    State-of-the-art large embedding model from mixedbread.ai
+
+    Embedding
+
+    204.4K  Pulls 4 Tags Updated  3 months ago
+
+  • zephyr
+
+    Zephyr is a series of fine-tuned versions of the Mistral and Mixtral models
+    that are trained to act as helpful assistants.
+
+    7B 8x22B
+
+    200.2K  Pulls 40 Tags Updated  4 months ago
+
+  • Previous
+  • 1
+  • 2
+  • 3
+  • ...
+  • 147
+  • Next
+
+© 2024 Ollama
+Blog Docs GitHub Discord X (Twitter) Meetups
+
+  • Blog
+  • Docs
+  • GitHub
+
+  • Discord
+  • X (Twitter)
+  • Meetups
+
+© 2024 Ollama
