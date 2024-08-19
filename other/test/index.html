@@ -14,6 +14,12 @@
     <div id="header"></div>
 
     <main class="container mx-auto p-6">
+        <section class="text-center py-8">
+            <h1 class="text-5xl font-bold">Megacurso de IA de 0 a 100</h1>
+            <p class="mt-4 text-xl">Aprende a integrar la inteligencia artificial en tu vida, negocio o trabajo para incrementar tus ingresos.</p>
+            <a href="https://api.whatsapp.com/send?phone=34679794037&text=Hola.%20Contactaba%20en%20referencia%20a%20los%20Cursos%20de%20IA%20desde%200%20%2F%20Asesoría%20Gratuita%20Profesional.%20¿Podría%20darme%20más%20información%3F%20¡Gracias!" class="mt-4 inline-block px-8 py-4 bg-blue-600 text-white rounded-full font-semibold shadow-lg hover:bg-blue-700 transition">Solicita más información</a>
+        </section>
+
         <!-- Dynamic Syllabus Modules -->
         <section id="syllabusModules" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Syllabus modules will be injected here -->
@@ -24,13 +30,31 @@
     <div id="footer"></div>
 
     <script>
+        // Load Header and Footer
+        fetch('header-footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data.split('<!-- Footer -->')[0];
+                document.getElementById('footer').innerHTML = data.split('<!-- Footer -->')[1];
+            });
 
-        // Dynamic Module Loading
         const syllabusModules = [
-            { title: "Fundamentos de IA para la Automatización Profesional", description: "Automatiza tareas y ahorra horas de trabajo con una introducción sólida a la IA aplicada." },
-            { title: "Optimización de Emails con ChatGPT", description: "Eleva la calidad de tus comunicaciones con emails inteligentes que captan la atención." },
-            { title: "IA en Marketing Digital", description: "Impulsa tus campañas con estrategias de marketing mejoradas por la IA." },
-            { title: "Gestión de Redes Sociales con IA", description: "Crea contenido relevante y gestiona tus redes con eficiencia con herramientas de IA." },
+            {
+                title: "Fundamentos de IA para la Automatización Profesional",
+                description: "Automatiza tareas y ahorra horas de trabajo con una introducción sólida a la IA aplicada."
+            },
+            {
+                title: "Optimización de Emails con ChatGPT",
+                description: "Eleva la calidad de tus comunicaciones con emails inteligentes que captan la atención."
+            },
+            {
+                title: "IA en Marketing Digital",
+                description: "Impulsa tus campañas con estrategias de marketing mejoradas por la IA."
+            },
+            {
+                title: "Gestión de Redes Sociales con IA",
+                description: "Crea contenido relevante y gestiona tus redes con eficiencia con herramientas de IA."
+            },
         ];
 
         const moduleContainer = document.getElementById('syllabusModules');
