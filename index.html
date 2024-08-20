@@ -324,85 +324,113 @@
       document.getElementById("payment-modal").style.display = "none";
     }
   </script>
-
 <div class="modal" id="payment-modal">
-<div class="modal-content p-6 bg-white rounded-lg shadow-lg max-w-lg mx-auto">
+<div class="modal-content p-8 bg-white rounded-lg shadow-lg max-w-lg mx-auto">
 <span class="close text-red-500 cursor-pointer float-right text-2xl" onclick="closeModal()">×</span>
-<h2 class="text-3xl font-bold text-center mb-4">Reserva tu Plaza Ahora</h2>
-<div class="text-center text-lg mb-4">
+<h2 class="text-3xl font-bold text-center mb-6">Reserva tu Plaza Ahora</h2>
+<div class="text-center text-lg mb-6">
 <p class="font-semibold text-red-500">¡Oferta Especial Limitada!</p>
-<p>Precio Original: <del class="text-gray-500">1299.00€</del></p>
-<p>Precio Descuento: <span class="text-green-600 font-bold text-2xl">399.00€</span></p>
+<p class="text-gray-500"><del>1299.00€</del></p>
+<p class="text-green-600 font-bold text-3xl">399.00€</p>
 <p class="text-sm text-gray-600">Válido hasta: <span class="font-semibold" id="offer-end-date"></span></p>
 <p class="text-sm text-red-500 mt-2" id="countdown"></p>
 </div>
-<form class="space-y-4" id="payment-form">
+<form class="space-y-6" id="payment-form">
 <div>
 <label class="block text-sm font-medium text-gray-700" for="name">Nombre Completo</label>
-<input class="border rounded w-full p-2 mt-1" id="name" name="name" required="" type="text"/>
+<input class="border rounded w-full p-3 mt-1" id="name" name="name" required="" type="text"/>
 </div>
 <div>
-<label class="block text-sm font-medium text-gray-700" for="email">Email</label>
-<input class="border rounded w-full p-2 mt-1" id="email" name="email" required="" type="email"/>
+<label class="block text-sm font-medium text-gray-700" for="surname">Apellidos</label>
+<input class="border rounded w-full p-3 mt-1" id="surname" name="surname" required="" type="text"/>
 </div>
-<div class="mt-4">
-<h3 class="text-lg font-semibold mb-2">Elige tu Método de Pago</h3>
-<div class="flex justify-center gap-4">
+<div>
+<label class="block text-sm font-medium text-gray-700" for="email">Correo Electrónico</label>
+<input class="border rounded w-full p-3 mt-1" id="email" name="email" required="" type="email"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700" for="country">País</label>
+<input class="border rounded w-full p-3 mt-1" id="country" name="country" required="" type="text"/>
+</div>
+<div class="mt-6">
+<h3 class="text-xl font-semibold mb-4">Elige tu Método de Pago</h3>
+<div class="grid grid-cols-1 gap-4">
 <button class="text-white bg-blue-500 px-4 py-2 rounded-lg" onclick="showPaymentDetails('bizum')" type="button">Bizum</button>
 <button class="text-white bg-blue-500 px-4 py-2 rounded-lg" onclick="showPaymentDetails('transfer')" type="button">Transferencia Bancaria</button>
 </div>
 </div>
-<div class="mt-4 hidden" id="payment-details">
+<div class="mt-6 hidden" id="payment-details">
 <div class="hidden mt-4" id="bizum-details">
-<h4 class="text-lg font-semibold">Pago con Bizum</h4>
-<p>Envía <strong>399€</strong> a <strong>+34679794037</strong></p>
-<p>Recibirás el accesoo por email en las 3h siguientes al pago..</p>
+<h4 class="text-lg font-semibold mb-2">Pago con Bizum</h4>
+<div class="bg-blue-50 p-4 rounded-lg shadow-inner">
+<p class="text-xl font-bold text-blue-500 mb-2">+34 679 794 037</p>
+<p class="text-gray-600 mb-2">Envía <strong>399€</strong> al número anterior.</p>
+<p class="text-gray-600 mb-2">Referencia: <strong>XPLO392</strong></p>
+<p class="text-gray-600">Recibirás acceso en las 3 horas siguientes al pago.</p>
+</div>
 </div>
 <div class="hidden mt-4" id="transfer-details">
-<h4 class="text-lg font-semibold">Transferencia Bancaria</h4>
-<p>Realiza una transferencia de <strong>399€</strong> a la siguiente cuenta:</p>
-<p>SAMI HALAWA RIBAS</p>
-<p><strong>ES2615632626313265842569</strong></p>
-<p>SWIFT: NTSBESM1XXX </p>
-<p>Recibirás el accesoo por email en las 3h siguientes al pago.</p>
+<h4 class="text-lg font-semibold mb-2">Transferencia Bancaria</h4>
+<div class="bg-green-50 p-4 rounded-lg shadow-inner">
+<p class="text-gray-600 mb-2">Beneficiario: <strong>Sami Halawa Ribas</strong></p>
+<p class="text-gray-600 mb-2">IBAN: <strong>ES26 1563 2626 3132 6584 2569</strong></p>
+<p class="text-gray-600 mb-2">SWIFT/BIC: <strong>NTSBESM1XXX</strong></p>
+<p class="text-gray-600">Recibirás acceso en las 3 horas siguientes al pago.</p>
 </div>
 </div>
-<div class="mt-6">
-<button class="w-full bg-green-500 text-white rounded-lg py-3 font-semibold text-xl hover:bg-green-600 transition" type="submit">Enviar Recibo de Pago Y Acceder A Curso</button>
+</div>
+<div class="mt-8 flex justify-center">
+<button class="w-full bg-green-500 text-white rounded-lg py-3 font-semibold text-xl hover:bg-green-600 transition" onclick="sendWhatsAppMessage()" type="button">Enviar Recibo de Pago Y Acceder A Curso</button>
 </div>
 </form>
 </div>
 </div>
 <script>
-  document.getElementById('offer-end-date').textContent = new Date().toLocaleDateString('es-ES', { month: 'long', day: 'numeric', year: 'numeric' });
-
   // Countdown Timer Logic
-  function updateCountdown() {
-    const endDate = new Date();
-    endDate.setDate(endDate.getDate() + 7); // 7-day countdown
-    const now = new Date().getTime();
-    const timeLeft = endDate - now;
-    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-    document.getElementById("countdown").innerHTML = `Oferta termina en: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-    if (timeLeft < 0) {
-      document.getElementById("countdown").innerHTML = "Oferta finalizada";
-    }
-  }
-  setInterval(updateCountdown, 1000);
+  function startCountdown(duration, display) {
+      let timer = duration, minutes, seconds;
+      setInterval(function () {
+          minutes = parseInt(timer / 60, 10);
+          seconds = parseInt(timer % 60, 10);
 
+          minutes = minutes < 10 ? "0" + minutes : minutes;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
+
+          display.textContent = `Tiempo restante: ${minutes}:${seconds}`;
+
+          if (--timer < 0) {
+              display.textContent = "La oferta ha finalizado";
+          }
+      }, 1000);
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+      let tenMinutes = 60 * 10, 
+          display = document.querySelector('#countdown');
+      startCountdown(tenMinutes, display);
+      document.getElementById('offer-end-date').textContent = new Date().toLocaleDateString('es-ES', { month: 'long', day: 'numeric', year: 'numeric' });
+  });
+
+  // Show payment details based on selected method
   function showPaymentDetails(method) {
-    document.getElementById('payment-details').classList.remove('hidden');
-    document.getElementById('bizum-details').classList.add('hidden');
-    document.getElementById('transfer-details').classList.add('hidden');
-    document.getElementById(`${method}-details`).classList.remove('hidden');
+      document.getElementById('payment-details').classList.remove('hidden');
+      document.getElementById('bizum-details').classList.add('hidden');
+      document.getElementById('transfer-details').classList.add('hidden');
+      if (method === 'bizum') {
+          document.getElementById('bizum-details').classList.remove('hidden');
+      } else if (method === 'transfer') {
+          document.getElementById('transfer-details').classList.remove('hidden');
+      }
+  }
+
+  // WhatsApp message function
+  function sendWhatsAppMessage() {
+      const url = `https://wa.me/34679794037?text=${encodeURIComponent('Hola! He realizado el pago y me gustaría recibir el acceso a mi Megacurso de IA')}`;
+      window.open(url, '_blank');
   }
 </script>
-
 <section class="bg-gradient-to-r from-green-400 to-blue-500 text-white py-20 px-4" id="inicio">
-<div class="container mx-auto flex flex-col md:flex-row items-center justify-between"><!-- Content -->
+<div class="mx-auto flex flex-col md:flex-row items-center justify-between"><!-- Content -->
 <div class="flex flex-col w-full md:w-1/2">
 <h1 class="text-4xl md:text-5xl leading-tight mb-4"><span style="font-size:36px;"><strong>MÁSTER MEGACURSO
               INDIVIDUAL <br/>
@@ -413,9 +441,9 @@
 <p class="text-lg md:text-xl mb-6">Megacurso Online de ChatGPT y IA de 0 a 100. Acceso a clases grabadas
           y contenido exclusivo. <b>Transforma tu carrera con ChatGPT y IA. ChatGPT para todos, desde 0. Incluye acceso a herramientas y certificación oficial. ¡Reserva tu plaza ahora y aprovecha un descuento exclusivo!</b></p>
 <p class="text-lg md:text-xl mb-6"><strong>Duración: 50h</strong></p>
-<iframe allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/Z12tNJmVee0" width="560"></iframe>
+<iframe allowfullscreen="" class="w-full md:w-1/2 h-64 md:h-72" frameborder="0" height="315" src="https://www.youtube.com/embed/Z12tNJmVee0" width="560"></iframe>
 <!-- Call to Action -->
-<div class="flex justify-center md:justify-start"><a class="bg-white text-gray-800 rounded py-3 px-6 mr-4 hover:bg-gray-100" href="https://ia.megacursos.com/reservar.html?quedan=24&amp;oferta=active-30%"><strong>Aprovechar Oferta</strong></a> <a class="border border-white rounded py-3 px-6 hover:bg-white hover:text-gray-800" href="#temario">Temario</a></div>
+<div class="flex justify-center md:justify-start"><a class="bg-white text-gray-800 rounded py-3 px-6 mr-4 hover:bg-gray-100" href="#" onclick="openModal()"><strong>Aprovechar Oferta</strong></a> <a class="border border-white rounded py-3 px-6 hover:bg-white hover:text-gray-800" href="#temario">Temario</a></div>
 </div>
 <div class="w-full md:w-1/2 mt-6 md:mt-0"><!--<img alt="Curso IA y ChatGPT" class="w-full rounded-lg shadow-lg" src="https://img.icons8.com/ios/400/000000/artificial-intelligence.png"/>--></div>
 </div>
@@ -430,19 +458,19 @@
           productividad, programación sin saber código, etc.)</p>
 </div>
 <div class="flex flex-wrap justify-center">
-<div class="w-full md:w-1/2 px-4 mb-6"><img alt="Aprende desde cero" class="mt-2 mr-3" src="https://img.icons8.com/ios/400/000000/learning.png"/>
+<div class="w-full md:w-1/2 px-4 mb-6"><img alt="Aprende desde cero" class="w-16 h-16 mx-auto mb-4" src="https://img.icons8.com/ios/400/000000/learning.png"/>
 <p class="text-gray-600 mt-2">Aprende desde cero y alcanza un nivel experto en aplicaciones prácticas de IA y
             ChatGPT.</p>
 </div>
-<div class="w-full md:w-1/2 px-4 mb-6"><img alt="Material en FullHD" class="mt-2 mr-3" src="https://img.icons8.com/ios/400/000000/hd.png"/>
+<div class="w-full md:w-1/2 px-4 mb-6"><img alt="Material en FullHD" class="w-16 h-16 mx-auto mb-4" src="https://img.icons8.com/ios/400/000000/hd.png"/>
 <p class="text-gray-600 mt-2">Accede a material educativo de alta calidad en FullHD, incluyendo todos los
             recursos necesarios.</p>
 </div>
-<div class="w-full md:w-1/2 px-4 mb-6"><img alt="Acceso inmediato" class="mt-2 mr-3" src="https://img.icons8.com/ios/400/000000/learning.png"/>
+<div class="w-full md:w-1/2 px-4 mb-6"><img alt="Acceso inmediato" class="w-16 h-16 mx-auto mb-4" src="https://img.icons8.com/ios/400/000000/learning.png"/>
 <p class="text-gray-600 mt-2">Disfruta de acceso inmediato y sin límites a través de cualquier dispositivo, en
             cualquier momento.</p>
 </div>
-<div class="w-full md:w-1/2 px-4"><img alt="Certificación Oficial" class="mt-2 mr-3" src="https://img.icons8.com/ios/400/000000/certificate.png"/>
+<div class="w-full md:w-1/2 px-4"><img alt="Certificación Oficial" class="w-16 h-16 mx-auto mb-4" src="https://img.icons8.com/ios/400/000000/certificate.png"/>
 <p class="text-gray-600 mt-2">Obtén una Certificación Oficial Física y Sellada con validez internacional al
             completar el máster.</p>
 </div>
