@@ -3,7 +3,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8"/><!-- Google tag (gtag.js) -->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-G1WM7GK2PS"></script>
+
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() {dataLayer.push(arguments);}
@@ -324,53 +324,39 @@
       document.getElementById("payment-modal").style.display = "none";
     }
   </script>
-
 <div class="modal" id="payment-modal">
-<div class="modal-content p-6 bg-white rounded-lg shadow-lg max-w-lg mx-auto">
-<span class="close text-red-500 cursor-pointer float-right text-2xl" onclick="closeModal()">×</span>
-<h2 class="text-3xl font-bold text-center mb-4">Reserva tu Plaza Ahora</h2>
-<div class="text-center text-lg mb-4">
-<p class="font-semibold text-red-500">¡Oferta Especial Limitada!</p>
-<p>Precio Original: <del class="text-gray-500">1299.00€</del></p>
-<p>Precio Descuento: <span class="text-green-600 font-bold text-2xl">399.00€</span></p>
-<p class="text-sm text-gray-600">Válido hasta: <span class="font-semibold" id="offer-end-date"></span></p>
-<p class="text-sm text-red-500 mt-2" id="countdown"></p>
-</div>
-<form class="space-y-4" id="payment-form">
-<div>
-<label class="block text-sm font-medium text-gray-700" for="name">Nombre Completo</label>
-<input class="border rounded w-full p-2 mt-1" id="name" name="name" required="" type="text"/>
-</div>
-<div>
-<label class="block text-sm font-medium text-gray-700" for="email">Email</label>
-<input class="border rounded w-full p-2 mt-1" id="email" name="email" required="" type="email"/>
-</div>
-<div class="mt-4">
-<h3 class="text-lg font-semibold mb-2">Elige tu Método de Pago</h3>
-<div class="flex justify-center gap-4">
-<button class="text-white bg-blue-500 px-4 py-2 rounded-lg" onclick="showPaymentDetails('bizum')" type="button">Bizum</button>
-<button class="text-white bg-blue-500 px-4 py-2 rounded-lg" onclick="showPaymentDetails('transfer')" type="button">Transferencia Bancaria</button>
+<div class="modal-step" id="step-1">
+<h2 class="text-3xl font-bold text-center mb-6">Selecciona tu Método de Pago</h2>
+<div class="grid grid-cols-1 gap-4">
+<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="showStep(2, 'bizum')">Pagar con Bizum</button>
+<button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="showStep(2, 'transfer')">Transferencia Bancaria</button>
+<button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="showStep(2, 'crypto')">Pago con Criptodivisas</button>
+<button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="showStep(2, 'westernunion')">Western Union</button>
 </div>
 </div>
-<div class="mt-4 hidden" id="payment-details">
-<div class="hidden mt-4" id="bizum-details">
-<h4 class="text-lg font-semibold">Pago con Bizum</h4>
-<p>Envía <strong>399€</strong> a <strong>+34679794037</strong></p>
-<p>Recibirás el accesoo por email en las 3h siguientes al pago..</p>
-</div>
-<div class="hidden mt-4" id="transfer-details">
-<h4 class="text-lg font-semibold">Transferencia Bancaria</h4>
-<p>Realiza una transferencia de <strong>399€</strong> a la siguiente cuenta:</p>
-<p>SAMI HALAWA RIBAS</p>
-<p><strong>ES2615632626313265842569</strong></p>
-<p>SWIFT: NTSBESM1XXX </p>
-<p>Recibirás el accesoo por email en las 3h siguientes al pago.</p>
+<div class="modal-step hidden" id="step-2">
+<h2 class="text-3xl font-bold text-center mb-6">Detalles del Pago</h2>
+<div class="mb-6" id="payment-details-content"></div>
+<div class="flex justify-between">
+<button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="showStep(1)">Atrás</button>
+<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="showStep(3)">Confirmar y Pagar</button>
 </div>
 </div>
-<div class="mt-6">
-<button class="w-full bg-green-500 text-white rounded-lg py-3 font-semibold text-xl hover:bg-green-600 transition" type="submit">Enviar Recibo de Pago Y Acceder A Curso</button>
+<div class="modal-step hidden" id="step-3">
+<h2 class="text-3xl font-bold text-center mb-6">Confirmación del Pago</h2>
+<p class="text-center text-gray-700 mb-6">Revisa la información de tu pago antes de proceder.</p>
+<div class="mb-6" id="payment-summary"></div>
+<div class="flex justify-between">
+<button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="showStep(2)">Atrás</button>
+<button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="showStep(4)">Completar Pago</button>
 </div>
-</form>
+</div>
+<div class="modal-step hidden" id="step-4">
+<h2 class="text-3xl font-bold text-center mb-6">Procesando el Pago</h2>
+<p class="text-center text-gray-700 mb-6">Por favor espera mientras detectamos tu pago...</p>
+<div class="flex justify-center">
+<div class="spinner border-t-4 border-blue-500 rounded-full w-12 h-12 animate-spin"></div>
+</div>
 </div>
 </div>
 <script>
@@ -400,24 +386,25 @@
     document.getElementById(`${method}-details`).classList.remove('hidden');
   }
 </script>
-
 <section class="bg-gradient-to-r from-green-400 to-blue-500 text-white py-20 px-4" id="inicio">
 <div class="container mx-auto flex flex-col md:flex-row items-center justify-between"><!-- Content -->
 <div class="flex flex-col w-full md:w-1/2">
 <h1 class="text-4xl md:text-5xl leading-tight mb-4"><span style="font-size:36px;"><strong>MÁSTER MEGACURSO
               INDIVIDUAL <br/>
               IA &amp; ChatGPT de 0 a 100.</strong></span><br/>
-<span style="color:#e74c3c;"><strong><span style="font-size:28px;">OFERTA LANZAMIENTO 
+<span style="color:#e74c3c;"><strong><span style="font-size:28px;">TEMARIO ADAPTADO ÚLTIMAS PLAZAS CON BECA
                 -30% DESC.</span></strong></span>
 </h1>
 <p class="text-lg md:text-xl mb-6">Megacurso Online de ChatGPT y IA de 0 a 100. Acceso a clases grabadas
           y contenido exclusivo. <b>Transforma tu carrera con ChatGPT y IA. ChatGPT para todos, desde 0. Incluye acceso a herramientas y certificación oficial. ¡Reserva tu plaza ahora y aprovecha un descuento exclusivo!</b></p>
-<p class="text-lg md:text-xl mb-6"><strong>Duración: 50h</strong></p>
+<p class="text-lg md:text-xl mb-6"><strong>Duración: 100h</strong></p>
 <iframe allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/Z12tNJmVee0" width="560"></iframe>
 <!-- Call to Action -->
-<div class="flex justify-center md:justify-start"><a class="bg-white text-gray-800 rounded py-3 px-6 mr-4 hover:bg-gray-100" href="https://ia.megacursos.com/reservar.html?quedan=24&amp;oferta=active-30%"><strong>Aprovechar Oferta</strong></a> <a class="border border-white rounded py-3 px-6 hover:bg-white hover:text-gray-800" href="#temario">Temario</a></div>
+<div class="flex justify-center md:justify-start"><a class="bg-white text-gray-800 rounded py-3 px-6 mr-4 hover:bg-gray-100" href="https://ia.megacursos.com/reservar.html?quedan=24&amp;oferta=active-30%"><strong>Más Información
+              (Whatsapp)</strong></a> <a class="border border-white rounded py-3 px-6 hover:bg-white hover:text-gray-800" href="#temario">Descubre el
+            Programa</a></div>
 </div>
-<div class="w-full md:w-1/2 mt-6 md:mt-0"><!--<img alt="Curso IA y ChatGPT" class="w-full rounded-lg shadow-lg" src="https://img.icons8.com/ios/400/000000/artificial-intelligence.png"/>--></div>
+<div class="w-full md:w-1/2 mt-6 md:mt-0"><img alt="Curso IA y ChatGPT" class="w-full rounded-lg shadow-lg" src="https://img.icons8.com/ios/400/000000/artificial-intelligence.png"/></div>
 </div>
 </section>
 <!-- About Master Section -->
@@ -438,7 +425,7 @@
 <p class="text-gray-600 mt-2">Accede a material educativo de alta calidad en FullHD, incluyendo todos los
             recursos necesarios.</p>
 </div>
-<div class="w-full md:w-1/2 px-4 mb-6"><img alt="Acceso inmediato" class="mt-2 mr-3" src="https://img.icons8.com/ios/400/000000/learning.png"/>
+<div class="w-full md:w-1/2 px-4 mb-6"><img alt="Acceso inmediato" class="mt-2 mr-3" src="https://img.icons8.com/ios/400/000000/access.png"/>
 <p class="text-gray-600 mt-2">Disfruta de acceso inmediato y sin límites a través de cualquier dispositivo, en
             cualquier momento.</p>
 </div>
@@ -587,7 +574,7 @@
 <p class="text-4xl font-bold text-blue-500 mt-2">El curso incluye</p>
 <p class="text-gray-600 mt-2"><span style="color:#3498db;"><strong>Oferta Individual
                 Temporal</strong></span><br/>
-            Acceso a las 50h de Clases Grabadas.<br/>
+            Acceso a las 100h de Clases Grabadas.<br/>
             Acceso ilimitado a las Grabaciones.<br/>
             INCLUYE Licencias Uso ChatGPT, Novita, MelindaAI... <br/>
             INCLUYE Certificación Física Oficial enviada a domicilio.<br/>
@@ -604,11 +591,11 @@
 <section class="py-20 px-4">
 <div class="container mx-auto">
 <div class="text-center mb-10">
-<h2 class="text-3xl font-semibold">Megacurso de ChatGPT+IA en 50h</h2>
+<h2 class="text-3xl font-semibold">Megacurso de ChatGPT+IA en 100h</h2>
 <p class="mt-3 text-gray-600">Verdaderamente de 0 a 100. Sin experiencia previa requerida. </p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="mb-6"><!--<img alt="Curso en Directo" class="w-full rounded-lg shadow-lg" src="https://img.icons8.com/ios/400/000000/live.png"/>--> </div>
+<div class="mb-6"><img alt="Curso en Directo" class="w-full rounded-lg shadow-lg" src="https://img.icons8.com/ios/400/000000/live.png"/></div>
 <div>
 <p class="text-gray-600 mb-4">LornaAI y Megacursos, en una novedosa colaboración, han preparado y lanzado en
             conjunto este <strong>Máster Online IA y ChatGPT</strong>. Originalmente el Megacurso se planificó en el
@@ -866,7 +853,7 @@
 <p class="text-4xl font-bold text-blue-500 mt-2">El Curso Incluye</p>
 <p class="text-gray-600 mt-2"><strong class="text-green-500">30% de descuento</strong> sobre el precio
             regular.<br/>
-            Acceso a las 50h de Clases Grabadas.<br/>
+            Acceso a las 100h de Clases Grabadas.<br/>
             Acceso ilimitado a las Grabaciones.<br/>
             Licencias Gratuitas herramientas IA.<br/>
 <strong><span style="color:#27ae60;">Certificación Física Oficial enviada a domicilio.<br/>
@@ -972,5 +959,36 @@
     });
     bot.start();
   </script>
-</body>
+<script>
+    function showStep(step, paymentType) {
+        document.querySelectorAll('.modal-step').forEach(step => step.classList.add('hidden'));
+        document.getElementById('step-' + step).classList.remove('hidden');
+        if (step === 2) {
+            const paymentDetailsContent = {
+                bizum: '<p>Detalles para pagar con Bizum...</p>',
+                transfer: '<p>Detalles para pagar por Transferencia Bancaria...</p>',
+                crypto: '<p>Detalles para pagar con Criptodivisas...</p>',
+                westernunion: '<p>Detalles para pagar con Western Union...</p>'
+            };
+            document.getElementById('payment-details-content').innerHTML = paymentDetailsContent[paymentType];
+        }
+    }
+    </script><script>
+    function showStep(step, paymentType) {
+        document.querySelectorAll('.modal-step').forEach(step => step.classList.add('hidden'));
+        document.getElementById('step-' + step).classList.remove('hidden');
+        if (step === 2) {
+            const paymentDetailsContent = {
+                bizum: `<div class="p-4">${detailed_payment_content['bizum']}</div>`,
+                transfer: `<div class="p-4">${detailed_payment_content['transfer']}</div>`,
+                crypto: `<div class="p-4">${detailed_payment_content['crypto']}</div>`,
+                westernunion: `<div class="p-4">${detailed_payment_content['westernunion']}</div>`,
+            };
+            document.getElementById('payment-details-content').innerHTML = paymentDetailsContent[paymentType];
+        }
+        if (step === 3) {
+            document.getElementById('payment-summary').innerHTML = document.getElementById('payment-details-content').innerHTML;
+        }
+    }
+    </script></body>
 </html>
