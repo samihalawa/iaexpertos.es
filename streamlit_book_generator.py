@@ -17,6 +17,10 @@ def generate_book_pages(text):
         # Split the paragraph into sentences
         sentences = para.split("\n")
 
+        # Initialize a set to store common tokens
+        common_tokens = set(["token1", "token2", "token3"])
+        context_established = False
+
         # Loop through each sentence
         for sentence in sentences:
             # Check for specific keywords at the beginning of the sentence
@@ -30,10 +34,20 @@ def generate_book_pages(text):
                 # Append the sentence to the current page
                 book_pages[-1] += sentence + " "
 
-            # Check if the current page exceeds 400 words
-            if len(book_pages[-1].split()) > 400:
-                # Create a new page if the word limit is reached
+            # Check for common tokens in the sentence
+            sentence_tokens = set(sentence.lower().split())
+            common_tokens &= sentence_tokens
+
+            # Check if sufficient context is established
+            if len(common_tokens) < 5:
+                context_established = True
+
+            # Check if the current page exceeds 400 words or context is established
+            if len(book_pages[-1].split()) > 400 or context_established:
+                # Create a new page or end the loop if context is established
                 book_pages.append("")
+                if context_established:
+                    break
 
     return book_pages
 
