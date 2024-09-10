@@ -19,8 +19,16 @@ def generate_book_pages(text):
 
         # Loop through each sentence
         for sentence in sentences:
-            # Append the sentence to the current page
-            book_pages[-1] += sentence + " " if book_pages else ""
+            # Check for specific keywords at the beginning of the sentence
+            if sentence.startswith("Chapter"):
+                # Add chapter heading and a new page
+                book_pages.append("## " + sentence + "\n")
+            elif sentence.startswith("Section"):
+                # Add section heading
+                book_pages[-1] += "### " + sentence + "\n"
+            else:
+                # Append the sentence to the current page
+                book_pages[-1] += sentence + " "
 
             # Check if the current page exceeds 400 words
             if len(book_pages[-1].split()) > 400:
