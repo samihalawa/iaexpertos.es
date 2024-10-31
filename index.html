@@ -1,0 +1,3273 @@
+
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA Expertos - Soluciones Avanzadas de Inteligencia Artificial para Empresas y Educación</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#EFF6FF',
+                            100: '#DBEAFE',
+                            500: '#3B82F6', 
+                            600: '#2563EB',
+                            700: '#1D4ED8',
+                            800: '#1E40AF',
+                            900: '#1E3A8A'
+                        },
+                        secondary: {
+                            50: '#F0F9FF',
+                            100: '#E0F2FE',
+                            500: '#0EA5E9',
+                            600: '#0284C7',
+                            700: '#0369A1',
+                            800: '#075985',
+                            900: '#0C4A6E'
+                        },
+                        accent: {
+                            50: '#FFF7ED',
+                            100: '#FFEDD5',
+                            500: '#F97316',
+                            600: '#EA580C',
+                            700: '#C2410C',
+                            800: '#9A3412',
+                            900: '#7C2D12'
+                        },
+                        success: '#10B981',
+                        dark: '#1F2937'
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif']
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url('https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750')",
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))'
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px rgba(0, 0, 0, 0.1)',
+                        'card': '0 4px 24px rgba(0, 0, 0, 0.05)'
+                    },
+                    maxWidth: {
+                        '8xl': '88rem',
+                        '9xl': '96rem'
+                    },
+                    screens: {
+                        '3xl': '1792px'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="description" content="IA Expertos - Soluciones avanzadas de Inteligencia Artificial para empresas y educación. Formación especializada en IA y consultoría.">
+    <meta name="theme-color" content="#1E40AF">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="IA Expertos - Soluciones Avanzadas de Inteligencia Artificial">
+    <meta property="og:description" content="Formación especializada en IA y consultoría para empresas y educación">
+    <meta property="og:image" content="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta name="keywords" content="IA, Inteligencia Artificial, AI consulting, machine learning, automatización, análisis de datos">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://iaexpertos.com">
+
+    <style>
+        /* Core styles */
+        :root {
+            --primary: #3B82F6;
+            --secondary: #0EA5E9;
+            --accent: #F97316;
+        }
+
+        /* Layout */
+        .container {
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        /* Components */
+        .card {
+            @apply bg-white rounded-2xl shadow-lg p-6 transition-all duration-300;
+        }
+
+        .button {
+            @apply px-6 py-3 rounded-full font-medium transition-all duration-300;
+        }
+
+        /* Animations */
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { 
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to { 
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Header Components */
+        .sticky-header {
+            @apply fixed top-0 left-0 right-0 z-[1000] transition-all duration-300;
+            background: linear-gradient(to right, rgba(30, 64, 175, 0.95), rgba(59, 130, 246, 0.95));
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        /* Navigation */
+        .nav-link {
+            @apply relative font-medium transition-all duration-300;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            @apply absolute bottom-0 left-0 w-0 h-0.5 bg-accent-500 transition-all duration-300;
+            bottom: -2px;
+        }
+
+        .nav-link:hover::after {
+            @apply w-full;
+        }
+
+        /* Logo Text */
+        .logo-text {
+            @apply text-white;
+            background: linear-gradient(to right, #ffffff, #e2e8f0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            @apply fixed inset-0 bg-gradient-to-br from-primary-900 to-primary-800
+                   backdrop-blur-lg transition-transform duration-300 ease-in-out;
+            transform: translateX(-100%);
+            height: calc(100vh - 64px);
+            top: 64px;
+            z-index: 50;
+        }
+
+        .mobile-menu.active {
+            @apply block;
+            transform: translateX(0);
+        }
+
+        /* Scrolled States */
+        .header-scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .header-scrolled .nav-link {
+            @apply text-primary-800;
+        }
+
+        .header-scrolled .nav-link:hover {
+            @apply text-accent-500;
+        }
+
+        .header-scrolled .logo-text {
+            background: linear-gradient(to right, #1E40AF, #3B82F6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-scrolled #mobileMenuButton {
+            @apply text-primary-800;
+        }
+
+        .header-scrolled .mobile-menu {
+            @apply bg-white;
+        }
+
+        .header-scrolled .mobile-menu a {
+            @apply text-primary-800;
+        }
+
+        .header-scrolled .mobile-menu a:hover {
+            @apply text-accent-500 bg-primary-50/50;
+        }
+
+        /* Interactive Elements */
+        .floating-whatsapp {
+            @apply fixed bottom-20 right-5 z-[1000];
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Notification System */
+        .notification {
+            @apply pointer-events-auto flex items-center justify-between 
+                   px-6 py-4 rounded-lg text-white shadow-lg 
+                   backdrop-blur-sm transform;
+            max-width: 400px;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .notification.success {
+            @apply bg-gradient-to-r from-green-500 to-green-600;
+        }
+
+        .notification.error {
+            @apply bg-gradient-to-r from-red-500 to-red-600;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1100;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 500px;
+            position: relative;
+        }
+
+        /* Cards */
+        .methodology-card {
+            @apply bg-primary-800/90 backdrop-blur-sm rounded-xl p-8 transition-all duration-300;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .methodology-card:hover {
+            @apply bg-primary-700/90 transform scale-105;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .methodology-card p {
+            @apply text-gray-100 leading-relaxed;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .methodology-card h3 {
+            @apply text-white font-bold;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card, .methodology-card, .testimonial-caso {
+            @apply h-full flex flex-col justify-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Loading States */
+        .loading-spinner {
+            @apply inline-block w-4 h-4 border-2 
+                   border-white border-t-transparent 
+                   rounded-full animate-spin;
+        }
+
+        /* Fixed Elements */
+        .fixed-elements {
+            @apply fixed bottom-5 right-5 z-[1000] flex flex-col gap-4;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container { padding: 0 1rem; }
+            .card { margin: 1rem 0; }
+            section { padding: 3rem 1rem; }
+            
+            .nav-link, button {
+                min-height: 44px;
+                min-width: 44px;
+                padding: 0.75rem 1rem;
+            }
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            .sticky-header,
+            .nav-link,
+            .mobile-menu,
+            .loading-spinner {
+                transition: none;
+            }
+        }
+
+        /* Support for browsers without backdrop-filter */
+        @supports not (backdrop-filter: blur(8px)) {
+            .sticky-header {
+                background: rgb(30, 64, 175);
+            }
+            
+            .header-scrolled {
+                background: rgb(255, 255, 255);
+            }
+        }
+
+        /* Animation for gradient background */
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradient 15s ease infinite;
+        }
+
+        /* Accessibility improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        /* Print styles */
+        @media print {
+            .no-print {
+                display: none;
+            }
+            .container {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+        }
+
+        /* Common screen sizes */
+        /* Mobile S - 320px */
+        @media screen and (max-width: 320px) {
+            .container {
+                @apply px-4;
+            }
+            h1 {
+                @apply text-3xl;
+            }
+        }
+
+        /* Mobile M - 375px */
+        @media screen and (min-width: 321px) and (max-width: 375px) {
+            .container {
+                @apply px-4;
+            }
+            h1 {
+                @apply text-4xl;
+            }
+        }
+
+        /* Mobile L - 425px */
+        @media screen and (min-width: 376px) and (max-width: 425px) {
+            .container {
+                @apply px-4;
+            }
+        }
+
+        /* Tablet - 768px */
+        @media screen and (min-width: 426px) and (max-width: 768px) {
+            .container {
+                @apply px-6;
+            }
+        }
+
+        /* Laptop - 1024px */
+        @media screen and (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                @apply px-8;
+            }
+        }
+
+        /* Laptop L - 1440px */
+        @media screen and (min-width: 1025px) and (max-width: 1440px) {
+            .container {
+                @apply px-8 max-w-7xl mx-auto;
+            }
+        }
+
+        /* 4K - 2560px */
+        @media screen and (min-width: 1441px) {
+            .container {
+                @apply px-8 max-w-8xl mx-auto;
+            }
+            html {
+                font-size: 18px;
+            }
+        }
+
+        .modal {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+        }
+
+        .modal-content {
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .notification-progress {
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            transform-origin: left;
+        }
+
+        @keyframes progress {
+            from { transform: scaleX(1); }
+            to { transform: scaleX(0); }
+        }
+
+        .loading-spinner {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 2px solid white;
+            width: 1rem;
+            height: 1rem;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Container responsiveness */
+        .container {
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 1280px; /* max-w-7xl equivalent */
+            overflow-x: hidden;
+        }
+
+        /* Responsive padding adjustments */
+        @media (max-width: 640px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 768px) {
+            .container {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+
+        /* Fix for mobile menu */
+        .mobile-menu {
+            top: 64px;
+            height: calc(100vh - 64px);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Prevent horizontal scroll */
+        body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* Grid responsiveness */
+        .grid {
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+        }
+
+        /* Image containment */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Card responsiveness */
+        .service-card, 
+        .methodology-card, 
+        .testimonial-caso {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        /* Mobile Menu Styles */
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out, display 0.3s ease-in-out;
+            display: none;
+        }
+
+        .mobile-nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-link:active {
+            transform: scale(0.98);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu {
+                top: 64px;
+                height: calc(100vh - 64px);
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                z-index: 50;
+            }
+        }
+
+        /* Button hover effects */
+        .button-hover-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .button-hover-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .button-hover-effect:hover::after {
+            transform: translateX(0);
+        }
+
+        /* Active button states */
+        .button-active {
+            transform: scale(0.98);
+        }
+
+        /* Disable button styles */
+        .button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* Focus states for accessibility */
+        .button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+    </style>
+
+    <!-- EmailJS Configuration -->
+    <script src="https://cdn.emailjs.com/sdk/2.6.4/email.min.js"></script>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50">
+    <!-- Header Section with Updated Navigation -->
+    <header class="sticky-header w-full">
+        <div class="container mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 py-4 max-w-7xl">
+            <a href="#" class="flex items-center space-x-2">
+                <span class="text-2xl sm:text-3xl font-display font-bold text-white logo-text tracking-tight">
+                    IA Expertos
+                </span>
+            </a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#inicio" class="nav-link text-white hover:text-accent-100 py-2">Inicio</a>
+                <a href="#servicios" class="nav-link text-white hover:text-accent-100 py-2">Servicios</a>
+                <a href="#metodologia" class="nav-link text-white hover:text-accent-100 py-2">Metodología</a>
+                <a href="#casos-exito" class="nav-link text-white hover:text-accent-100 py-2">Casos de Éxito</a>
+                <a href="#contacto-ampliado" class="nav-link text-white hover:text-accent-100 py-2">Contacto</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-white hover:text-accent-100 p-2 rounded-lg transition-colors duration-200" 
+                    id="mobileMenuButton" 
+                    aria-label="Toggle menu" 
+                    aria-expanded="false"
+                    aria-controls="mobile-menu">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" 
+             class="mobile-menu md:hidden fixed w-full bg-primary-900/95 backdrop-blur-lg shadow-lg transform transition-transform duration-300 ease-in-out"
+             style="display: none;">
+            <div class="container mx-auto px-4 py-6">
+                <nav class="flex flex-col space-y-4">
+                    <a href="#inicio" 
+                       class="mobile-nav-link text-white text-lg font-medium py-3 px-4 rounded-lg hover:bg-white/10 transition-colors duration-200">
+                        Inicio
+                    </a>
+                    <a href="#servicios" 
+                       class="mobile-nav-link text-white text-lg font-medium py-3 px-4 rounded-lg hover:bg-white/10 transition-colors duration-200">
+                        Servicios
+                    </a>
+                    <a href="#metodologia" 
+                       class="mobile-nav-link text-white text-lg font-medium py-3 px-4 rounded-lg hover:bg-white/10 transition-colors duration-200">
+                        Metodología
+                    </a>
+                    <a href="#casos-exito" 
+                       class="mobile-nav-link text-white text-lg font-medium py-3 px-4 rounded-lg hover:bg-white/10 transition-colors duration-200">
+                        Casos de Éxito
+                    </a>
+                    <a href="#contacto-ampliado" 
+                       class="mobile-nav-link text-white text-lg font-medium py-3 px-4 rounded-lg hover:bg-white/10 transition-colors duration-200">
+                        Contacto
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="w-full overflow-x-hidden">
+        <!-- Hero Section -->
+        <section id="inicio" class="relative min-h-screen pt-24 w-full">
+            <div class="absolute inset-0 bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-800 animate-gradient"></div>
+            
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative pt-16 max-w-7xl">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="text-white space-y-8">
+                        <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm">
+                            <span class="w-2 h-2 rounded-full bg-accent-500 animate-pulse"></span>
+                            <span class="font-medium">Profesor y Consultor de IA</span>
+                        </div>
+                        
+                        <h1 class="text-5xl lg:text-7xl font-bold leading-tight">
+                            Experto en
+                            <span class="bg-gradient-to-r from-accent-500 to-accent-400 bg-clip-text text-transparent">
+                                Inteligencia Artificial
+                            </span>
+                        </h1>
+
+                        <p class="text-xl text-blue-100">
+                            Con más de 5 años de experiencia formando a profesionales y empresas en IA.
+                            Especializado en implementación práctica y soluciones personalizadas.
+                        </p>
+
+                        <div class="flex space-x-4">
+                            <a href="https://uploadnow.io/s/6aa4534b-429e-4663-9445-32b5ed9af587?o=t" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="bg-accent-500 text-white py-3 px-6 rounded-full hover:bg-accent-600 transition duration-300 flex items-center">
+                                <i class="fas fa-download mr-2"></i>Descargar CV
+                            </a>
+                            <a href="https://wa.me/34679794037" 
+                               class="bg-green-500 text-white py-3 px-6 rounded-full hover:bg-green-600 transition duration-300 flex items-center">
+                                <i class="fab fa-whatsapp mr-2"></i>Contactar
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="hidden lg:block relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary-900/20 to-transparent rounded-2xl"></div>
+                        <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=800&q=80" 
+                             alt="AI Expert" 
+                             class="rounded-2xl shadow-2xl object-cover w-full h-full"
+                             loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="servicios" class="py-24 bg-gradient-to-br from-gray-50 to-blue-50 w-full">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+                <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+                    <span class="inline-block px-4 py-2 rounded-full bg-blue-100 text-primary-600 font-medium mb-4">
+                        Soluciones Empresariales
+                    </span>
+                    <h2 class="text-4xl font-bold mb-6 text-gray-900">
+                        Transformación Digital con IA
+                    </h2>
+                    <p class="text-xl text-gray-600">
+                        Potencia tu negocio con tecnología de Inteligencia Artificial de última generación
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Automatización IA Card -->
+                    <div class="service-card bg-white rounded-xl p-8 hover:shadow-2xl transition-all duration-300">
+                        <div class="flex flex-col h-full">
+                            <div class="relative mb-6">
+                                <div class="absolute -top-4 -right-4 bg-accent-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                    Popular
+                                </div>
+                                
+                                <div class="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mb-6 transform hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-robot text-3xl text-primary-600"></i>
+                                </div>
+                                
+                                <h3 class="text-xl font-bold mb-4 bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">
+                                    Automatización IA
+                                </h3>
+                                
+                                <p class="text-gray-600 mb-6 leading-relaxed">
+                                    Optimiza tus procesos empresariales con soluciones de IA personalizadas.
+                                    <span class="font-medium text-primary-600">Reduce costes hasta un 40%</span>
+                                </p>
+                                
+                                <ul class="space-y-3 mb-8 text-gray-600">
+                                    <li class="flex items-center bg-gray-50 p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200">
+                                        <i class="fas fa-check-circle text-success mr-2"></i>
+                                        <span>Automatización de procesos</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-primary-600 mr-2"></i>
+                                        Chatbots inteligentes
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-primary-600 mr-2"></i>
+                                        <span>Procesamiento de documentos</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-auto space-y-3">
+                                <button onclick="openContactModal('automatizacion')" 
+                                        class="w-full group bg-primary-600 text-white py-3 px-6 rounded-lg hover:bg-primary-700 transition-all duration-300 flex items-center justify-center gap-2 relative overflow-hidden">
+                                    <span class="relative z-10">Solicitar Demo Gratuita</span>
+                                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-300"></i>
+                                    <div class="absolute inset-0 bg-gradient-to-r from-primary-500 to-primary-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                                </button>
+
+                                <a href="https://wa.me/34679794037?text=Hola,%20me%20interesa%20la%20automatización%20con%20IA.%20¿Podemos%20hablar%20sobre%20una%20demo?" 
+                                   target="_blank"
+                                   class="w-full group bg-green-500 text-white py-3 px-6 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2">
+                                    <i class="fab fa-whatsapp text-lg"></i>
+                                    <span>Consulta Rápida por WhatsApp</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Análisis de Datos Card -->
+                    <div class="service-card bg-white rounded-xl p-8 hover:shadow-2xl transition-all duration-300">
+                        <div class="flex flex-col h-full">
+                            <div class="mb-6">
+                                <div class="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mb-6">
+                                    <i class="fas fa-chart-line text-3xl text-primary-600"></i>
+                                </div>
+                                <h3 class="text-xl font-bold mb-4 text-gray-900">Análisis de Datos</h3>
+                                <p class="text-gray-600 mb-6">
+                                    Convierte tus datos en decisiones estratégicas con análisis avanzado y Machine Learning.
+                                </p>
+                                <ul class="space-y-2 mb-8 text-gray-600">
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-primary-600 mr-2"></i>
+                                        <span>Predicción de tendencias</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-primary-600 mr-2"></i>
+                                        <span>Segmentación de clientes</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-primary-600 mr-2"></i>
+                                        <span>Optimización de recursos</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mt-auto space-y-3">
+                                <button onclick="openContactModal('analisis')" 
+                                        class="w-full bg-primary-600 text-white py-3 px-6 rounded-lg hover:bg-primary-700 transition-all duration-300 flex items-center justify-center gap-2">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Solicitar Análisis</span>
+                                </button>
+                                <a href="https://wa.me/34679794037?text=Hola,%20me%20interesa%20el%20servicio%20de%20análisis%20de%20datos.%20¿Podemos%20hablar?" 
+                                   target="_blank"
+                                   class="w-full bg-green-500 text-white py-3 px-6 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2">
+                                    <i class="fab fa-whatsapp"></i>
+                                    <span>Consulta Rápida</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Soluciones Cloud IA Card -->
+                    <div class="service-card bg-white rounded-xl p-8 hover:shadow-2xl transition-all duration-300">
+                        <div class="flex flex-col h-full">
+                            <div class="mb-6">
+                                <div class="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mb-6">
+                                    <i class="fas fa-cloud text-3xl text-primary-600"></i>
+                                </div>
+                                <h3 class="text-xl font-bold mb-4 text-gray-900">Soluciones Cloud IA</h3>
+                                <p class="text-gray-600 mb-6">
+                                    Implementa soluciones de IA escalables en la nube para maximizar la eficiencia y reducir costes.
+                                </p>
+                                <ul class="space-y-2 mb-8 text-gray-600">
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-primary-600 mr-2"></i>
+                                        Infraestructura escalable
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-primary-600 mr-2"></i>
+                                        Integración continua
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-primary-600 mr-2"></i>
+                                        Seguridad avanzada
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mt-auto space-y-3">
+                                <button onclick="openContactModal('cloud')" 
+                                        class="w-full bg-primary-600 text-white py-3 px-6 rounded-lg hover:bg-primary-700 transition-all duration-300 flex items-center justify-center gap-2">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Solicitar Información</span>
+                                </button>
+                                <a href="https://wa.me/34679794037?text=Hola,%20me%20interesan%20las%20soluciones%20Cloud%20IA.%20¿Podemos%20hablar?" 
+                                   target="_blank"
+                                   class="w-full bg-green-500 text-white py-3 px-6 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2">
+                                    <i class="fab fa-whatsapp"></i>
+                                    <span>Consulta Rápida</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-16">
+                    <p class="text-gray-600 mb-6">
+                        ¿No encuentras lo que buscas? Contáctanos para una solución personalizada
+                    </p>
+                    <button onclick="openContactModal('personalizado')" 
+                            class="inline-flex items-center gap-2 bg-primary-600 text-white py-3 px-8 rounded-lg hover:bg-primary-700 transition-all duration-300">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contactar Ahora</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Servicios Detallados Section -->
+        <section id="servicios-detallados" class="py-24 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <span class="text-primary font-medium px-4 py-2 rounded-full bg-blue-100 inline-block mb-4">
+                        Servicios Detallados
+                    </span>
+                    <h2 class="text-4xl font-bold mb-6">Soluciones de IA para Educación</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Transformando la educación con tecnología de IA avanzada
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service cards content -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Metodología Section -->
+        <section id="metodologia" class="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-primary-800 mb-4">Nuestra Metodología</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Un enfoque estructurado para garantizar el éxito de su proyecto de IA
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Step 1 -->
+                    <div class="methodology-card bg-primary-800/90 hover:bg-primary-700/90">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-search text-3xl text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4 text-white">Análisis Inicial</h3>
+                            <p class="text-gray-100 leading-relaxed">
+                                Evaluación detallada de necesidades y objetivos específicos de su organización
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="methodology-card bg-primary-800/90 hover:bg-primary-700/90">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-pencil-ruler text-3xl text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4 text-white">Diseño Personalizado</h3>
+                            <p class="text-gray-100 leading-relaxed">
+                                Desarrollo de un plan de formación adaptado a sus requisitos específicos
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="methodology-card bg-primary-800/90 hover:bg-primary-700/90">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-laptop-code text-3xl text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4 text-white">Implementación</h3>
+                            <p class="text-gray-100 leading-relaxed">
+                                Formación práctica con casos reales y aplicación directa a su negocio
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="methodology-card bg-primary-800/90 hover:bg-primary-700/90">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-chart-line text-3xl text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4 text-white">Seguimiento</h3>
+                            <p class="text-gray-100 leading-relaxed">
+                                Soporte continuo y evaluación de resultados para garantizar el éxito
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Features -->
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-clock text-2xl text-primary-600 mr-3"></i>
+                            <h4 class="text-lg font-bold">Flexibilidad Horaria</h4>
+                        </div>
+                        <p class="text-gray-600">Adaptamos los horarios a las necesidades de su equipo</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-users text-2xl text-primary-600 mr-3"></i>
+                            <h4 class="text-lg font-bold">Grupos Reducidos</h4>
+                        </div>
+                        <p class="text-gray-600">Atención personalizada y seguimiento individual</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-certificate text-2xl text-primary-600 mr-3"></i>
+                            <h4 class="text-lg font-bold">Certificación</h4>
+                        </div>
+                        <p class="text-gray-600">Certificados oficiales al completar la formación</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Casos de Éxito Section -->
+        <section id="casos-exito" class="py-24 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-primary-800 mb-4">Casos de Éxito</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Descubra cómo hemos ayudado a otras organizaciones a alcanzar sus objetivos
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <p class="mb-4">"Como profesional independiente, los conocimientos adquiridos en el curso de IA para Marketing Digital han sido invaluables. He podido ofrecer servicios más avanzados a mis clientes."</p>
+                        <p class="font-bold">- Carlos R., Consultor de Marketing Digital</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <p class="mb-4">"La formación en ChatGPT para comunicaciones empresariales ha revolucionado nuestra estrategia de atención al cliente. Sami tiene una habilidad única para hacer que conceptos complejos sean accesibles."</p>
+                        <p class="font-bold">- Ana L., Gerente de Atención al Cliente</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <p class="mb-4">"La implementación de soluciones de IA ha mejorado significativamente nuestra eficiencia operativa. El ROI ha superado nuestras expectativas."</p>
+                        <p class="font-bold">- Miguel S., Director de Operaciones</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contacto-ampliado" class="py-24 bg-blue-50">
+            <div class="container mx-auto px-4">
+                <div class="max-w-3xl mx-auto">
+                    <div class="text-center mb-8">
+                        <a href="https://wa.me/34679794037" class="bg-green-500 text-white py-3 px-8 rounded-full font-bold hover:bg-green-600 transition duration-300 inline-block transform hover:scale-105">
+                            <i class="fab fa-whatsapp mr-2"></i>Contactar por WhatsApp
+                        </a>
+                    </div>
+                    <p class="text-center mb-8">O llmame directamente al <a href="tel:+34679794037" class="text-primary-600 hover:underline">+34 679 794 037</a></p>
+                    <form id="contactForm" class="space-y-6" aria-label="Contact Form">
+                        <div>
+                            <label for="from_name" class="block mb-2 font-bold">Nombre</label>
+                            <input type="text" id="from_name" name="from_name" 
+                                   class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-primary-500" 
+                                   required aria-required="true">
+                        </div>
+                        <div>
+                            <label for="reply_to" class="block mb-2 font-bold">Email</label>
+                            <input type="email" id="reply_to" name="reply_to" 
+                                   class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-primary-500" 
+                                   required aria-required="true">
+                        </div>
+                        <div>
+                            <label for="message" class="block mb-2 font-bold">Mensaje</label>
+                            <textarea id="message" name="message" rows="5" 
+                                      class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-primary-500" 
+                                      required aria-required="true"></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" id="submitButton" 
+                                    class="w-full bg-primary-600 text-white py-3 px-6 rounded-lg hover:bg-primary-700 transition duration-300 transform hover:scale-105">
+                                <span>Enviar Mensaje</span>
+                                <i class="fas fa-paper-plane ml-2"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">IA Expertos</h3>
+                    <p>Soluciones avanzadas de Inteligencia Artificial</p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="https://www.linkedin.com/in/samihalawa" class="text-white hover:text-accent-500"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://twitter.com/samihalawa" class="text-white hover:text-accent-500"><i class="fab fa-twitter"></i></a>
+                        <a href="https://github.com/samihalawa" class="text-white hover:text-accent-500"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <!-- Rest of footer content remains the same -->
+            </div>
+        </div>
+    </footer>
+
+    <!-- Contact Modal Template -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content bg-white rounded-xl p-8">
+            <button onclick="closeContactModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Contacta con Nosotros</h3>
+            
+            <form id="contactForm" class="space-y-6">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
+                    <input type="text" id="name" name="name" required
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                </div>
+                
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <input type="email" id="email" name="email" required
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                </div>
+                
+                <div>
+                    <label for="service" class="block text-sm font-medium text-gray-700 mb-1">Servicio de Interés</label>
+                    <select id="service" name="service" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                        <option value="">Selecciona un servicio</option>
+                        <option value="automatizacion">Automatización IA</option>
+                        <option value="analisis">Análisis de Datos</option>
+                        <option value="cloud">Soluciones Cloud IA</option>
+                        <option value="formacion">Formación Personalizada</option>
+                        <option value="consultoria">Consultoría</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Mensaje</label>
+                    <textarea id="message" name="message" rows="4" required
+                              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"></textarea>
+                </div>
+                
+                <button type="submit" 
+                        class="w-full bg-primary-600 text-white py-3 px-6 rounded-lg hover:bg-primary-700 transition-all duration-300 flex items-center justify-center gap-2">
+                    <span>Enviar Mensaje</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Initialize EmailJS and Core Functionality -->
+    <script>
+        // Initialize core functionality with error handling
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCore();
+        });
+
+        function initializeCore() {
+            try {
+                initializeMobileMenu();
+                initializeScrollEffects();
+                initializeCookieConsent();
+                initializeNotifications();
+                initializeForms();
+            } catch (error) {
+                console.error('Initialization error:', error);
+                showFallbackError();
+            }
+        }
+
+        // 1. Mobile Menu Functionality
+        function initializeMobileMenu() {
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (!mobileMenuButton || !mobileMenu) {
+                throw new Error('Mobile menu elements not found');
+            }
+
+            // Set initial states
+            mobileMenu.classList.add('hidden');
+            mobileMenuButton.setAttribute('aria-expanded', 'false');
+
+            const mobileMenuIcon = mobileMenuButton.querySelector('i');
+            let isMenuOpen = false;
+
+            function toggleMenu(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                isMenuOpen = !isMenuOpen;
+                
+                mobileMenu.classList.toggle('active');
+                mobileMenu.classList.toggle('hidden');
+                
+                // Add transition for icon
+                mobileMenuIcon.style.transition = 'transform 0.3s ease';
+                mobileMenuIcon.style.transform = isMenuOpen ? 'rotate(90deg)' : '';
+                
+                mobileMenuIcon.classList.toggle('fa-bars');
+                mobileMenuIcon.classList.toggle('fa-times');
+                mobileMenuButton.setAttribute('aria-expanded', isMenuOpen);
+                
+                if (isMenuOpen) {
+                    document.addEventListener('click', closeMenuOnClickOutside);
+                    document.addEventListener('touchstart', closeMenuOnClickOutside);
+                } else {
+                    document.removeEventListener('click', closeMenuOnClickOutside);
+                    document.removeEventListener('touchstart', closeMenuOnClickOutside);
+                }
+            }
+
+            function closeMenuOnClickOutside(event) {
+                if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                    toggleMenu(event);
+                }
+            }
+
+            mobileMenuButton.addEventListener('click', toggleMenu);
+            mobileMenuButton.addEventListener('touchstart', toggleMenu);
+        }
+
+        // 2. Contact Modal Functionality
+        function openContactModal(service = '') {
+            const modal = document.getElementById('contactModal');
+            const serviceSelect = document.getElementById('service');
+            
+            if (!modal || !serviceSelect) return;
+            
+            modal.classList.add('active');
+            if (service) {
+                serviceSelect.value = service;
+            }
+            document.body.style.overflow = 'hidden';
+            
+            const focusableElements = modal.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+            const firstElement = focusableElements[0];
+            firstElement.focus();
+            
+            modal.addEventListener('keydown', handleModalKeyboard);
+        }
+
+        function closeContactModal() {
+            const modal = document.getElementById('contactModal');
+            if (!modal) return;
+            
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            modal.removeEventListener('keydown', handleModalKeyboard);
+        }
+
+        function handleModalKeyboard(event) {
+            const modal = document.getElementById('contactModal');
+            if (!modal) return;
+
+            if (event.key === 'Escape') {
+                closeContactModal();
+                return;
+            }
+            
+            const focusableElements = modal.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            if (event.key === 'Tab') {
+                if (event.shiftKey && document.activeElement === firstElement) {
+                    event.preventDefault();
+                    lastElement.focus();
+                } else if (!event.shiftKey && document.activeElement === lastElement) {
+                    event.preventDefault();
+                    firstElement.focus();
+                }
+            }
+        }
+
+        // 3. Cookie Consent Banner
+        function initializeCookieConsent() {
+            const cookieBanner = document.getElementById('cookie-banner');
+            const acceptButton = document.getElementById('accept-cookies');
+            const rejectButton = document.getElementById('reject-cookies');
+
+            if (!cookieBanner || !acceptButton || !rejectButton) return;
+
+            // Check if user has already made a choice
+            const cookieChoice = localStorage.getItem('cookieConsent');
+            
+            if (!cookieChoice) {
+                cookieBanner.classList.remove('hidden');
+                requestAnimationFrame(() => {
+                    cookieBanner.style.transform = 'translateY(0)';
+                    cookieBanner.style.opacity = '1';
+                });
+            }
+
+            function handleChoice(accepted) {
+                localStorage.setItem('cookieConsent', accepted ? 'accepted' : 'rejected');
+                cookieBanner.style.transform = 'translateY(100%)';
+                cookieBanner.style.opacity = '0';
+                setTimeout(() => cookieBanner.classList.add('hidden'), 300);
+                
+                // Show notification of choice
+                showNotification(
+                    accepted ? 'Preferencias de cookies guardadas' : 'Cookies rechazadas',
+                    accepted ? 'success' : 'info'
+                );
+            }
+
+            acceptButton.addEventListener('click', () => handleChoice(true));
+            rejectButton.addEventListener('click', () => handleChoice(false));
+        }
+
+        // 4. Notifications System
+        let notificationCount = 0;
+        const NOTIFICATION_SPACING = 4; // rem units
+
+        function showNotification(message, type = 'success', duration = 5000) {
+            const notificationId = 'notification-' + Date.now();
+            const notification = document.createElement('div');
+            
+            notification.id = notificationId;
+            notification.className = `notification ${type} fixed right-4 z-[2000] animate-fade-in`;
+            notification.setAttribute('role', 'alert');
+            
+            // Stack notifications from top
+            notification.style.top = `${(notificationCount * NOTIFICATION_SPACING) + 1}rem`;
+            notificationCount++;
+            
+            notification.innerHTML = `
+                <div class="flex items-center justify-between w-full">
+                    <div class="flex items-center">
+                        <i class="fas fa-${type === 'success' ? 'check-circle' : 
+                                   type === 'error' ? 'exclamation-circle' : 
+                                   'info-circle'} mr-2"></i>
+                        <span>${message}</span>
+                    </div>
+                    <button onclick="dismissNotification('${notificationId}')" 
+                            class="ml-4 hover:opacity-75 transition-opacity" 
+                            aria-label="Cerrar notificación">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="notification-progress" style="animation: progress ${duration}ms linear;"></div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => dismissNotification(notificationId), duration);
+        }
+
+        function dismissNotification(id) {
+            const notification = document.getElementById(id);
+            if (!notification) return;
+            
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateX(100%)';
+            
+            setTimeout(() => {
+                notification.remove();
+                notificationCount--;
+                // Reposition remaining notifications
+                document.querySelectorAll('.notification').forEach((notif, index) => {
+                    notif.style.top = `${(index * NOTIFICATION_SPACING) + 1}rem`;
+                });
+            }, 300);
+        }
+
+        // 5. Form Handling
+        function initializeForms() {
+            document.querySelectorAll('form').forEach(form => {
+                form.addEventListener('submit', handleFormSubmit);
+                
+                // Real-time validation
+                form.querySelectorAll('input, select, textarea').forEach(field => {
+                    field.addEventListener('blur', () => {
+                        validateField(field);
+                    });
+                });
+            });
+        }
+
+        function validateField(field) {
+            const isValid = field.checkValidity();
+            const errorElement = field.nextElementSibling?.classList.contains('error-message') 
+                ? field.nextElementSibling 
+                : null;
+            
+            if (!isValid) {
+                field.classList.add('border-red-500', 'focus:ring-red-500');
+                if (!errorElement) {
+                    const error = document.createElement('p');
+                    error.className = 'error-message text-red-500 text-sm mt-1';
+                    error.textContent = field.validationMessage;
+                    field.parentNode.insertBefore(error, field.nextSibling);
+                }
+            } else {
+                field.classList.remove('border-red-500', 'focus:ring-red-500');
+                errorElement?.remove();
+            }
+        }
+
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const submitButton = form.querySelector('button[type="submit"]');
+            
+            // Validate all fields
+            let isValid = true;
+            form.querySelectorAll('input, select, textarea').forEach(field => {
+                validateField(field);
+                if (!field.checkValidity()) isValid = false;
+            });
+
+            if (!isValid) {
+                showNotification('Por favor, completa todos los campos requeridos', 'error');
+                return;
+            }
+
+            // Show loading state
+            submitButton.disabled = true;
+            const originalContent = submitButton.innerHTML;
+            submitButton.innerHTML = `
+                <span class="loading-spinner"></span>
+                <span>Enviando...</span>
+            `;
+
+            try {
+                // Initialize EmailJS with your public key
+                emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your actual EmailJS public key
+
+                // Get form data
+                const formData = {
+                    from_name: form.querySelector('#from_name').value,
+                    reply_to: form.querySelector('#reply_to').value,
+                    message: form.querySelector('#message').value
+                };
+
+                // Send email using EmailJS
+                await emailjs.send(
+                    "YOUR_SERVICE_ID", // Replace with your EmailJS service ID
+                    "YOUR_TEMPLATE_ID", // Replace with your EmailJS template ID
+                    formData
+                );
+                
+                showNotification('Mensaje enviado correctamente', 'success');
+                form.reset();
+            } catch (error) {
+                console.error('Error sending email:', error);
+                showNotification('Error al enviar el mensaje. Por favor, inténtalo de nuevo.', 'error');
+            } finally {
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalContent;
+            }
+        }
+
+        // Error Boundary
+        function showFallbackError() {
+            console.error('An error occurred during initialization');
+            showNotification('Por favor, actualiza la página', 'error');
+        }
+
+        window.addEventListener('error', function(e) {
+            console.error('Runtime error:', e.error);
+            showFallbackError();
+        });
+
+        window.addEventListener('unhandledrejection', function(e) {
+            console.error('Unhandled promise rejection:', e.reason);
+            showFallbackError();
+        });
+
+        emailjs.init('YOUR_PUBLIC_KEY'); // Replace with your actual EmailJS public key
+
+        // Add this to the existing script section
+        function initializeScrollEffects() {
+            // Smooth scroll for all internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Close mobile menu if open
+                        if (isMenuOpen) {
+                            toggleMenu();
+                        }
+                        
+                        // Smooth scroll to target
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Update URL without jumping
+                        window.history.pushState(null, '', targetId);
+                    }
+                });
+            });
+
+            // Add active state to current section in navigation
+            window.addEventListener('scroll', () => {
+                const sections = document.querySelectorAll('section[id]');
+                const navLinks = document.querySelectorAll('.nav-link');
+                
+                let currentSection = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionHeight = section.clientHeight;
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+                        currentSection = '#' + section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('text-accent-500');
+                    if (link.getAttribute('href') === currentSection) {
+                        link.classList.add('text-accent-500');
+                    }
+                });
+            });
+        }
+
+        // Update the mobile menu click handlers
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    if (isMenuOpen) toggleMenu();
+                    
+                    setTimeout(() => {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        window.history.pushState(null, '', targetId);
+                    }, 300); // Wait for mobile menu to close
+                }
+            });
+        });
+    </script>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white shadow-lg p-4 z-[2000] hidden">
+        <div class="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p class="text-sm text-gray-600">
+                Utilizamos cookies para mejorar tu experiencia. Al continuar navegando, aceptas nuestra 
+                <a href="/politica-cookies" class="text-primary-600 hover:text-primary-700">política de cookies</a>.
+            </p>
+            <div class="flex gap-4">
+                <button id="accept-cookies" 
+                        class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">
+                    Aceptar
+                </button>
+                <button id="reject-cookies" 
+                        class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors">
+                    Rechazar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Keep only one script for mobile menu functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let isMenuOpen = false;
+            
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuIcon = mobileMenuButton?.querySelector('i');
+            
+            if (!mobileMenuButton || !mobileMenu || !mobileMenuIcon) {
+                console.error('Mobile menu elements not found');
+                return;
+            }
+
+            function toggleMenu(e) {
+                if (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                
+                isMenuOpen = !isMenuOpen;
+                
+                // Toggle menu visibility
+                mobileMenu.style.display = isMenuOpen ? 'block' : 'none';
+                
+                // Add a small delay to ensure display: block is applied before transform
+                setTimeout(() => {
+                    mobileMenu.style.transform = isMenuOpen ? 'translateX(0)' : 'translateX(-100%)';
+                }, 10);
+                
+                // Toggle icon
+                mobileMenuIcon.classList.toggle('fa-bars');
+                mobileMenuIcon.classList.toggle('fa-times');
+                
+                // Update accessibility
+                mobileMenuButton.setAttribute('aria-expanded', isMenuOpen);
+                
+                // Toggle body scroll
+                document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+            }
+
+            // Handle clicks outside menu
+            function handleClickOutside(e) {
+                if (isMenuOpen && !mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+                    toggleMenu();
+                }
+            }
+
+            // Add event listeners
+            mobileMenuButton.addEventListener('click', toggleMenu);
+            document.addEventListener('click', handleClickOutside);
+
+            // Handle mobile menu links
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        toggleMenu(); // Close menu
+                        
+                        // Scroll after menu closes
+                        setTimeout(() => {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                            
+                            // Update URL
+                            window.history.pushState(null, '', targetId);
+                        }, 300);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA Expertos - Soluciones Avanzadas de Inteligencia Artificial para Empresas y Educación</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#EFF6FF',
+                            100: '#DBEAFE',
+                            500: '#3B82F6', 
+                            600: '#2563EB',
+                            700: '#1D4ED8',
+                            800: '#1E40AF',
+                            900: '#1E3A8A'
+                        },
+                        secondary: {
+                            50: '#F0F9FF',
+                            100: '#E0F2FE',
+                            500: '#0EA5E9',
+                            600: '#0284C7',
+                            700: '#0369A1',
+                            800: '#075985',
+                            900: '#0C4A6E'
+                        },
+                        accent: {
+                            50: '#FFF7ED',
+                            100: '#FFEDD5',
+                            500: '#F97316',
+                            600: '#EA580C',
+                            700: '#C2410C',
+                            800: '#9A3412',
+                            900: '#7C2D12'
+                        },
+                        success: '#10B981',
+                        dark: '#1F2937'
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif']
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url('https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750')",
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))'
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px rgba(0, 0, 0, 0.1)',
+                        'card': '0 4px 24px rgba(0, 0, 0, 0.05)'
+                    },
+                    maxWidth: {
+                        '8xl': '88rem',
+                        '9xl': '96rem'
+                    },
+                    screens: {
+                        '3xl': '1792px'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="description" content="IA Expertos - Soluciones avanzadas de Inteligencia Artificial para empresas y educación. Formación especializada en IA y consultoría.">
+    <meta name="theme-color" content="#1E40AF">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="IA Expertos - Soluciones Avanzadas de Inteligencia Artificial">
+    <meta property="og:description" content="Formación especializada en IA y consultoría para empresas y educación">
+    <meta property="og:image" content="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta name="keywords" content="IA, Inteligencia Artificial, AI consulting, machine learning, automatización, análisis de datos">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://iaexpertos.com">
+
+    <style>
+        /* Core styles */
+        :root {
+            --primary: #3B82F6;
+            --secondary: #0EA5E9;
+            --accent: #F97316;
+        }
+
+        /* Layout */
+        .container {
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        /* Components */
+        .card {
+            @apply bg-white rounded-2xl shadow-lg p-6 transition-all duration-300;
+        }
+
+        .button {
+            @apply px-6 py-3 rounded-full font-medium transition-all duration-300;
+        }
+
+        /* Animations */
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { 
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to { 
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Header Components */
+        .sticky-header {
+            @apply fixed top-0 left-0 right-0 z-[1000] transition-all duration-300;
+            background: linear-gradient(to right, rgba(30, 64, 175, 0.95), rgba(59, 130, 246, 0.95));
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        /* Navigation */
+        .nav-link {
+            @apply relative font-medium transition-all duration-300;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            @apply absolute bottom-0 left-0 w-0 h-0.5 bg-accent-500 transition-all duration-300;
+            bottom: -2px;
+        }
+
+        .nav-link:hover::after {
+            @apply w-full;
+        }
+
+        /* Logo Text */
+        .logo-text {
+            @apply text-white;
+            background: linear-gradient(to right, #ffffff, #e2e8f0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            @apply fixed inset-0 bg-gradient-to-br from-primary-900 to-primary-800
+                   backdrop-blur-lg transition-transform duration-300 ease-in-out;
+            transform: translateX(-100%);
+            height: calc(100vh - 64px);
+            top: 64px;
+            z-index: 50;
+        }
+
+        .mobile-menu.active {
+            @apply block;
+            transform: translateX(0);
+        }
+
+        /* Scrolled States */
+        .header-scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .header-scrolled .nav-link {
+            @apply text-primary-800;
+        }
+
+        .header-scrolled .nav-link:hover {
+            @apply text-accent-500;
+        }
+
+        .header-scrolled .logo-text {
+            background: linear-gradient(to right, #1E40AF, #3B82F6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-scrolled #mobileMenuButton {
+            @apply text-primary-800;
+        }
+
+        .header-scrolled .mobile-menu {
+            @apply bg-white;
+        }
+
+        .header-scrolled .mobile-menu a {
+            @apply text-primary-800;
+        }
+
+        .header-scrolled .mobile-menu a:hover {
+            @apply text-accent-500 bg-primary-50/50;
+        }
+
+        /* Interactive Elements */
+        .floating-whatsapp {
+            @apply fixed bottom-20 right-5 z-[1000];
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Notification System */
+        .notification {
+            @apply pointer-events-auto flex items-center justify-between 
+                   px-6 py-4 rounded-lg text-white shadow-lg 
+                   backdrop-blur-sm transform;
+            max-width: 400px;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .notification.success {
+            @apply bg-gradient-to-r from-green-500 to-green-600;
+        }
+
+        .notification.error {
+            @apply bg-gradient-to-r from-red-500 to-red-600;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1100;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 500px;
+            position: relative;
+        }
+
+        /* Cards */
+        .methodology-card {
+            @apply bg-primary-800/90 backdrop-blur-sm rounded-xl p-8 transition-all duration-300;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .methodology-card:hover {
+            @apply bg-primary-700/90 transform scale-105;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .methodology-card p {
+            @apply text-gray-100 leading-relaxed;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .methodology-card h3 {
+            @apply text-white font-bold;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card, .methodology-card, .testimonial-caso {
+            @apply h-full flex flex-col justify-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Loading States */
+        .loading-spinner {
+            @apply inline-block w-4 h-4 border-2 
+                   border-white border-t-transparent 
+                   rounded-full animate-spin;
+        }
+
+        /* Fixed Elements */
+        .fixed-elements {
+            @apply fixed bottom-5 right-5 z-[1000] flex flex-col gap-4;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container { padding: 0 1rem; }
+            .card { margin: 1rem 0; }
+            section { padding: 3rem 1rem; }
+            
+            .nav-link, button {
+                min-height: 44px;
+                min-width: 44px;
+                padding: 0.75rem 1rem;
+            }
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            .sticky-header,
+            .nav-link,
+            .mobile-menu,
+            .loading-spinner {
+                transition: none;
+            }
+        }
+
+        /* Support for browsers without backdrop-filter */
+        @supports not (backdrop-filter: blur(8px)) {
+            .sticky-header {
+                background: rgb(30, 64, 175);
+            }
+            
+            .header-scrolled {
+                background: rgb(255, 255, 255);
+            }
+        }
+
+        /* Animation for gradient background */
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradient 15s ease infinite;
+        }
+
+        /* Accessibility improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        /* Print styles */
+        @media print {
+            .no-print {
+                display: none;
+            }
+            .container {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+        }
+
+        /* Common screen sizes */
+        /* Mobile S - 320px */
+        @media screen and (max-width: 320px) {
+            .container {
+                @apply px-4;
+            }
+            h1 {
+                @apply text-3xl;
+            }
+        }
+
+        /* Mobile M - 375px */
+        @media screen and (min-width: 321px) and (max-width: 375px) {
+            .container {
+                @apply px-4;
+            }
+            h1 {
+                @apply text-4xl;
+            }
+        }
+
+        /* Mobile L - 425px */
+        @media screen and (min-width: 376px) and (max-width: 425px) {
+            .container {
+                @apply px-4;
+            }
+        }
+
+        /* Tablet - 768px */
+        @media screen and (min-width: 426px) and (max-width: 768px) {
+            .container {
+                @apply px-6;
+            }
+        }
+
+        /* Laptop - 1024px */
+        @media screen and (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                @apply px-8;
+            }
+        }
+
+        /* Laptop L - 1440px */
+        @media screen and (min-width: 1025px) and (max-width: 1440px) {
+            .container {
+                @apply px-8 max-w-7xl mx-auto;
+            }
+        }
+
+        /* 4K - 2560px */
+        @media screen and (min-width: 1441px) {
+            .container {
+                @apply px-8 max-w-8xl mx-auto;
+            }
+            html {
+                font-size: 18px;
+            }
+        }
+
+        .modal {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+        }
+
+        .modal-content {
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .notification-progress {
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            transform-origin: left;
+        }
+
+        @keyframes progress {
+            from { transform: scaleX(1); }
+            to { transform: scaleX(0); }
+        }
+
+        .loading-spinner {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 2px solid white;
+            width: 1rem;
+            height: 1rem;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Container responsiveness */
+        .container {
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 1280px; /* max-w-7xl equivalent */
+            overflow-x: hidden;
+        }
+
+        /* Responsive padding adjustments */
+        @media (max-width: 640px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 768px) {
+            .container {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+
+        /* Fix for mobile menu */
+        .mobile-menu {
+            top: 64px;
+            height: calc(100vh - 64px);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Prevent horizontal scroll */
+        body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* Grid responsiveness */
+        .grid {
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+        }
+
+        /* Image containment */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Card responsiveness */
+        .service-card, 
+        .methodology-card, 
+        .testimonial-caso {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        /* Mobile Menu Styles */
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out, display 0.3s ease-in-out;
+            display: none;
+        }
+
+        .mobile-nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-link:active {
+            transform: scale(0.98);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu {
+                top: 64px;
+                height: calc(100vh - 64px);
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                z-index: 50;
+            }
+        }
+
+        /* Button hover effects */
+        .button-hover-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .button-hover-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .button-hover-effect:hover::after {
+            transform: translateX(0);
+        }
+
+        /* Active button states */
+        .button-active {
+            transform: scale(0.98);
+        }
+
+        /* Disable button styles */
+        .button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* Focus states for accessibility */
+        .button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+    </style>
+
+    <!-- EmailJS Configuration -->
+    <script src="https://cdn.emailjs.com/sdk/2.6.4/email.min.js"></script>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50">
+    <!-- Header Section with Updated Navigation -->
+    <header class="sticky-header w-full">
+        <div class="container mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 py-4 max-w-7xl">
+            <a href="#" class="flex items-center space-x-2">
+                <span class="text-2xl sm:text-3xl font-display font-bold text-white logo-text tracking-tight">
+                    IA Expertos
+                </span>
+            </a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#inicio" class="nav-link text-white hover:text-accent-100 py-2">Inicio</a>
+                <a href="#servicios" class="nav-link text-white hover:text-accent-100 py-2">Servicios</a>
+                <a href="#metodologia" class="nav-link text-white hover:text-accent-100 py-2">Metodología</a>
+                <a href="#casos-exito" class="nav-link text-white hover:text-accent-100 py-2">Casos de Éxito</a>
+                <a href="#contacto-ampliado" class="nav-link text-white hover:text-accent-100 py-2">Contacto</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-white hover:text-accent-100 p-2 rounded-lg transition-colors duration-200" 
+                    id="mobileMenuButton" 
+                    aria-label="Toggle menu" 
+                    aria-expanded="false"
+                    aria-controls="mobile-menu">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" 
+             class="mobile-menu md:hidden fixed w-full bg-primary-900/95 backdrop-blur-lg shadow-lg transform transition-transform duration-300 ease-in-out"
+             style="display: none;">
+            <div class="container mx-auto px-4 py-6">
+                <nav class="flex flex-col space-y-4">
+                    <a href="#inicio" 
+                       class="mobile-nav-link text-white text-lg font-medium py-3 px-4 rounded-lg hover:bg-white/10 transition-colors duration-200">
+                        Inicio
+                    </a>
+                    <a href="#servicios" 
+                       class="mobile-nav-link text-white text-lg font-medium py-3 px-4 rounded-lg hover:bg-white/10 transition-colors duration-200">
+                        Servicios
+                    </a>
+                    <a href="#metodologia" 
+                       class="mobile-nav-link text-white text-lg font-medium py-3 px-4 rounded-lg hover:bg-white/10 transition-colors duration-200">
+                        Metodología
+                    </a>
+                    <a href="#casos-exito" 
+                       class="mobile-nav-link text-white text-lg font-medium py-3 px-4 rounded-lg hover:bg-white/10 transition-colors duration-200">
+                        Casos de Éxito
+                    </a>
+                    <a href="#contacto-ampliado" 
+                       class="mobile-nav-link text-white text-lg font-medium py-3 px-4 rounded-lg hover:bg-white/10 transition-colors duration-200">
+                        Contacto
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="w-full overflow-x-hidden">
+        <!-- Hero Section -->
+        <section id="inicio" class="relative min-h-screen pt-24 w-full">
+            <div class="absolute inset-0 bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-800 animate-gradient"></div>
+            
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative pt-16 max-w-7xl">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="text-white space-y-8">
+                        <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm">
+                            <span class="w-2 h-2 rounded-full bg-accent-500 animate-pulse"></span>
+                            <span class="font-medium">Profesor y Consultor de IA</span>
+                        </div>
+                        
+                        <h1 class="text-5xl lg:text-7xl font-bold leading-tight">
+                            Experto en
+                            <span class="bg-gradient-to-r from-accent-500 to-accent-400 bg-clip-text text-transparent">
+                                Inteligencia Artificial
+                            </span>
+                        </h1>
+
+                        <p class="text-xl text-blue-100">
+                            Con más de 5 años de experiencia formando a profesionales y empresas en IA.
+                            Especializado en implementación práctica y soluciones personalizadas.
+                        </p>
+
+                        <div class="flex space-x-4">
+                            <a href="https://uploadnow.io/s/6aa4534b-429e-4663-9445-32b5ed9af587?o=t" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="bg-accent-500 text-white py-3 px-6 rounded-full hover:bg-accent-600 transition duration-300 flex items-center">
+                                <i class="fas fa-download mr-2"></i>Descargar CV
+                            </a>
+                            <a href="https://wa.me/34679794037" 
+                               class="bg-green-500 text-white py-3 px-6 rounded-full hover:bg-green-600 transition duration-300 flex items-center">
+                                <i class="fab fa-whatsapp mr-2"></i>Contactar
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="hidden lg:block relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary-900/20 to-transparent rounded-2xl"></div>
+                        <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=800&q=80" 
+                             alt="AI Expert" 
+                             class="rounded-2xl shadow-2xl object-cover w-full h-full"
+                             loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="servicios" class="py-24 bg-gradient-to-br from-gray-50 to-blue-50 w-full">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+                <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+                    <span class="inline-block px-4 py-2 rounded-full bg-blue-100 text-primary-600 font-medium mb-4">
+                        Soluciones Empresariales
+                    </span>
+                    <h2 class="text-4xl font-bold mb-6 text-gray-900">
+                        Transformación Digital con IA
+                    </h2>
+                    <p class="text-xl text-gray-600">
+                        Potencia tu negocio con tecnología de Inteligencia Artificial de última generación
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Automatización IA Card -->
+                    <div class="service-card bg-white rounded-xl p-8 hover:shadow-2xl transition-all duration-300">
+                        <div class="flex flex-col h-full">
+                            <div class="relative mb-6">
+                                <div class="absolute -top-4 -right-4 bg-accent-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                    Popular
+                                </div>
+                                
+                                <div class="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mb-6 transform hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-robot text-3xl text-primary-600"></i>
+                                </div>
+                                
+                                <h3 class="text-xl font-bold mb-4 bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">
+                                    Automatización IA
+                                </h3>
+                                
+                                <p class="text-gray-600 mb-6 leading-relaxed">
+                                    Optimiza tus procesos empresariales con soluciones de IA personalizadas.
+                                    <span class="font-medium text-primary-600">Reduce costes hasta un 40%</span>
+                                </p>
+                                
+                                <ul class="space-y-3 mb-8 text-gray-600">
+                                    <li class="flex items-center bg-gray-50 p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200">
+                                        <i class="fas fa-check-circle text-success mr-2"></i>
+                                        <span>Automatización de procesos</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-primary-600 mr-2"></i>
+                                        Chatbots inteligentes
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-primary-600 mr-2"></i>
+                                        <span>Procesamiento de documentos</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-auto space-y-3">
+                                <button onclick="openContactModal('automatizacion')" 
+                                        class="w-full group bg-primary-600 text-white py-3 px-6 rounded-lg hover:bg-primary-700 transition-all duration-300 flex items-center justify-center gap-2 relative overflow-hidden">
+                                    <span class="relative z-10">Solicitar Demo Gratuita</span>
+                                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-300"></i>
+                                    <div class="absolute inset-0 bg-gradient-to-r from-primary-500 to-primary-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                                </button>
+
+                                <a href="https://wa.me/34679794037?text=Hola,%20me%20interesa%20la%20automatización%20con%20IA.%20¿Podemos%20hablar%20sobre%20una%20demo?" 
+                                   target="_blank"
+                                   class="w-full group bg-green-500 text-white py-3 px-6 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2">
+                                    <i class="fab fa-whatsapp text-lg"></i>
+                                    <span>Consulta Rápida por WhatsApp</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Análisis de Datos Card -->
+                    <div class="service-card bg-white rounded-xl p-8 hover:shadow-2xl transition-all duration-300">
+                        <div class="flex flex-col h-full">
+                            <div class="mb-6">
+                                <div class="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mb-6">
+                                    <i class="fas fa-chart-line text-3xl text-primary-600"></i>
+                                </div>
+                                <h3 class="text-xl font-bold mb-4 text-gray-900">Análisis de Datos</h3>
+                                <p class="text-gray-600 mb-6">
+                                    Convierte tus datos en decisiones estratégicas con análisis avanzado y Machine Learning.
+                                </p>
+                                <ul class="space-y-2 mb-8 text-gray-600">
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-primary-600 mr-2"></i>
+                                        <span>Predicción de tendencias</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-primary-600 mr-2"></i>
+                                        <span>Segmentación de clientes</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-primary-600 mr-2"></i>
+                                        <span>Optimización de recursos</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mt-auto space-y-3">
+                                <button onclick="openContactModal('analisis')" 
+                                        class="w-full bg-primary-600 text-white py-3 px-6 rounded-lg hover:bg-primary-700 transition-all duration-300 flex items-center justify-center gap-2">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Solicitar Análisis</span>
+                                </button>
+                                <a href="https://wa.me/34679794037?text=Hola,%20me%20interesa%20el%20servicio%20de%20análisis%20de%20datos.%20¿Podemos%20hablar?" 
+                                   target="_blank"
+                                   class="w-full bg-green-500 text-white py-3 px-6 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2">
+                                    <i class="fab fa-whatsapp"></i>
+                                    <span>Consulta Rápida</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Soluciones Cloud IA Card -->
+                    <div class="service-card bg-white rounded-xl p-8 hover:shadow-2xl transition-all duration-300">
+                        <div class="flex flex-col h-full">
+                            <div class="mb-6">
+                                <div class="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mb-6">
+                                    <i class="fas fa-cloud text-3xl text-primary-600"></i>
+                                </div>
+                                <h3 class="text-xl font-bold mb-4 text-gray-900">Soluciones Cloud IA</h3>
+                                <p class="text-gray-600 mb-6">
+                                    Implementa soluciones de IA escalables en la nube para maximizar la eficiencia y reducir costes.
+                                </p>
+                                <ul class="space-y-2 mb-8 text-gray-600">
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-primary-600 mr-2"></i>
+                                        Infraestructura escalable
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-primary-600 mr-2"></i>
+                                        Integración continua
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-primary-600 mr-2"></i>
+                                        Seguridad avanzada
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mt-auto space-y-3">
+                                <button onclick="openContactModal('cloud')" 
+                                        class="w-full bg-primary-600 text-white py-3 px-6 rounded-lg hover:bg-primary-700 transition-all duration-300 flex items-center justify-center gap-2">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Solicitar Información</span>
+                                </button>
+                                <a href="https://wa.me/34679794037?text=Hola,%20me%20interesan%20las%20soluciones%20Cloud%20IA.%20¿Podemos%20hablar?" 
+                                   target="_blank"
+                                   class="w-full bg-green-500 text-white py-3 px-6 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2">
+                                    <i class="fab fa-whatsapp"></i>
+                                    <span>Consulta Rápida</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-16">
+                    <p class="text-gray-600 mb-6">
+                        ¿No encuentras lo que buscas? Contáctanos para una solución personalizada
+                    </p>
+                    <button onclick="openContactModal('personalizado')" 
+                            class="inline-flex items-center gap-2 bg-primary-600 text-white py-3 px-8 rounded-lg hover:bg-primary-700 transition-all duration-300">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contactar Ahora</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Servicios Detallados Section -->
+        <section id="servicios-detallados" class="py-24 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <span class="text-primary font-medium px-4 py-2 rounded-full bg-blue-100 inline-block mb-4">
+                        Servicios Detallados
+                    </span>
+                    <h2 class="text-4xl font-bold mb-6">Soluciones de IA para Educación</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Transformando la educación con tecnología de IA avanzada
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service cards content -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Metodología Section -->
+        <section id="metodologia" class="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-primary-800 mb-4">Nuestra Metodología</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Un enfoque estructurado para garantizar el éxito de su proyecto de IA
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Step 1 -->
+                    <div class="methodology-card bg-primary-800/90 hover:bg-primary-700/90">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-search text-3xl text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4 text-white">Análisis Inicial</h3>
+                            <p class="text-gray-100 leading-relaxed">
+                                Evaluación detallada de necesidades y objetivos específicos de su organización
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="methodology-card bg-primary-800/90 hover:bg-primary-700/90">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-pencil-ruler text-3xl text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4 text-white">Diseño Personalizado</h3>
+                            <p class="text-gray-100 leading-relaxed">
+                                Desarrollo de un plan de formación adaptado a sus requisitos específicos
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="methodology-card bg-primary-800/90 hover:bg-primary-700/90">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-laptop-code text-3xl text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4 text-white">Implementación</h3>
+                            <p class="text-gray-100 leading-relaxed">
+                                Formación práctica con casos reales y aplicación directa a su negocio
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="methodology-card bg-primary-800/90 hover:bg-primary-700/90">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-chart-line text-3xl text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4 text-white">Seguimiento</h3>
+                            <p class="text-gray-100 leading-relaxed">
+                                Soporte continuo y evaluación de resultados para garantizar el éxito
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Features -->
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-clock text-2xl text-primary-600 mr-3"></i>
+                            <h4 class="text-lg font-bold">Flexibilidad Horaria</h4>
+                        </div>
+                        <p class="text-gray-600">Adaptamos los horarios a las necesidades de su equipo</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-users text-2xl text-primary-600 mr-3"></i>
+                            <h4 class="text-lg font-bold">Grupos Reducidos</h4>
+                        </div>
+                        <p class="text-gray-600">Atención personalizada y seguimiento individual</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-certificate text-2xl text-primary-600 mr-3"></i>
+                            <h4 class="text-lg font-bold">Certificación</h4>
+                        </div>
+                        <p class="text-gray-600">Certificados oficiales al completar la formación</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Casos de Éxito Section -->
+        <section id="casos-exito" class="py-24 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-primary-800 mb-4">Casos de Éxito</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Descubra cómo hemos ayudado a otras organizaciones a alcanzar sus objetivos
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <p class="mb-4">"Como profesional independiente, los conocimientos adquiridos en el curso de IA para Marketing Digital han sido invaluables. He podido ofrecer servicios más avanzados a mis clientes."</p>
+                        <p class="font-bold">- Carlos R., Consultor de Marketing Digital</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <p class="mb-4">"La formación en ChatGPT para comunicaciones empresariales ha revolucionado nuestra estrategia de atención al cliente. Sami tiene una habilidad única para hacer que conceptos complejos sean accesibles."</p>
+                        <p class="font-bold">- Ana L., Gerente de Atención al Cliente</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <p class="mb-4">"La implementación de soluciones de IA ha mejorado significativamente nuestra eficiencia operativa. El ROI ha superado nuestras expectativas."</p>
+                        <p class="font-bold">- Miguel S., Director de Operaciones</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contacto-ampliado" class="py-24 bg-blue-50">
+            <div class="container mx-auto px-4">
+                <div class="max-w-3xl mx-auto">
+                    <div class="text-center mb-8">
+                        <a href="https://wa.me/34679794037" class="bg-green-500 text-white py-3 px-8 rounded-full font-bold hover:bg-green-600 transition duration-300 inline-block transform hover:scale-105">
+                            <i class="fab fa-whatsapp mr-2"></i>Contactar por WhatsApp
+                        </a>
+                    </div>
+                    <p class="text-center mb-8">O llmame directamente al <a href="tel:+34679794037" class="text-primary-600 hover:underline">+34 679 794 037</a></p>
+                    <form id="contactForm" class="space-y-6" aria-label="Contact Form">
+                        <div>
+                            <label for="from_name" class="block mb-2 font-bold">Nombre</label>
+                            <input type="text" id="from_name" name="from_name" 
+                                   class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-primary-500" 
+                                   required aria-required="true">
+                        </div>
+                        <div>
+                            <label for="reply_to" class="block mb-2 font-bold">Email</label>
+                            <input type="email" id="reply_to" name="reply_to" 
+                                   class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-primary-500" 
+                                   required aria-required="true">
+                        </div>
+                        <div>
+                            <label for="message" class="block mb-2 font-bold">Mensaje</label>
+                            <textarea id="message" name="message" rows="5" 
+                                      class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-primary-500" 
+                                      required aria-required="true"></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" id="submitButton" 
+                                    class="w-full bg-primary-600 text-white py-3 px-6 rounded-lg hover:bg-primary-700 transition duration-300 transform hover:scale-105">
+                                <span>Enviar Mensaje</span>
+                                <i class="fas fa-paper-plane ml-2"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">IA Expertos</h3>
+                    <p>Soluciones avanzadas de Inteligencia Artificial</p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="https://www.linkedin.com/in/samihalawa" class="text-white hover:text-accent-500"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://twitter.com/samihalawa" class="text-white hover:text-accent-500"><i class="fab fa-twitter"></i></a>
+                        <a href="https://github.com/samihalawa" class="text-white hover:text-accent-500"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <!-- Rest of footer content remains the same -->
+            </div>
+        </div>
+    </footer>
+
+    <!-- Contact Modal Template -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content bg-white rounded-xl p-8">
+            <button onclick="closeContactModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Contacta con Nosotros</h3>
+            
+            <form id="contactForm" class="space-y-6">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
+                    <input type="text" id="name" name="name" required
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                </div>
+                
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <input type="email" id="email" name="email" required
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                </div>
+                
+                <div>
+                    <label for="service" class="block text-sm font-medium text-gray-700 mb-1">Servicio de Interés</label>
+                    <select id="service" name="service" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                        <option value="">Selecciona un servicio</option>
+                        <option value="automatizacion">Automatización IA</option>
+                        <option value="analisis">Análisis de Datos</option>
+                        <option value="cloud">Soluciones Cloud IA</option>
+                        <option value="formacion">Formación Personalizada</option>
+                        <option value="consultoria">Consultoría</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Mensaje</label>
+                    <textarea id="message" name="message" rows="4" required
+                              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"></textarea>
+                </div>
+                
+                <button type="submit" 
+                        class="w-full bg-primary-600 text-white py-3 px-6 rounded-lg hover:bg-primary-700 transition-all duration-300 flex items-center justify-center gap-2">
+                    <span>Enviar Mensaje</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Initialize EmailJS and Core Functionality -->
+    <script>
+        // Initialize core functionality with error handling
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCore();
+        });
+
+        function initializeCore() {
+            try {
+                initializeMobileMenu();
+                initializeScrollEffects();
+                initializeCookieConsent();
+                initializeNotifications();
+                initializeForms();
+            } catch (error) {
+                console.error('Initialization error:', error);
+                showFallbackError();
+            }
+        }
+
+        // 1. Mobile Menu Functionality
+        function initializeMobileMenu() {
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (!mobileMenuButton || !mobileMenu) {
+                throw new Error('Mobile menu elements not found');
+            }
+
+            // Set initial states
+            mobileMenu.classList.add('hidden');
+            mobileMenuButton.setAttribute('aria-expanded', 'false');
+
+            const mobileMenuIcon = mobileMenuButton.querySelector('i');
+            let isMenuOpen = false;
+
+            function toggleMenu(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                isMenuOpen = !isMenuOpen;
+                
+                mobileMenu.classList.toggle('active');
+                mobileMenu.classList.toggle('hidden');
+                
+                // Add transition for icon
+                mobileMenuIcon.style.transition = 'transform 0.3s ease';
+                mobileMenuIcon.style.transform = isMenuOpen ? 'rotate(90deg)' : '';
+                
+                mobileMenuIcon.classList.toggle('fa-bars');
+                mobileMenuIcon.classList.toggle('fa-times');
+                mobileMenuButton.setAttribute('aria-expanded', isMenuOpen);
+                
+                if (isMenuOpen) {
+                    document.addEventListener('click', closeMenuOnClickOutside);
+                    document.addEventListener('touchstart', closeMenuOnClickOutside);
+                } else {
+                    document.removeEventListener('click', closeMenuOnClickOutside);
+                    document.removeEventListener('touchstart', closeMenuOnClickOutside);
+                }
+            }
+
+            function closeMenuOnClickOutside(event) {
+                if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                    toggleMenu(event);
+                }
+            }
+
+            mobileMenuButton.addEventListener('click', toggleMenu);
+            mobileMenuButton.addEventListener('touchstart', toggleMenu);
+        }
+
+        // 2. Contact Modal Functionality
+        function openContactModal(service = '') {
+            const modal = document.getElementById('contactModal');
+            const serviceSelect = document.getElementById('service');
+            
+            if (!modal || !serviceSelect) return;
+            
+            modal.classList.add('active');
+            if (service) {
+                serviceSelect.value = service;
+            }
+            document.body.style.overflow = 'hidden';
+            
+            const focusableElements = modal.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+            const firstElement = focusableElements[0];
+            firstElement.focus();
+            
+            modal.addEventListener('keydown', handleModalKeyboard);
+        }
+
+        function closeContactModal() {
+            const modal = document.getElementById('contactModal');
+            if (!modal) return;
+            
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            modal.removeEventListener('keydown', handleModalKeyboard);
+        }
+
+        function handleModalKeyboard(event) {
+            const modal = document.getElementById('contactModal');
+            if (!modal) return;
+
+            if (event.key === 'Escape') {
+                closeContactModal();
+                return;
+            }
+            
+            const focusableElements = modal.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            if (event.key === 'Tab') {
+                if (event.shiftKey && document.activeElement === firstElement) {
+                    event.preventDefault();
+                    lastElement.focus();
+                } else if (!event.shiftKey && document.activeElement === lastElement) {
+                    event.preventDefault();
+                    firstElement.focus();
+                }
+            }
+        }
+
+        // 3. Cookie Consent Banner
+        function initializeCookieConsent() {
+            const cookieBanner = document.getElementById('cookie-banner');
+            const acceptButton = document.getElementById('accept-cookies');
+            const rejectButton = document.getElementById('reject-cookies');
+
+            if (!cookieBanner || !acceptButton || !rejectButton) return;
+
+            // Check if user has already made a choice
+            const cookieChoice = localStorage.getItem('cookieConsent');
+            
+            if (!cookieChoice) {
+                cookieBanner.classList.remove('hidden');
+                requestAnimationFrame(() => {
+                    cookieBanner.style.transform = 'translateY(0)';
+                    cookieBanner.style.opacity = '1';
+                });
+            }
+
+            function handleChoice(accepted) {
+                localStorage.setItem('cookieConsent', accepted ? 'accepted' : 'rejected');
+                cookieBanner.style.transform = 'translateY(100%)';
+                cookieBanner.style.opacity = '0';
+                setTimeout(() => cookieBanner.classList.add('hidden'), 300);
+                
+                // Show notification of choice
+                showNotification(
+                    accepted ? 'Preferencias de cookies guardadas' : 'Cookies rechazadas',
+                    accepted ? 'success' : 'info'
+                );
+            }
+
+            acceptButton.addEventListener('click', () => handleChoice(true));
+            rejectButton.addEventListener('click', () => handleChoice(false));
+        }
+
+        // 4. Notifications System
+        let notificationCount = 0;
+        const NOTIFICATION_SPACING = 4; // rem units
+
+        function showNotification(message, type = 'success', duration = 5000) {
+            const notificationId = 'notification-' + Date.now();
+            const notification = document.createElement('div');
+            
+            notification.id = notificationId;
+            notification.className = `notification ${type} fixed right-4 z-[2000] animate-fade-in`;
+            notification.setAttribute('role', 'alert');
+            
+            // Stack notifications from top
+            notification.style.top = `${(notificationCount * NOTIFICATION_SPACING) + 1}rem`;
+            notificationCount++;
+            
+            notification.innerHTML = `
+                <div class="flex items-center justify-between w-full">
+                    <div class="flex items-center">
+                        <i class="fas fa-${type === 'success' ? 'check-circle' : 
+                                   type === 'error' ? 'exclamation-circle' : 
+                                   'info-circle'} mr-2"></i>
+                        <span>${message}</span>
+                    </div>
+                    <button onclick="dismissNotification('${notificationId}')" 
+                            class="ml-4 hover:opacity-75 transition-opacity" 
+                            aria-label="Cerrar notificación">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="notification-progress" style="animation: progress ${duration}ms linear;"></div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => dismissNotification(notificationId), duration);
+        }
+
+        function dismissNotification(id) {
+            const notification = document.getElementById(id);
+            if (!notification) return;
+            
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateX(100%)';
+            
+            setTimeout(() => {
+                notification.remove();
+                notificationCount--;
+                // Reposition remaining notifications
+                document.querySelectorAll('.notification').forEach((notif, index) => {
+                    notif.style.top = `${(index * NOTIFICATION_SPACING) + 1}rem`;
+                });
+            }, 300);
+        }
+
+        // 5. Form Handling
+        function initializeForms() {
+            document.querySelectorAll('form').forEach(form => {
+                form.addEventListener('submit', handleFormSubmit);
+                
+                // Real-time validation
+                form.querySelectorAll('input, select, textarea').forEach(field => {
+                    field.addEventListener('blur', () => {
+                        validateField(field);
+                    });
+                });
+            });
+        }
+
+        function validateField(field) {
+            const isValid = field.checkValidity();
+            const errorElement = field.nextElementSibling?.classList.contains('error-message') 
+                ? field.nextElementSibling 
+                : null;
+            
+            if (!isValid) {
+                field.classList.add('border-red-500', 'focus:ring-red-500');
+                if (!errorElement) {
+                    const error = document.createElement('p');
+                    error.className = 'error-message text-red-500 text-sm mt-1';
+                    error.textContent = field.validationMessage;
+                    field.parentNode.insertBefore(error, field.nextSibling);
+                }
+            } else {
+                field.classList.remove('border-red-500', 'focus:ring-red-500');
+                errorElement?.remove();
+            }
+        }
+
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const submitButton = form.querySelector('button[type="submit"]');
+            
+            // Validate all fields
+            let isValid = true;
+            form.querySelectorAll('input, select, textarea').forEach(field => {
+                validateField(field);
+                if (!field.checkValidity()) isValid = false;
+            });
+
+            if (!isValid) {
+                showNotification('Por favor, completa todos los campos requeridos', 'error');
+                return;
+            }
+
+            // Show loading state
+            submitButton.disabled = true;
+            const originalContent = submitButton.innerHTML;
+            submitButton.innerHTML = `
+                <span class="loading-spinner"></span>
+                <span>Enviando...</span>
+            `;
+
+            try {
+                // Initialize EmailJS with your public key
+                emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your actual EmailJS public key
+
+                // Get form data
+                const formData = {
+                    from_name: form.querySelector('#from_name').value,
+                    reply_to: form.querySelector('#reply_to').value,
+                    message: form.querySelector('#message').value
+                };
+
+                // Send email using EmailJS
+                await emailjs.send(
+                    "YOUR_SERVICE_ID", // Replace with your EmailJS service ID
+                    "YOUR_TEMPLATE_ID", // Replace with your EmailJS template ID
+                    formData
+                );
+                
+                showNotification('Mensaje enviado correctamente', 'success');
+                form.reset();
+            } catch (error) {
+                console.error('Error sending email:', error);
+                showNotification('Error al enviar el mensaje. Por favor, inténtalo de nuevo.', 'error');
+            } finally {
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalContent;
+            }
+        }
+
+        // Error Boundary
+        function showFallbackError() {
+            console.error('An error occurred during initialization');
+            showNotification('Por favor, actualiza la página', 'error');
+        }
+
+        window.addEventListener('error', function(e) {
+            console.error('Runtime error:', e.error);
+            showFallbackError();
+        });
+
+        window.addEventListener('unhandledrejection', function(e) {
+            console.error('Unhandled promise rejection:', e.reason);
+            showFallbackError();
+        });
+
+        emailjs.init('YOUR_PUBLIC_KEY'); // Replace with your actual EmailJS public key
+
+        // Add this to the existing script section
+        function initializeScrollEffects() {
+            // Smooth scroll for all internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Close mobile menu if open
+                        if (isMenuOpen) {
+                            toggleMenu();
+                        }
+                        
+                        // Smooth scroll to target
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Update URL without jumping
+                        window.history.pushState(null, '', targetId);
+                    }
+                });
+            });
+
+            // Add active state to current section in navigation
+            window.addEventListener('scroll', () => {
+                const sections = document.querySelectorAll('section[id]');
+                const navLinks = document.querySelectorAll('.nav-link');
+                
+                let currentSection = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionHeight = section.clientHeight;
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+                        currentSection = '#' + section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('text-accent-500');
+                    if (link.getAttribute('href') === currentSection) {
+                        link.classList.add('text-accent-500');
+                    }
+                });
+            });
+        }
+
+        // Update the mobile menu click handlers
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    if (isMenuOpen) toggleMenu();
+                    
+                    setTimeout(() => {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        window.history.pushState(null, '', targetId);
+                    }, 300); // Wait for mobile menu to close
+                }
+            });
+        });
+    </script>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white shadow-lg p-4 z-[2000] hidden">
+        <div class="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p class="text-sm text-gray-600">
+                Utilizamos cookies para mejorar tu experiencia. Al continuar navegando, aceptas nuestra 
+                <a href="/politica-cookies" class="text-primary-600 hover:text-primary-700">política de cookies</a>.
+            </p>
+            <div class="flex gap-4">
+                <button id="accept-cookies" 
+                        class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">
+                    Aceptar
+                </button>
+                <button id="reject-cookies" 
+                        class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors">
+                    Rechazar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Keep only one script for mobile menu functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let isMenuOpen = false;
+            
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuIcon = mobileMenuButton?.querySelector('i');
+            
+            if (!mobileMenuButton || !mobileMenu || !mobileMenuIcon) {
+                console.error('Mobile menu elements not found');
+                return;
+            }
+
+            function toggleMenu(e) {
+                if (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                
+                isMenuOpen = !isMenuOpen;
+                
+                // Toggle menu visibility
+                mobileMenu.style.display = isMenuOpen ? 'block' : 'none';
+                
+                // Add a small delay to ensure display: block is applied before transform
+                setTimeout(() => {
+                    mobileMenu.style.transform = isMenuOpen ? 'translateX(0)' : 'translateX(-100%)';
+                }, 10);
+                
+                // Toggle icon
+                mobileMenuIcon.classList.toggle('fa-bars');
+                mobileMenuIcon.classList.toggle('fa-times');
+                
+                // Update accessibility
+                mobileMenuButton.setAttribute('aria-expanded', isMenuOpen);
+                
+                // Toggle body scroll
+                document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+            }
+
+            // Handle clicks outside menu
+            function handleClickOutside(e) {
+                if (isMenuOpen && !mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+                    toggleMenu();
+                }
+            }
+
+            // Add event listeners
+            mobileMenuButton.addEventListener('click', toggleMenu);
+            document.addEventListener('click', handleClickOutside);
+
+            // Handle mobile menu links
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        toggleMenu(); // Close menu
+                        
+                        // Scroll after menu closes
+                        setTimeout(() => {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                            
+                            // Update URL
+                            window.history.pushState(null, '', targetId);
+                        }, 300);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
