@@ -261,10 +261,10 @@
 
     <main class="w-full overflow-x-hidden">
         <!-- Hero Section -->
-        <section id="inicio" class="relative min-h-screen pt-24 w-full">
+        <section id="inicio" class="relative min-h-screen w-full flex items-center">
             <div class="absolute inset-0 bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-800 animate-gradient"></div>
             
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative pt-16 max-w-7xl">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative max-w-7xl">
                 <div class="grid lg:grid-cols-2 gap-12 items-center">
                     <div class="text-white space-y-8">
                         <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm">
@@ -958,43 +958,27 @@
             }
             
             modal.style.display = 'block';
-            setTimeout(() => {
-                modal.classList.add('active');
-            }, 10);
+            modal.style.opacity = '1';
+            modal.style.pointerEvents = 'auto';
             document.body.style.overflow = 'hidden';
         }
 
         function closeContactModal() {
             const modal = document.getElementById('contactModal');
-            modal.classList.remove('active');
+            modal.style.opacity = '0';
+            modal.style.pointerEvents = 'none';
+            document.body.style.overflow = '';
             setTimeout(() => {
                 modal.style.display = 'none';
             }, 300);
-            document.body.style.overflow = '';
         }
 
-        // Fix notification function
-        function showNotification(message, type = 'success') {
-            const notification = document.createElement('div');
-            notification.className = `notification ${type} fixed top-4 right-4 z-[2000]`;
-            
-            notification.innerHTML = `
-                <div class="flex items-center">
-                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'} mr-2"></i>
-                    <p>${message}</p>
-                </div>
-                <div class="notification-progress"></div>
-            `;
-            
-            document.body.appendChild(notification);
-            
-            const progress = notification.querySelector('.notification-progress');
-            progress.style.animation = 'progress 3s linear forwards';
-            
-            setTimeout(() => {
-                notification.remove();
-            }, 3000);
-        }
+        // Close modal when clicking outside
+        document.getElementById('contactModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeContactModal();
+            }
+        });
     </script>
 
     <!-- New Section 1: Tecnologías IA -->
@@ -1165,25 +1149,24 @@
     <!-- Testimonial Carousel -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            let currentSlide = 0;
-            const slider = document.querySelector('.testimonial-slider');
+            const slider = document.querySelector('.flex.transition-transform');
+            const prevBtn = document.querySelector('.absolute.left-0');
+            const nextBtn = document.querySelector('.absolute.right-0');
             const slides = document.querySelectorAll('.testimonial-slide');
-            const totalSlides = slides.length;
-            const nextButton = document.querySelector('.slider-next');
-            const prevButton = document.querySelector('.slider-prev');
+            let currentSlide = 0;
 
-            if (slider && slides.length > 0 && nextButton && prevButton) {
+            if (slider && prevBtn && nextBtn && slides.length > 0) {
                 function updateSlider() {
                     slider.style.transform = `translateX(-${currentSlide * 100}%)`;
                 }
 
-                nextButton.addEventListener('click', () => {
-                    currentSlide = (currentSlide + 1) % totalSlides;
+                nextBtn.addEventListener('click', () => {
+                    currentSlide = (currentSlide + 1) % slides.length;
                     updateSlider();
                 });
 
-                prevButton.addEventListener('click', () => {
-                    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                prevBtn.addEventListener('click', () => {
+                    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
                     updateSlider();
                 });
             }
@@ -1192,32 +1175,28 @@
 
     <!-- Black Friday Banner functionality -->
     <script>
-        // Black Friday Banner functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const banner = document.getElementById('blackFridayBanner');
+            
+            if (!localStorage.getItem('blackFridayBannerClosed')) {
+                requestAnimationFrame(() => {
+                    banner.style.transform = 'translateX(0)';
+                    banner.style.opacity = '1';
+                });
+            }
+        });
+
         function closeBanner() {
             const banner = document.getElementById('blackFridayBanner');
-            banner.style.opacity = '0';
             banner.style.transform = 'translateX(-100%)';
+            banner.style.opacity = '0';
+            
             setTimeout(() => {
                 banner.style.display = 'none';
             }, 300);
             
-            // Store in localStorage that banner was closed
             localStorage.setItem('blackFridayBannerClosed', 'true');
         }
-
-        // Check if banner was previously closed
-        window.addEventListener('DOMContentLoaded', () => {
-            const banner = document.getElementById('blackFridayBanner');
-            if (localStorage.getItem('blackFridayBannerClosed')) {
-                banner.style.display = 'none';
-            } else {
-                // Add entrance animation
-                banner.style.transform = 'translateX(-100%)';
-                setTimeout(() => {
-                    banner.style.transform = 'translateX(0)';
-                }, 500);
-            }
-        });
     </script>
 
     <!-- Update Modal Styles -->
