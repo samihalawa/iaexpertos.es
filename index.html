@@ -83,13 +83,66 @@
 
     <!-- EmailJS Configuration -->
     <script src="https://cdn.emailjs.com/sdk/2.6.4/email.min.js"></script>
+
+    <!-- Fix 1: Update the header logo and navigation styles -->
+    <style>
+        /* Fix logo visibility */
+        .logo-text {
+            @apply text-white font-bold;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            background: none !important;
+            -webkit-text-fill-color: white !important;
+        }
+
+        /* Improve sticky header */
+        .sticky-header {
+            @apply fixed top-0 left-0 right-0 z-[1000] transition-all duration-300;
+            background: linear-gradient(to right, rgba(30, 64, 175, 0.98), rgba(59, 130, 246, 0.98));
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Better mobile responsiveness */
+        @media (max-width: 768px) {
+            .sticky-header {
+                padding: 0.75rem 1rem;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem !important;
+            }
+            
+            .container {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+        }
+
+        /* Fix header when scrolled */
+        .header-scrolled .logo-text {
+            color: #1E40AF !important;
+            -webkit-text-fill-color: #1E40AF !important;
+            text-shadow: none;
+        }
+
+        /* Improve mobile menu visibility */
+        .mobile-menu {
+            background: linear-gradient(to bottom right, #1E40AF, #3B82F6);
+        }
+
+        .mobile-menu a {
+            color: white !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body class="font-sans text-gray-800 bg-gray-50">
     <!-- Header Section with Updated Navigation -->
     <header class="sticky-header w-full">
-        <div class="container mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 py-4 max-w-7xl">
-            <a href="#" class="flex items-center space-x-2">
-                <span class="text-2xl sm:text-3xl font-display font-bold text-white logo-text tracking-tight">
+        <div class="container mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 py-4">
+            <a href="#" class="flex items-center space-x-2 z-10">
+                <span class="text-xl sm:text-2xl md:text-3xl font-display font-bold logo-text tracking-tight">
                     IA Expertos
                 </span>
             </a>
@@ -964,7 +1017,7 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Título del Artículo</h3>
                         <p class="text-gray-600 mb-4">Descripción corta del artículo...</p>
-                        <a href="#" class="text-primary-600 hover:text-primary-700">Leer más ���</a>
+                        <a href="#" class="text-primary-600 hover:text-primary-700">Leer más </a>
                     </div>
                 </article>
                 <!-- Add more articles -->
