@@ -158,6 +158,37 @@
             }
         }
     </style>
+
+    <!-- Add Responsive Fixes -->
+    <style>
+        @media (max-width: 640px) {
+            .container {
+                @apply px-4;
+            }
+            
+            h1 {
+                @apply text-3xl !important;
+            }
+            
+            .service-card {
+                @apply p-4;
+            }
+            
+            .button-stack {
+                @apply flex-col space-y-2;
+            }
+        }
+
+        /* Fix button touch targets on mobile */
+        @media (max-width: 768px) {
+            .button, 
+            .nav-link, 
+            a[href^="https://wa.me"] {
+                @apply min-h-[44px] py-3;
+                touch-action: manipulation;
+            }
+        }
+    </style>
 </head>
 <body class="font-sans text-gray-800 bg-gray-50">
     <!-- Add this right after the opening <body> tag -->
@@ -627,37 +658,130 @@
         </section>
     </main>
 
-    <!-- Footer Section - Updated and Simplified -->
-    <footer class="bg-primary-900 text-white py-12">
+    <!-- Update footer styles and structure -->
+    <style>
+        /* Add these styles to ensure footer stays at bottom */
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1 0 auto;
+        }
+
+        footer {
+            flex-shrink: 0;
+            margin-top: auto;
+            background: linear-gradient(to bottom right, #1E3A8A, #1E40AF);
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Improved footer styles */
+        .footer-grid {
+            @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 py-12;
+        }
+
+        .footer-heading {
+            @apply text-xl font-bold mb-4 text-white;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-link {
+            @apply text-gray-300 hover:text-white transition-colors duration-200;
+        }
+
+        .footer-contact-button {
+            @apply inline-flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg 
+                   hover:bg-green-700 transition-colors duration-200 shadow-lg;
+        }
+
+        /* Responsive footer adjustments */
+        @media (max-width: 768px) {
+            .footer-grid {
+                @apply grid-cols-1 gap-6 py-8;
+            }
+            
+            .footer-section {
+                @apply text-center;
+            }
+        }
+    </style>
+
+    <!-- Updated Footer Structure -->
+    <footer class="bg-primary-900 text-white">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">IA Expertos</h3>
-                    <p class="text-gray-300 mb-4">Soluciones avanzadas de Inteligencia Artificial para empresas y profesionales.</p>
+            <div class="footer-grid">
+                <!-- Company Info -->
+                <div class="footer-section">
+                    <h3 class="footer-heading">IA Expertos</h3>
+                    <p class="text-gray-300 mb-4">
+                        Soluciones avanzadas de Inteligencia Artificial para empresas y profesionales.
+                    </p>
+                    <div class="flex space-x-4 justify-center md:justify-start">
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                    </div>
                 </div>
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Enlaces Rápidos</h4>
+
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h4 class="footer-heading">Enlaces Rápidos</h4>
                     <ul class="space-y-2">
-                        <li><a href="#inicio" class="text-gray-300 hover:text-white transition-colors">Inicio</a></li>
-                        <li><a href="#servicios" class="text-gray-300 hover:text-white transition-colors">Servicios</a></li>
-                        <li><a href="#metodologia" class="text-gray-300 hover:text-white transition-colors">Metodología</a></li>
-                        <li><a href="#casos-exito" class="text-gray-300 hover:text-white transition-colors">Casos de Éxito</a></li>
+                        <li><a href="#inicio" class="footer-link">Inicio</a></li>
+                        <li><a href="#servicios" class="footer-link">Servicios</a></li>
+                        <li><a href="#metodologia" class="footer-link">Metodología</a></li>
+                        <li><a href="#casos-exito" class="footer-link">Casos de Éxito</a></li>
                     </ul>
                 </div>
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Contacto</h4>
-                    <div class="space-y-2">
-                        <p class="text-gray-300">Teléfono: <a href="tel:+34679794037" class="hover:text-white transition-colors">+34 679 794 037</a></p>
-                        <a href="https://wa.me/34679794037" 
-                           class="inline-flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
+
+                <!-- Services -->
+                <div class="footer-section">
+                    <h4 class="footer-heading">Servicios</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#automatizacion" class="footer-link">Automatización IA</a></li>
+                        <li><a href="#analisis" class="footer-link">Análisis de Datos</a></li>
+                        <li><a href="#cloud" class="footer-link">Soluciones Cloud</a></li>
+                        <li><a href="#formacion" class="footer-link">Formación</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="footer-section">
+                    <h4 class="footer-heading">Contacto</h4>
+                    <div class="space-y-4">
+                        <p class="text-gray-300">
+                            <i class="fas fa-phone mr-2"></i>
+                            <a href="tel:+34679794037" class="hover:text-white">+34 679 794 037</a>
+                        </p>
+                        <a href="https://wa.me/34679794037?text=¡Hola!%20Me%20interesa%20conocer%20más%20sobre%20los%20servicios%20de%20IA%20Expertos" 
+                           class="footer-contact-button"
+                           target="_blank"
+                           rel="noopener noreferrer">
                             <i class="fab fa-whatsapp"></i>
                             <span>Contactar por WhatsApp</span>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="mt-8 pt-8 border-t border-gray-800">
-                <p class="text-center text-gray-400">&copy; 2024 IA Expertos. Todos los derechos reservados.</p>
+
+            <!-- Copyright -->
+            <div class="border-t border-gray-800 mt-8 py-6">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-center text-gray-400">
+                        &copy; 2024 IA Expertos. Todos los derechos reservados.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="/privacidad" class="text-gray-400 hover:text-white text-sm">Política de Privacidad</a>
+                        <a href="/cookies" class="text-gray-400 hover:text-white text-sm">Política de Cookies</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
@@ -791,110 +915,34 @@
     <!-- Keep only one script for mobile menu functionality -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Get DOM elements
             const mobileMenuButton = document.getElementById('mobileMenuButton');
             const mobileMenu = document.getElementById('mobile-menu');
-            const menuIcon = mobileMenuButton.querySelector('i');
             
-            // Track menu state
-            let isMenuOpen = false;
-
-            // Toggle menu function
+            // Fix initial state
+            mobileMenu.style.transform = 'translateX(-100%)';
+            mobileMenu.style.display = 'none';
+            
             function toggleMobileMenu() {
-                isMenuOpen = !isMenuOpen;
+                const isOpen = mobileMenu.style.display === 'block';
                 
-                // Toggle menu visibility and transform
-                if (isMenuOpen) {
+                if (!isOpen) {
                     mobileMenu.style.display = 'block';
-                    // Small delay to ensure display block is applied before transform
-                    setTimeout(() => {
+                    requestAnimationFrame(() => {
                         mobileMenu.style.transform = 'translateX(0)';
-                    }, 10);
-                    menuIcon.classList.remove('fa-bars');
-                    menuIcon.classList.add('fa-times');
-                    document.body.style.overflow = 'hidden';
+                    });
                 } else {
                     mobileMenu.style.transform = 'translateX(-100%)';
-                    menuIcon.classList.remove('fa-times');
-                    menuIcon.classList.add('fa-bars');
-                    document.body.style.overflow = '';
-                    // Wait for transition to finish before hiding
                     setTimeout(() => {
                         mobileMenu.style.display = 'none';
                     }, 300);
                 }
+                
+                mobileMenuButton.querySelector('i').classList.toggle('fa-bars');
+                mobileMenuButton.querySelector('i').classList.toggle('fa-times');
+                document.body.style.overflow = !isOpen ? 'hidden' : '';
             }
 
-            // Add click event to menu button
-            mobileMenuButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                toggleMobileMenu();
-            });
-
-            // Close menu when clicking menu items
-            const menuItems = mobileMenu.querySelectorAll('a');
-            menuItems.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    // Close menu
-                    toggleMobileMenu();
-                    
-                    // Scroll to target after menu closes
-                    setTimeout(() => {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                        window.history.pushState(null, '', targetId);
-                    }, 300);
-                });
-            });
-
-            // Close menu when clicking outside
-            document.addEventListener('click', function(e) {
-                if (isMenuOpen && 
-                    !mobileMenu.contains(e.target) && 
-                    !mobileMenuButton.contains(e.target)) {
-                    toggleMobileMenu();
-                }
-            });
-
-            // Close menu on escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && isMenuOpen) {
-                    toggleMobileMenu();
-                }
-            });
-
-            // Update menu on window resize
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 768 && isMenuOpen) {
-                    toggleMobileMenu();
-                }
-            });
-
-            // Cookie banner functionality
-            const cookieBanner = document.getElementById('cookie-banner');
-            const acceptButton = document.getElementById('accept-cookies');
-            const rejectButton = document.getElementById('reject-cookies');
-
-            // Check if user has already made a choice
-            if (!localStorage.getItem('cookieChoice')) {
-                cookieBanner.classList.remove('hidden');
-            }
-
-            acceptButton.addEventListener('click', () => {
-                localStorage.setItem('cookieChoice', 'accepted');
-                cookieBanner.classList.add('hidden');
-            });
-
-            rejectButton.addEventListener('click', () => {
-                localStorage.setItem('cookieChoice', 'rejected');
-                cookieBanner.classList.add('hidden');
-            });
+            mobileMenuButton.addEventListener('click', toggleMobileMenu);
         });
     </script>
 
@@ -1116,23 +1164,29 @@
 
     <!-- Testimonial Carousel -->
     <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.testimonial-slide');
-        const totalSlides = slides.length;
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentSlide = 0;
+            const slider = document.querySelector('.testimonial-slider');
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const totalSlides = slides.length;
+            const nextButton = document.querySelector('.slider-next');
+            const prevButton = document.querySelector('.slider-prev');
 
-        function updateSlider() {
-            const slider = document.querySelector('.flex.transition-transform');
-            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-        }
+            if (slider && slides.length > 0 && nextButton && prevButton) {
+                function updateSlider() {
+                    slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+                }
 
-        document.querySelector('.slider-next').addEventListener('click', () => {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateSlider();
-        });
+                nextButton.addEventListener('click', () => {
+                    currentSlide = (currentSlide + 1) % totalSlides;
+                    updateSlider();
+                });
 
-        document.querySelector('.slider-prev').addEventListener('click', () => {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            updateSlider();
+                prevButton.addEventListener('click', () => {
+                    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                    updateSlider();
+                });
+            }
         });
     </script>
 
@@ -1165,5 +1219,28 @@
             }
         });
     </script>
+
+    <!-- Update Modal Styles -->
+    <style>
+        .modal {
+            @apply fixed inset-0 bg-black bg-opacity-50 z-[1100] transition-opacity duration-300;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            @apply bg-white rounded-xl p-8 max-w-lg mx-auto mt-20 relative
+                   transform transition-transform duration-300 scale-95;
+        }
+
+        .modal.active .modal-content {
+            @apply scale-100;
+        }
+    </style>
 </body>
 </html>
