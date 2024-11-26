@@ -81,544 +81,6 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.iaexpertos.es">
 
-    <style>
-        /* Core styles */
-        :root {
-            --primary: #3B82F6;
-            --secondary: #0EA5E9;
-            --accent: #F97316;
-        }
-
-        /* Layout */
-        .container {
-            width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
-
-        /* Components */
-        .card {
-            @apply bg-white rounded-2xl shadow-lg p-6 transition-all duration-300;
-        }
-
-        .button {
-            @apply px-6 py-3 rounded-full font-medium transition-all duration-300;
-        }
-
-        /* Animations */
-        .animate-fade-in {
-            animation: fadeIn 0.3s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from { 
-                opacity: 0;
-                transform: translateX(100%);
-            }
-            to { 
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* Header Components */
-        .sticky-header {
-            @apply fixed top-0 left-0 right-0 z-[1000] transition-all duration-300;
-            background: linear-gradient(to right, rgba(30, 64, 175, 0.95), rgba(59, 130, 246, 0.95));
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-        }
-
-        /* Navigation */
-        .nav-link {
-            @apply relative font-medium transition-all duration-300;
-            padding: 0.5rem 0;
-        }
-
-        .nav-link::after {
-            content: '';
-            @apply absolute bottom-0 left-0 w-0 h-0.5 bg-accent-500 transition-all duration-300;
-            bottom: -2px;
-        }
-
-        .nav-link:hover::after {
-            @apply w-full;
-        }
-
-        /* Logo Text */
-        .logo-text {
-            @apply text-white;
-            background: linear-gradient(to right, #ffffff, #e2e8f0);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
-        }
-
-        /* Mobile Menu */
-        .mobile-menu {
-            @apply fixed inset-0 bg-gradient-to-br from-primary-900 to-primary-800 
-                   backdrop-blur-lg transition-transform duration-300 ease-in-out
-                   flex flex-col w-full overflow-y-auto;
-            transform: translateX(-100%);
-            height: calc(100vh - 64px);
-            top: 64px;
-            z-index: 1000;
-        }
-
-        .mobile-menu .container {
-            @apply h-full;
-        }
-
-        .mobile-menu nav {
-            @apply py-6;
-        }
-
-        .mobile-menu a {
-            @apply block w-full text-white text-lg font-medium py-3 px-4 
-                   rounded-lg hover:bg-white/10 transition-colors duration-200;
-        }
-
-        .mobile-menu.active {
-            @apply block;
-            transform: translateX(0);
-        }
-
-        /* Scrolled States */
-        .header-scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .header-scrolled .nav-link {
-            @apply text-primary-800;
-        }
-
-        .header-scrolled .nav-link:hover {
-            @apply text-accent-500;
-        }
-
-        .header-scrolled .logo-text {
-            background: linear-gradient(to right, #1E40AF, #3B82F6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .header-scrolled #mobileMenuButton {
-            @apply text-primary-800;
-        }
-
-        .header-scrolled .mobile-menu {
-            @apply bg-white;
-        }
-
-        .header-scrolled .mobile-menu a {
-            @apply text-primary-800;
-        }
-
-        .header-scrolled .mobile-menu a:hover {
-            @apply text-accent-500 bg-primary-50/50;
-        }
-
-        /* Interactive Elements */
-        .floating-whatsapp {
-            @apply fixed bottom-20 right-5 z-[1000];
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        /* Notification System */
-        .notification {
-            @apply pointer-events-auto flex items-center justify-between 
-                   px-6 py-4 rounded-lg text-white shadow-lg 
-                   backdrop-blur-sm transform;
-            max-width: 400px;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        .notification.success {
-            @apply bg-gradient-to-r from-green-500 to-green-600;
-        }
-
-        .notification.error {
-            @apply bg-gradient-to-r from-red-500 to-red-600;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1100;
-        }
-
-        .modal-content {
-            background: white;
-            margin: 10% auto;
-            padding: 2rem;
-            border-radius: 1rem;
-            max-width: 500px;
-            position: relative;
-        }
-
-        /* Cards */
-        .methodology-card {
-            @apply bg-primary-800/90 backdrop-blur-sm rounded-xl p-8 transition-all duration-300;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-
-        .methodology-card:hover {
-            @apply bg-primary-700/90 transform scale-105;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-
-        .methodology-card p {
-            @apply text-gray-100 leading-relaxed;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-        }
-
-        .methodology-card h3 {
-            @apply text-white font-bold;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-        }
-
-        .service-card, .methodology-card, .testimonial-caso {
-            @apply h-full flex flex-col justify-between;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        /* Loading States */
-        .loading-spinner {
-            @apply inline-block w-4 h-4 border-2 
-                   border-white border-t-transparent 
-                   rounded-full animate-spin;
-        }
-
-        /* Fixed Elements */
-        .fixed-elements {
-            @apply fixed bottom-5 right-5 z-[1000] flex flex-col gap-4;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .container { padding: 0 1rem; }
-            .card { margin: 1rem 0; }
-            section { padding: 3rem 1rem; }
-            
-            .nav-link, button {
-                min-height: 44px;
-                min-width: 44px;
-                padding: 0.75rem 1rem;
-            }
-        }
-
-        /* Reduced Motion */
-        @media (prefers-reduced-motion: reduce) {
-            .sticky-header,
-            .nav-link,
-            .mobile-menu,
-            .loading-spinner {
-                transition: none;
-            }
-        }
-
-        /* Support for browsers without backdrop-filter */
-        @supports not (backdrop-filter: blur(8px)) {
-            .sticky-header {
-                background: rgb(30, 64, 175);
-            }
-            
-            .header-scrolled {
-                background: rgb(255, 255, 255);
-            }
-        }
-
-        /* Animation for gradient background */
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .animate-gradient {
-            background-size: 200% 200%;
-            animation: gradient 15s ease infinite;
-        }
-
-        /* Accessibility improvements */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            border: 0;
-        }
-
-        /* Print styles */
-        @media print {
-            .no-print {
-                display: none;
-            }
-            .container {
-                width: 100%;
-                margin: 0;
-                padding: 0;
-            }
-        }
-
-        /* Common screen sizes */
-        /* Mobile S - 320px */
-        @media screen and (max-width: 320px) {
-            .container {
-                @apply px-4;
-            }
-            h1 {
-                @apply text-3xl;
-            }
-        }
-
-        /* Mobile M - 375px */
-        @media screen and (min-width: 321px) and (max-width: 375px) {
-            .container {
-                @apply px-4;
-            }
-            h1 {
-                @apply text-4xl;
-            }
-        }
-
-        /* Mobile L - 425px */
-        @media screen and (min-width: 376px) and (max-width: 425px) {
-            .container {
-                @apply px-4;
-            }
-        }
-
-        /* Tablet - 768px */
-        @media screen and (min-width: 426px) and (max-width: 768px) {
-            .container {
-                @apply px-6;
-            }
-        }
-
-        /* Laptop - 1024px */
-        @media screen and (min-width: 769px) and (max-width: 1024px) {
-            .container {
-                @apply px-8;
-            }
-        }
-
-        /* Laptop L - 1440px */
-        @media screen and (min-width: 1025px) and (max-width: 1440px) {
-            .container {
-                @apply px-8 max-w-7xl mx-auto;
-            }
-        }
-
-        /* 4K - 2560px */
-        @media screen and (min-width: 1441px) {
-            .container {
-                @apply px-8 max-w-8xl mx-auto;
-            }
-            html {
-                font-size: 18px;
-            }
-        }
-
-        .modal {
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .modal.active {
-            opacity: 1;
-        }
-
-        .modal-content {
-            transform: translateY(-20px);
-            transition: transform 0.3s ease;
-        }
-
-        .modal.active .modal-content {
-            transform: translateY(0);
-        }
-
-        .notification-progress {
-            height: 2px;
-            background: rgba(255, 255, 255, 0.3);
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            transform-origin: left;
-        }
-
-        @keyframes progress {
-            from { transform: scaleX(1); }
-            to { transform: scaleX(0); }
-        }
-
-        .loading-spinner {
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top: 2px solid white;
-            width: 1rem;
-            height: 1rem;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Container responsiveness */
-        .container {
-            width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-            max-width: 1280px; /* max-w-7xl equivalent */
-            overflow-x: hidden;
-        }
-
-        /* Responsive padding adjustments */
-        @media (max-width: 640px) {
-            .container {
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-        }
-
-        @media (min-width: 641px) and (max-width: 768px) {
-            .container {
-                padding-left: 1.5rem;
-                padding-right: 1.5rem;
-            }
-        }
-
-        @media (min-width: 769px) {
-            .container {
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
-        }
-
-        /* Fix for mobile menu */
-        .mobile-menu {
-            top: 64px;
-            height: calc(100vh - 64px);
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        /* Prevent horizontal scroll */
-        body {
-            overflow-x: hidden;
-            width: 100%;
-        }
-
-        /* Grid responsiveness */
-        .grid {
-            margin-left: auto;
-            margin-right: auto;
-            width: 100%;
-        }
-
-        /* Image containment */
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* Card responsiveness */
-        .service-card, 
-        .methodology-card, 
-        .testimonial-caso {
-            width: 100%;
-            max-width: 100%;
-        }
-
-        /* Mobile Menu Styles */
-        .mobile-menu {
-            transform: translateX(-100%);
-            transition: transform 0.3s ease-in-out, display 0.3s ease-in-out;
-            display: none;
-        }
-
-        .mobile-nav-link {
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-nav-link:active {
-            transform: scale(0.98);
-        }
-
-        @media (max-width: 768px) {
-            .mobile-menu {
-                top: 64px;
-                height: calc(100vh - 64px);
-                overflow-y: auto;
-                -webkit-overflow-scrolling: touch;
-                z-index: 50;
-            }
-        }
-
-        /* Button hover effects */
-        .button-hover-effect {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .button-hover-effect::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-        }
-
-        .button-hover-effect:hover::after {
-            transform: translateX(0);
-        }
-
-        /* Active button states */
-        .button-active {
-            transform: scale(0.98);
-        }
-
-        /* Disable button styles */
-        .button:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-
-        /* Focus states for accessibility */
-        .button:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
-        }
-    </style>
-
     <!-- EmailJS Configuration -->
     <script src="https://cdn.emailjs.com/sdk/2.6.4/email.min.js"></script>
 </head>
@@ -690,15 +152,17 @@
                             Especializado en implementación práctica y soluciones personalizadas.
                         </p>
 
-                        <div class="flex space-x-4">
-                            <a href="https://uploadnow.io/s/6aa4534b-429e-4663-9445-32b5ed9af587?o=t" 
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                            <a href="https://wa.me/34679794037?text=¡Hola!%20Me%20interesa%20aprovechar%20la%20oferta%20de%20Black%20Friday%20para%20IA.%20¿Podemos%20hablar%20sobre%20las%20opciones%20disponibles?" 
                                target="_blank" 
                                rel="noopener noreferrer"
-                               class="bg-accent-500 text-white py-3 px-6 rounded-full hover:bg-accent-600 transition duration-300 flex items-center">
-                                <i class="fas fa-download mr-2"></i>Descargar CV
+                               class="w-full sm:w-auto bg-accent-500 text-white py-3 px-6 rounded-full hover:bg-accent-600 transition duration-300 flex items-center justify-center">
+                                <i class="fab fa-whatsapp mr-2"></i>Aprovechar Black Friday
                             </a>
                             <a href="https://wa.me/34679794037" 
-                               class="bg-green-500 text-white py-3 px-6 rounded-full hover:bg-green-600 transition duration-300 flex items-center">
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="w-full sm:w-auto bg-green-500 text-white py-3 px-6 rounded-full hover:bg-green-600 transition duration-300 flex items-center justify-center">
                                 <i class="fab fa-whatsapp mr-2"></i>Contactar
                             </a>
                         </div>
@@ -769,18 +233,11 @@
                             </div>
 
                             <div class="mt-auto space-y-3">
-                                <button onclick="openContactModal('automatizacion')" 
-                                        class="w-full group bg-primary-600 text-white py-3 px-6 rounded-lg hover:bg-primary-700 transition-all duration-300 flex items-center justify-center gap-2 relative overflow-hidden">
-                                    <span class="relative z-10">Solicitar Demo Gratuita</span>
-                                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-300"></i>
-                                    <div class="absolute inset-0 bg-gradient-to-r from-primary-500 to-primary-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                                </button>
-
-                                <a href="https://wa.me/34679794037?text=Hola,%20me%20interesa%20la%20automatización%20con%20IA.%20¿Podemos%20hablar%20sobre%20una%20demo?" 
+                                <a href="https://wa.me/34679794037?text=¡Hola!%20Me%20interesa%20la%20oferta%20de%20Black%20Friday%20para%20automatización%20IA.%20¿Podemos%20hablar%20sobre%20una%20demo?" 
                                    target="_blank"
-                                   class="w-full group bg-green-500 text-white py-3 px-6 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2">
+                                   class="w-full group bg-primary-600 text-white py-3 px-6 rounded-lg hover:bg-primary-700 transition-all duration-300 flex items-center justify-center gap-2">
                                     <i class="fab fa-whatsapp text-lg"></i>
-                                    <span>Consulta Rápida por WhatsApp</span>
+                                    <span>Aprovechar Black Friday</span>
                                 </a>
                             </div>
                         </div>
@@ -813,11 +270,13 @@
                                 </ul>
                             </div>
                             <div class="mt-auto space-y-3">
-                                <button onclick="openContactModal('analisis')" 
-                                        class="w-full bg-primary-600 text-white py-3 px-6 rounded-lg hover:bg-primary-700 transition-all duration-300 flex items-center justify-center gap-2">
-                                    <i class="fas fa-paper-plane"></i>
-                                    <span>Solicitar Análisis</span>
-                                </button>
+                                <a href="https://wa.me/34679794037?text=¡Hola!%20Me%20interesa%20la%20oferta%20de%20Black%20Friday%20para%20análisis%20de%20datos.%20¿Podemos%20hablar?" 
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   class="w-full bg-primary-600 text-white py-3 px-6 rounded-lg hover:bg-primary-700 transition-all duration-300 flex items-center justify-center gap-2">
+                                    <i class="fab fa-whatsapp"></i>
+                                    <span>Aprovechar Black Friday</span>
+                                </a>
                                 <a href="https://wa.me/34679794037?text=Hola,%20me%20interesa%20el%20servicio%20de%20análisis%20de%20datos.%20¿Podemos%20hablar?" 
                                    target="_blank"
                                    class="w-full bg-green-500 text-white py-3 px-6 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2">
@@ -855,11 +314,13 @@
                                 </ul>
                             </div>
                             <div class="mt-auto space-y-3">
-                                <button onclick="openContactModal('cloud')" 
-                                        class="w-full bg-primary-600 text-white py-3 px-6 rounded-lg hover:bg-primary-700 transition-all duration-300 flex items-center justify-center gap-2">
-                                    <i class="fas fa-paper-plane"></i>
-                                    <span>Solicitar Información</span>
-                                </button>
+                                <a href="https://wa.me/34679794037?text=¡Hola!%20Me%20interesa%20la%20oferta%20de%20Black%20Friday%20para%20soluciones%20cloud%20IA.%20¿Podemos%20hablar?" 
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   class="w-full bg-primary-600 text-white py-3 px-6 rounded-lg hover:bg-primary-700 transition-all duration-300 flex items-center justify-center gap-2">
+                                    <i class="fab fa-whatsapp"></i>
+                                    <span>Aprovechar Black Friday</span>
+                                </a>
                                 <a href="https://wa.me/34679794037?text=Hola,%20me%20interesan%20las%20soluciones%20Cloud%20IA.%20¿Podemos%20hablar?" 
                                    target="_blank"
                                    class="w-full bg-green-500 text-white py-3 px-6 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2">
@@ -1033,7 +494,7 @@
                         </a>
                     </div>
                     <p class="text-center mb-8">O llmame directamente al <a href="tel:+34679794037" class="text-primary-600 hover:underline">+34 679 794 037</a></p>
-                    <form id="contactForm" class="space-y-6" aria-label="Contact Form">
+                    <form id="mainContactForm" class="space-y-6" aria-label="Contact Form">
                         <div>
                             <label for="from_name" class="block mb-2 font-bold">Nombre</label>
                             <input type="text" id="from_name" name="from_name" 
@@ -1101,9 +562,11 @@
     </footer>
 
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/34679794037" 
-       class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-110 z-50"
-       aria-label="Contactar por WhatsApp">
+    <a href="https://wa.me/34679794037?text=¡Hola!%20Me%20interesa%20aprovechar%20la%20oferta%20de%20Black%20Friday%20para%20IA.%20¿Qué%20opciones%20hay%20disponibles?" 
+       class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-110 z-50 flex items-center justify-center"
+       aria-label="Contactar por WhatsApp - Oferta Black Friday"
+       target="_blank"
+       rel="noopener noreferrer">
         <i class="fab fa-whatsapp text-3xl"></i>
     </a>
 
@@ -1116,7 +579,7 @@
             
             <h3 class="text-2xl font-bold text-gray-900 mb-6">Contacta con Nosotros</h3>
             
-            <form id="contactForm" class="space-y-6">
+            <form id="contactForm" class="space-y-6" onsubmit="submitContactForm(event)">
                 <div>
                     <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
                     <input type="text" id="name" name="name" required
@@ -1165,7 +628,7 @@
         })();
 
         // Form submission handler
-        document.getElementById('contactForm').addEventListener('submit', function(event) {
+        document.getElementById('mainContactForm').addEventListener('submit', function(event) {
             event.preventDefault();
             
             // Get the submit button
@@ -1334,70 +797,252 @@
         });
     </script>
 
-    <!-- Add after the cookie banner script
-    function openContactModal(service) {
-        const modal = document.getElementById('contactModal');
-        const serviceSelect = document.getElementById('service');
-        
-        // Set the selected service if provided
-        if (service && serviceSelect) {
-            serviceSelect.value = service;
+    <!-- Add after the cookie banner script -->
+    <script>
+        // Fix modal functions that were outside script tags
+        function openContactModal(service) {
+            const modal = document.getElementById('contactModal');
+            const serviceSelect = document.getElementById('service');
+            
+            if (service && serviceSelect) {
+                serviceSelect.value = service;
+            }
+            
+            modal.style.display = 'block';
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
+            document.body.style.overflow = 'hidden';
         }
-        
-        // Show modal
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
 
-    function closeContactModal() {
-        const modal = document.getElementById('contactModal');
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    // Close modal when clicking outside
-    document.addEventListener('click', function(e) {
-        const modal = document.getElementById('contactModal');
-        if (e.target === modal) {
-            closeContactModal();
+        function closeContactModal() {
+            const modal = document.getElementById('contactModal');
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+            document.body.style.overflow = '';
         }
-    });
 
-    // Close modal with Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeContactModal();
+        // Fix notification function
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type} fixed top-4 right-4 z-[2000]`;
+            
+            notification.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'} mr-2"></i>
+                    <p>${message}</p>
+                </div>
+                <div class="notification-progress"></div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            const progress = notification.querySelector('.notification-progress');
+            progress.style.animation = 'progress 3s linear forwards';
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
         }
-    });
-    -->
+    </script>
 
-    <!-- Add after the modal functions
-    function showNotification(message, type = 'success') {
-        // Create notification element
-        const notification = document.createElement('div');
-        notification.className = `notification ${type} fixed top-4 right-4 z-[2000]`;
-        
-        // Create content
-        notification.innerHTML = `
-            <div class="flex items-center">
-                <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'} mr-2"></i>
-                <p>${message}</p>
+    <!-- New Section 1: Tecnologías IA -->
+    <section id="tecnologias" class="py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-primary-600 font-medium">Tecnologías Avanzadas</span>
+                <h2 class="text-4xl font-bold mt-2">Tecnologías IA que Utilizamos</h2>
             </div>
-            <div class="notification-progress"></div>
-        `;
-        
-        // Add to document
-        document.body.appendChild(notification);
-        
-        // Animate progress bar
-        const progress = notification.querySelector('.notification-progress');
-        progress.style.animation = 'progress 3s linear forwards';
-        
-        // Remove after delay
-        setTimeout(() => {
-            notification.remove();
-        }, 3000);
-    }
-    -->
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- ChatGPT -->
+                <div class="p-6 bg-gray-50 rounded-xl hover:shadow-lg transition-all">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" 
+                         alt="ChatGPT" 
+                         class="w-16 h-16 mb-4">
+                    <h3 class="text-xl font-bold mb-2">ChatGPT</h3>
+                    <p class="text-gray-600">Integración avanzada de ChatGPT para automatización y atención al cliente.</p>
+                </div>
+                
+                <!-- Claude -->
+                <div class="p-6 bg-gray-50 rounded-xl hover:shadow-lg transition-all">
+                    <img src="path-to-claude-logo.svg" 
+                         alt="Claude" 
+                         class="w-16 h-16 mb-4">
+                    <h3 class="text-xl font-bold mb-2">Claude</h3>
+                    <p class="text-gray-600">Análisis de datos y generación de contenido con Claude AI.</p>
+                </div>
+                
+                <!-- Custom Models -->
+                <div class="p-6 bg-gray-50 rounded-xl hover:shadow-lg transition-all">
+                    <i class="fas fa-brain text-4xl text-primary-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Modelos Personalizados</h3>
+                    <p class="text-gray-600">Desarrollo de modelos IA adaptados a necesidades específicas.</p>
+                </div>
+                
+                <!-- AutoML -->
+                <div class="p-6 bg-gray-50 rounded-xl hover:shadow-lg transition-all">
+                    <i class="fas fa-cogs text-4xl text-primary-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">AutoML</h3>
+                    <p class="text-gray-600">Automatización del desarrollo de modelos de Machine Learning.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Section 2: Precios Black Friday -->
+    <section id="precios" class="py-24 bg-gradient-to-br from-primary-900 to-primary-800 text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-accent-400 font-medium">Ofertas Especiales</span>
+                <h2 class="text-4xl font-bold mt-2">Precios Black Friday</h2>
+                <p class="mt-4 text-gray-300">Aprovecha nuestros descuentos especiales</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Basic Plan -->
+                <div class="bg-white/10 backdrop-blur-sm p-8 rounded-xl">
+                    <h3 class="text-2xl font-bold">Básico</h3>
+                    <div class="mt-4">
+                        <span class="text-4xl font-bold">299€</span>
+                        <span class="text-gray-300 line-through ml-2">599€</span>
+                    </div>
+                    <ul class="mt-6 space-y-4">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-accent-400 mr-2"></i>
+                            <span>Consultoría inicial</span>
+                        </li>
+                        <!-- Add more features -->
+                    </ul>
+                    <a href="https://wa.me/34679794037?text=Me%20interesa%20el%20plan%20básico%20de%20Black%20Friday" 
+                       class="mt-8 block w-full text-center bg-accent-500 py-3 rounded-lg hover:bg-accent-600 transition-all">
+                        Aprovechar Oferta
+                    </a>
+                </div>
+                
+                <!-- Add Professional and Enterprise plans similarly -->
+            </div>
+        </div>
+    </section>
+
+    <!-- New Section 3: FAQ -->
+    <section id="faq" class="py-24 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold">Preguntas Frecuentes</h2>
+            </div>
+            
+            <div class="max-w-3xl mx-auto space-y-6">
+                <!-- FAQ Item -->
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <button class="flex justify-between items-center w-full text-left">
+                        <span class="text-lg font-medium">¿Qué incluye la consultoría inicial?</span>
+                        <i class="fas fa-chevron-down text-primary-600"></i>
+                    </button>
+                    <div class="mt-4 text-gray-600 hidden">
+                        Respuesta detallada aquí...
+                    </div>
+                </div>
+                <!-- Add more FAQ items -->
+            </div>
+        </div>
+    </section>
+
+    <!-- New Section 4: Blog/Resources -->
+    <section id="recursos" class="py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold">Recursos y Artículos</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Article Card -->
+                <article class="bg-gray-50 rounded-xl overflow-hidden">
+                    <img src="path-to-image.jpg" alt="Article" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Título del Artículo</h3>
+                        <p class="text-gray-600 mb-4">Descripción corta del artículo...</p>
+                        <a href="#" class="text-primary-600 hover:text-primary-700">Leer más ���</a>
+                    </div>
+                </article>
+                <!-- Add more articles -->
+            </div>
+        </div>
+    </section>
+
+    <!-- New Section 5: Testimonials Carousel -->
+    <section id="testimonios" class="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold">Lo que Dicen Nuestros Clientes</h2>
+            </div>
+            
+            <div class="relative">
+                <!-- Testimonial Slider -->
+                <div class="overflow-hidden">
+                    <div class="flex transition-transform duration-500">
+                        <!-- Testimonial Card -->
+                        <div class="w-full md:w-1/3 flex-shrink-0 px-4">
+                            <div class="bg-white p-8 rounded-xl shadow-sm">
+                                <div class="flex items-center mb-4">
+                                    <img src="path-to-avatar.jpg" alt="Avatar" class="w-12 h-12 rounded-full">
+                                    <div class="ml-4">
+                                        <h4 class="font-bold">Nombre del Cliente</h4>
+                                        <p class="text-gray-600">Cargo</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600">Testimonio del cliente...</p>
+                            </div>
+                        </div>
+                        <!-- Add more testimonials -->
+                    </div>
+                </div>
+                
+                <!-- Navigation Buttons -->
+                <button class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full shadow-lg">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full shadow-lg">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <script>
+        document.querySelectorAll('#faq button').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                content.classList.toggle('hidden');
+                button.querySelector('i').classList.toggle('fa-chevron-up');
+                button.querySelector('i').classList.toggle('fa-chevron-down');
+            });
+        });
+    </script>
+
+    <!-- Testimonial Carousel -->
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const totalSlides = slides.length;
+
+        function updateSlider() {
+            const slider = document.querySelector('.flex.transition-transform');
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        document.querySelector('.slider-next').addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        });
+
+        document.querySelector('.slider-prev').addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        });
+    </script>
 </body>
 </html>
