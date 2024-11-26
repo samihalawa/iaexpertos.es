@@ -135,9 +135,57 @@
             color: white !important;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        #blackFridayBanner {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        @media (max-width: 640px) {
+            #blackFridayBanner {
+                max-width: calc(100% - 2rem);
+                margin: 0 1rem;
+            }
+        }
     </style>
 </head>
 <body class="font-sans text-gray-800 bg-gray-50">
+    <!-- Add this right after the opening <body> tag -->
+    <div id="blackFridayBanner" class="fixed bottom-20 left-4 z-[1000] max-w-sm bg-black text-white rounded-lg shadow-xl transform transition-all duration-300 hover:scale-105">
+        <div class="relative p-4 flex items-center gap-3">
+            <!-- Close button -->
+            <button onclick="closeBanner()" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-600 transition-colors">
+                <i class="fas fa-times text-xs"></i>
+            </button>
+            
+            <!-- Banner content -->
+            <div class="flex-shrink-0">
+                <i class="fas fa-bolt text-yellow-400 text-2xl animate-pulse"></i>
+            </div>
+            <div class="flex-1">
+                <p class="text-sm font-bold">¡Black Friday! 🔥</p>
+                <p class="text-xs text-gray-300">50% descuento en todos los servicios</p>
+            </div>
+            <a href="https://wa.me/34679794037?text=¡Hola!%20Me%20interesa%20aprovechar%20el%20Black%20Friday%20en%20servicios%20de%20IA.%20¿Qué%20ofertas%20hay%20disponibles?" 
+               class="bg-green-500 text-xs text-white px-3 py-1.5 rounded-full hover:bg-green-600 transition-colors flex items-center gap-1"
+               target="_blank"
+               rel="noopener noreferrer">
+                <i class="fab fa-whatsapp"></i>
+                <span>Info</span>
+            </a>
+        </div>
+    </div>
+
     <!-- Header Section with Updated Navigation -->
     <header class="sticky-header w-full">
         <div class="container mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 py-4">
@@ -1095,6 +1143,36 @@
         document.querySelector('.slider-prev').addEventListener('click', () => {
             currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
             updateSlider();
+        });
+    </script>
+
+    <!-- Black Friday Banner functionality -->
+    <script>
+        // Black Friday Banner functionality
+        function closeBanner() {
+            const banner = document.getElementById('blackFridayBanner');
+            banner.style.opacity = '0';
+            banner.style.transform = 'translateX(-100%)';
+            setTimeout(() => {
+                banner.style.display = 'none';
+            }, 300);
+            
+            // Store in localStorage that banner was closed
+            localStorage.setItem('blackFridayBannerClosed', 'true');
+        }
+
+        // Check if banner was previously closed
+        window.addEventListener('DOMContentLoaded', () => {
+            const banner = document.getElementById('blackFridayBanner');
+            if (localStorage.getItem('blackFridayBannerClosed')) {
+                banner.style.display = 'none';
+            } else {
+                // Add entrance animation
+                banner.style.transform = 'translateX(-100%)';
+                setTimeout(() => {
+                    banner.style.transform = 'translateX(0)';
+                }, 500);
+            }
         });
     </script>
 </body>
