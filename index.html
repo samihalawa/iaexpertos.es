@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IA Expertos - Soluciones Avanzadas de Inteligencia Artificial</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>IA Expertos - Soluciones Aºvanzadas de Inteligencia Artificial</title>
+    <link rel="preconnect" href="https: //fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -39,209 +39,136 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" as="style">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" as="style">
     <style>
-        body { font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; background-color: #f9fafb; color: #4b5563; }
-        .sticky-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(30, 64, 175, 0.98); backdrop-filter: blur(8px); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); transition: all 0.3s; }
-        .logo-text { color: white; font-weight: bold; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); }
-        #blackFridayBanner { position: fixed; bottom: 6; left: 4; z-index: 1000; padding: 1rem; background: rgba(0, 0, 0, 0.95); border-radius: 12px; transform: translateY(120%); opacity: 0; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-        #blackFridayBanner.show { transform: translateY(0); opacity: 1; }
-        .mobile-menu { background: linear-gradient(to bottom right, #1E40AF, #3B82F6); transform: translateX(-100%); transition: transform 0.3s ease-in-out; }
-        .mobile-menu.active { transform: translateX(0); }
-        .mobile-menu a { color: white; }
-        .service-card { background: white; border-radius: 1rem; padding: 2rem; transition: all 0.3s; }
-        .service-card:hover { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); }
-        .methodology-card { background: rgba(30, 64, 175, 0.9); border-radius: 1rem; padding: 2rem; transition: all 0.3s; }
-        .methodology-card:hover { background: rgba(30, 64, 175, 0.7); }
-        .bg-gradient { background: linear-gradient(135deg, #172554, #1E40AF); }
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .hover-scale {
-            transition: transform 0.3s ease;
-        }
-        .hover-scale:hover {
-            transform: scale(1.02);
-        }
-        .testimonial-card {
-            transition: all 0.3s ease;
-            transform: translateY(0);
+        :root {
+            --primary: #2563EB;
+            --primary-dark: #1E40AF;
+            --accent: #6366F1;
+            --success: #10B981;
+            --surface: #FFFFFF;
+            --text: #1E293B;
         }
 
-        .testimonial-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-
-        .testimonial-image {
-            transition: transform 0.3s ease;
-        }
-
-        .testimonial-card:hover .testimonial-image {
-            transform: scale(1.1);
-        }
-        .loading {
-            position: fixed;
-            inset: 0;
-            background: linear-gradient(135deg, #172554, #1E40AF);
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease;
-        }
-
-        .loading.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid #ffffff3d;
-            border-top-color: white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            letter-spacing: -0.025em;
-            line-height: 1.2;
-        }
-
-        .text-gradient {
-            background: linear-gradient(to right, #3B82F6, #2563EB);
+        .logo-text {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
+            position: relative;
         }
 
-        /* Enhance animations and transitions */
-        .hover-glow {
+        .sticky-header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .nav-link {
+            color: var(--text);
+            font-weight: 500;
             transition: all 0.3s ease;
-            box-shadow: 0 0 0 rgba(59, 130, 246, 0);
         }
 
-        .hover-glow:hover {
-            box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
-            transform: translateY(-2px);
+        .nav-link:hover {
+            color: var(--primary);
         }
 
-        /* Enhanced gradient backgrounds */
-        .bg-gradient-premium {
-            background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
-            background-size: 200% 200%;
-            animation: gradientFlow 15s ease infinite;
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            padding: 8rem 0 6rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        @keyframes gradientFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E");
+            opacity: 0.5;
         }
 
-        .bg-gradient-card {
-            background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
+        .testimonial-section {
+            background: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%);
         }
 
-        /* Enhanced testimonial cards */
         .testimonial-card {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(209, 213, 219, 0.3);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            box-shadow: 0 4px 20px rgba(148, 163, 184, 0.05);
         }
 
         .testimonial-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 20px 40px rgba(148, 163, 184, 0.1);
         }
 
-        /* Enhanced buttons */
-        .btn-primary {
-            @apply bg-blue-600 text-white px-8 py-3 rounded-xl font-medium;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 6px rgba(59, 130, 246, 0.12);
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
-
-        .btn-primary:hover {
-            @apply bg-blue-700;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 15px rgba(59, 130, 246, 0.2);
+        
+        .mobile-menu.show {
+            display: block;
         }
-
-        /* Enhanced section transitions */
-        .section-fade {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        
+        .mobile-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--text-primary);
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
         }
-
-        .section-fade.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Glass morphism effects */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        /* Enhanced scroll progress bar */
-        #scrollProgress {
-            background: linear-gradient(90deg, #3B82F6 0%, #2563EB 100%);
-            height: 3px;
-            transition: width 0.1s ease;
-        }
-
-        /* Enhanced Glass Morphism */
-        .glass-morphism {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-        }
-
-        /* Enhanced Animations */
-        .hover-float {
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .hover-float:hover {
-            transform: translateY(-8px);
+        
+        .mobile-menu a:hover {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary);
         }
     </style>
 </head>
 <body>
-    <div id="blackFridayBanner" class="fixed bottom-6 left-4 p-6 bg-gradient-to-r from-gray-900 to-gray-800">
+    <div id="blackFridayBanner" class="fixed bottom-6 left-4 p-6 bg-gradient-to-r from-gray-900 to-gray-800 rounded-lg shadow-xl z-50 transform transition-all duration-300">
         <div class="flex items-center gap-6">
             <button onclick="closeBanner()" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-600 transition-colors">
                 <i class="fas fa-times text-xs"></i>
             </button>
-            <i class="fas fa-bolt text-yellow-400 text-3xl animate-pulse"></i>
-            <div>
-                <p class="text-lg font-bold text-white">¡Black Friday! 🔥</p>
-                <p class="text-sm text-gray-300">50% descuento en todos los servicios</p>
-            </div>
-            <a href="https://wa.me/34679794037?text=¡Hola!%20Me%20interesa%20aprovechar%20la%20oferta%20de%20Black%20Friday%20para%20IA." class="bg-green-500 text-sm text-white px-4 py-2 rounded-full hover:bg-green-600 transition-colors" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-whatsapp"></i> Info
-            </a>
             <div class="relative">
-                <span class="absolute -top-2 -right-2 animate-ping inline-flex h-3 w-3 rounded-full bg-red-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                <i class="fas fa-gift text-yellow-400 text-3xl"></i>
+                <div class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-ping"></div>
+                <div class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
             </div>
+            <div>
+                <p class="text-lg font-bold text-white">¡Oferta Fin 2024! 🎉</p>
+                <div class="flex flex-col">
+                    <p class="text-sm text-gray-300">40% descuento en todos los cursos</p>
+                    <div class="flex items-center gap-2 mt-1">
+                        <span class="text-xs text-red-400">Termina en:</span>
+                        <span id="countdown" class="text-xs font-mono bg-gray-800 px-2 py-1 rounded"></span>
+                    </div>
+                </div>
+            </div>
+            <a href="https://wa.me/34679794037?text=¡Hola!%20Me%20interesa%20aprovechar%20la%20oferta%20de%20Fin%202024%20para%20IA.%20¿Me%20pueden%20dar%20más%20información?"
+                class="bg-green-500 text-sm text-white px-4 py-2 rounded-full hover:bg-green-600 transition-colors group" 
+                target="_blank" 
+                rel="noopener noreferrer">
+                <i class="fab fa-whatsapp mr-1"></i>
+                <span class="group-hover:hidden">Info</span>
+                <span class="hidden group-hover:inline">Consultar</span>
+            </a>
         </div>
     </div>
 
@@ -251,11 +178,11 @@
                 <span class="text-2xl font-bold logo-text">IA Expertos</span>
             </a>
             <nav class="hidden md:flex space-x-8">
-                <a href="#inicio" class="text-white hover:text-blue-200 transition-colors duration-300 relative group">
+                <a href="#inicio" class="nav-link text-gray-800 hover:text-blue-600 transition-colors duration-300 relative group">
                     Inicio
                     <span class="absolute bottom-0 left-0 w-full h-0.5 bg-blue-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
                 </a>
-                <a href="#servicios" class="text-white hover:text-blue-200 transition-colors duration-300 relative group">
+                <a href="#servicios" class="nav-link text-gray-800 hover:text-blue-600 transition-colors duration-300 relative group">
                     Servicios
                     <span class="absolute bottom-0 left-0 w-full h-0.5 bg-blue-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
                 </a>
@@ -272,82 +199,52 @@
                     <span class="absolute bottom-0 left-0 w-full h-0.5 bg-blue-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
                 </a>
             </nav>
-            <button class="md:hidden text-white" id="mobileMenuButton" aria-label="Toggle menu">
-                <i class="fas fa-bars text-2xl"></i>
+            <button class="menu-button md:hidden" id="mobileMenuButton" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
             </button>
         </div>
-        <div id="mobile-menu" class="mobile-menu hidden">
-            <div class="container mx-auto px-4 py-6">
-                <nav class="flex flex-col space-y-4">
-                    <a href="#inicio" class="text-white text-lg py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300">
-                        <span class="flex items-center">
-                            <i class="fas fa-home mr-3"></i>
-                            Inicio
-                        </span>
-                    </a>
-                    <a href="#servicios" class="text-white text-lg py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300">
-                        <span class="flex items-center">
-                            <i class="fas fa-cogs mr-3"></i>
-                            Servicios
-                        </span>
-                    </a>
-                    <a href="#metodologia" class="text-white text-lg py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300">
-                        <span class="flex items-center">
-                            <i class="fas fa-book mr-3"></i>
-                            Metodología
-                        </span>
-                    </a>
-                    <a href="#casos-exito" class="text-white text-lg py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300">
-                        <span class="flex items-center">
-                            <i class="fas fa-trophy mr-3"></i>
-                            Casos de Éxito
-                        </span>
-                    </a>
-                    <a href="#contacto" class="text-white text-lg py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300">
-                        <span class="flex items-center">
-                            <i class="fas fa-envelope mr-3"></i>
-                            Contacto
-                        </span>
-                    </a>
-                </nav>
-            </div>
+        <div id="mobileMenu" class="mobile-menu">
+            <nav class="flex flex-col space-y-2">
+                <a href="#inicio"><i class="fas fa-home"></i>Inicio</a>
+                <a href="#servicios"><i class="fas fa-cogs"></i>Servicios</a>
+                <a href="#metodologia"><i class="fas fa-book"></i>Metodología</a>
+                <a href="#contacto"><i class="fas fa-envelope"></i>Contacto</a>
+            </nav>
         </div>
     </header>
 
     <main class="w-full overflow-x-hidden">
-        <section id="inicio" class="min-h-screen flex items-center relative bg-gradient-premium overflow-hidden">
-            <div class="absolute inset-0 bg-pattern opacity-10"></div>
+        <section id="inicio" class="hero-section min-h-screen flex items-center relative">
             <div class="container mx-auto px-4 relative z-10">
                 <div class="grid lg:grid-cols-2 gap-12 items-center">
                     <div class="space-y-8 animate__animated animate__fadeInLeft">
-                        <div class="inline-flex items-center px-4 py-2 glass-card rounded-full">
-                            <span class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
-                            <span class="ml-2 text-white text-sm font-medium">Experto Certificado en IA</span>
+                        <div class="glass-card inline-flex items-center px-6 py-3 rounded-full bg-white bg-opacity-20">
+                            <span class="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></span>
+                            <span class="ml-3 text-white text-lg font-medium">Experto Certificado en IA</span>
                         </div>
-                        <h1 class="text-5xl font-bold text-white leading-tight">
-                            Transformando Negocios con 
-                            <span class="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-200">
-                                Inteligencia Artificial
-                            </span>
+                        <h1 class="text-white text-5xl md:text-6xl font-bold">
+                            IA Expertos
                         </h1>
-                        <p class="text-xl text-gray-200 leading-relaxed">
-                            Más de 5 años formando profesionales y empresas en el arte de la IA.
+                        <h2 class="text-white text-3xl md:text-4xl font-semibold">
+                            Negocios con<br>
+                            Inteligencia Artificial
+                        </h2>
+                        <p class="text-white text-xl">
+                            Más de 5 años formando profesionales y empresas en el arte de la IA. 
+                            Descubre cómo la IA puede revolucionar tu negocio hoy.
                         </p>
-                        <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="https://wa.me/34679794037" 
-                               class="btn-primary group">
-                                <span class="relative z-10 flex items-center justify-center">
-                                    <i class="fab fa-whatsapp mr-2"></i>
-                                    Consulta Gratuita
-                                </span>
+                        <div class="button-group">
+                            <a href="https://wa.me/34679794037" class="cta-button">
+                                <i class="fab fa-whatsapp"></i>
+                                Consulta Gratuita
                             </a>
-                            <a href="#contacto" 
-                               class="glass-card text-white px-8 py-3 rounded-xl text-center hover-glow">
+                            <a href="#mas-info" class="secondary-button">
+                                <i class="fas fa-arrow-right mr-2"></i>
                                 Más Información
                             </a>
                         </div>
                     </div>
-                    <div class="hidden lg:block relative">
+                    <div class="hidden lg:block relative float-animation">
                         <div class="relative rounded-2xl overflow-hidden hover-glow">
                             <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80" 
                                  alt="AI Expert" 
@@ -357,6 +254,12 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="absolute bottom-0 left-0 w-full overflow-hidden">
+                <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="relative block w-full h-24">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" 
+                          class="fill-current text-white"></path>
+                </svg>
             </div>
         </section>
         <section id="casos-exito" class="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
@@ -671,40 +574,65 @@
 
     <!-- Black Friday Banner functionality -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const banner = document.getElementById('blackFridayBanner');
-            
-            // Show banner with delay
-            setTimeout(() => {
-                if (!localStorage.getItem('blackFridayBannerClosed')) {
-                    banner.classList.add('show');
-                }
-            }, 2000);
-
-            // Add scroll-based visibility
-            let lastScroll = 0;
-            window.addEventListener('scroll', () => {
-                const currentScroll = window.pageYOffset;
-                if (currentScroll > lastScroll && currentScroll > 300) {
-                    banner.style.transform = 'translateY(120%)';
-                } else {
-                    banner.style.transform = 'translateY(0)';
-                }
-                lastScroll = currentScroll;
-            });
-        });
-
         function closeBanner() {
             const banner = document.getElementById('blackFridayBanner');
-            banner.style.transform = 'translateX(-100%)';
-            banner.style.opacity = '0';
-            
-            setTimeout(() => {
-                banner.style.display = 'none';
-            }, 300);
-            
-            localStorage.setItem('blackFridayBannerClosed', 'true');
+            if (banner) {
+                banner.style.transform = 'translateX(-120%)';
+                banner.style.opacity = '0';
+                setTimeout(() => {
+                    banner.style.display = 'none';
+                }, 300);
+                localStorage.setItem('fin2024BannerClosed', 'true');
+                localStorage.setItem('bannerClosedTimestamp', Date.now());
+            }
         }
+
+        // Enhanced banner functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const banner = document.getElementById('blackFridayBanner');
+            const countdown = document.getElementById('countdown');
+            
+            // Show banner after 24 hours of being closed
+            const bannerClosedTimestamp = localStorage.getItem('bannerClosedTimestamp');
+            const twentyFourHours = 24 * 60 * 60 * 1000;
+            
+            if (banner) {
+                if (bannerClosedTimestamp && Date.now() - parseInt(bannerClosedTimestamp) < twentyFourHours) {
+                    banner.style.display = 'none';
+                } else {
+                    localStorage.removeItem('fin2024BannerClosed');
+                    banner.style.display = 'block';
+                }
+            }
+            
+            // Countdown timer
+            function updateCountdown() {
+                const now = new Date();
+                const endOfYear = new Date(2024, 11, 31, 23, 59, 59); // December 31, 2024
+                const diff = endOfYear - now;
+                
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                if (countdown) {
+                    countdown.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                }
+            }
+            
+            // Update countdown every second
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            
+            // Add entrance animation
+            if (banner && !localStorage.getItem('fin2024BannerClosed')) {
+                setTimeout(() => {
+                    banner.style.transform = 'translateY(0)';
+                    banner.style.opacity = '1';
+                }, 1000);
+            }
+        });
     </script>
 
     <!-- Update Modal Styles -->
@@ -802,38 +730,7 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <form id="contactForm" class="space-y-6">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
-                            <input type="text" 
-                                   id="name" 
-                                   name="name" 
-                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                                   required>
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                            <input type="email" 
-                                   id="email" 
-                                   name="email" 
-                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                                   required>
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Mensaje</label>
-                            <textarea id="message" 
-                                      name="message" 
-                                      rows="4" 
-                                      class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                                      required></textarea>
-                        </div>
-                        <button type="submit" 
-                                class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg">
-                            Enviar Mensaje
-                        </button>
-                    </form>
-                </div>
+                <!-- Add contact form here -->
             </div>
         </div>
     </div>
@@ -975,43 +872,58 @@
     <script defer src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.0/dist/gsap.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.0/dist/ScrollTrigger.min.js"></script>
+
+    <!-- Mobile Menu Functionality -->
     <script>
-        document.getElementById('contactForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('show');
+                const icon = mobileMenuButton.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
             
-            const formData = new FormData(e.target);
-            const data = Object.fromEntries(formData.entries());
-            
-            try {
-                // Show loading state
-                const submitButton = e.target.querySelector('button[type="submit"]');
-                const originalText = submitButton.innerText;
-                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Enviando...';
-                submitButton.disabled = true;
-
-                // Initialize EmailJS (make sure to replace with your user ID)
-                emailjs.init("YOUR_USER_ID");
-                
-                await emailjs.send("default_service", "template_id", {
-                    from_name: data.name,
-                    reply_to: data.email,
-                    message: data.message
-                });
-
-                // Show success message
-                alert('Mensaje enviado correctamente');
-                e.target.reset();
-                
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Error al enviar el mensaje. Por favor, inténtalo de nuevo.');
-                
-            } finally {
-                // Reset button state
-                submitButton.innerHTML = originalText;
-                submitButton.disabled = false;
-            }
-        });
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileMenuButton.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    mobileMenu.classList.remove('show');
+                    const icon = mobileMenuButton.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
     </script>
+
+    <!-- Add new banner styles -->
+    <style>
+        #blackFridayBanner {
+            transform: translateY(100%);
+            opacity: 0;
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+        }
+        
+        #blackFridayBanner.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        .shimmer-bg {
+            background: linear-gradient(90deg, 
+                rgba(255,255,255,0) 0%,
+                rgba(255,255,255,0.1) 50%,
+                rgba(255,255,255,0) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+    </style>
 </body>
 </html>
