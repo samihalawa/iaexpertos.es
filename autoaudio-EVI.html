@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>On-Demand AI Voice Assistant</title>
+    <!-- Tailwind CSS for Styling -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .typing-animation {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            border-radius: 50%;
+            background-color: #4b5563;
+            animation: typing 1s infinite;
+        }
+
+        .mic-active {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes typing {
+            0% { transform: scale(0.8); opacity: 0.7; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(0.8); opacity: 0.7; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+
+        .chat-container {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .chat-bubble {
+            display: inline-block;
+            padding: 10px 15px;
+            border-radius: 20px;
+            margin: 5px 0;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+        .user-bubble {
+            background-color: #1f2937;
+            color: #fff;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+        .assistant-bubble {
+            background-color: #4b5563;
+            color: #fff;
+            align-self: flex-start;
+            margin-right: auto;
+        }
+
+        #status {
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+        }
+
+        .status-listening {
+            background-color: #93c5fd;
+            color: #1e40af;
+        }
+
+        .status-error {
+            background-color: #fecaca;
+            color: #991b1b;
+        }
+
+        .status-success {
+            background-color: #86efac;
+            color: #166534;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-300">
+    <!-- Add a loading overlay -->
+    <div id="loading-overlay" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white p-4 rounded-lg shadow-lg text-center">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <p class="mt-4 text-gray-700" id="loading-message">Loading resources...</p>
+        </div>
+    </div>
+
+    <main class="bg-white shadow-xl rounded-2xl p-6 w-96 space-y-4 flex flex-col">
+        <header class="text-center">
+            <h1 class="text-2xl font-semibold text-black mt-2">On-Demand AI Assistant</h1>
+            <p class="text-gray-600 text-sm">Powered by google/flan-t5-base</p>
+            <div class="flex items-center justify-center mt-2">
+                <div id="model-status" class="text-xs px-2 py-1 rounded-full bg-gray-200">Model not loaded</div>
+            </div>
+        </header>
+
+        <div id="status" class="text-sm text-gray-600 text-center"></div>
+
+        <button 
+            id="load-model-btn" 
+            class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-6 rounded-full shadow-md transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 self-center flex items-center space-x-2"
+            aria-label="Load Model">
+            <span>Load Model</span>
+            <div id="loading-spinner" class="hidden w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+        </button>
+
+        <div id="conversation" class="chat-container flex flex-col space-y-2 p-2 bg-gray-100 rounded overflow-y-auto" style="min-height:150px;">
+            <div class="text-center text-gray-500 text-sm py-4">Start a conversation by clicking the button below</div>
+        </div>
+
+        <div id="input-area" class="hidden flex flex-col space-y-2">
+            <button 
+                id="start-btn" 
+                class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex items-center justify-center space-x-2"
+                aria-label="Start Conversation">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0-11V3m0 0a7 7 0 017 7m-7-7a7 7 0 00-7 7"/>
+                </svg>
+                <span>Start Conversation</span>
+            </button>
+            <p class="text-xs text-gray-500 text-center">Click to start speaking</p>
+        </div>
+    </main>
+
+    <!-- Load transformers.js with retry -->
+    <script>
+        // Configuration and CDN options
+        const CONFIG = {
+            CDN_URLS: [
+                'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.6.1/dist/transformers.min.js',
+                'https://unpkg.com/@xenova/transformers@2.6.1/dist/transformers.min.js',
+                'https://www.unpkg.com/@xenova/transformers@2.6.1/dist/transformers.min.js'
+            ],
+            MODELS: {
+                primary: 'Xenova/distilbert-base-uncased',  // Smaller, faster model
+                fallback: 'Xenova/distilbert-base-uncased-finetuned-sst-2-english'  // Even smaller model
+            },
+            TIMEOUT: 60000,  // 60 seconds
+            MAX_RETRIES: 3
+        };
+
+        // Show loading overlay
+        const loadingOverlay = document.getElementById('loading-overlay');
+        const loadingMessage = document.getElementById('loading-message');
+        
+        function showLoading(message) {
+            loadingMessage.textContent = message;
+            loadingOverlay.classList.remove('hidden');
+        }
+        
+        function hideLoading() {
+            loadingOverlay.classList.add('hidden');
+        }
+
+        // Try loading script from different CDNs
+        async function tryLoadScript(url, timeout) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = url;
+                script.async = true;
+
+                const timeoutId = setTimeout(() => {
+                    script.remove();
+                    reject(new Error('Script load timeout'));
+                }, timeout);
+
+                script.onload = () => {
+                    clearTimeout(timeoutId);
+                    resolve();
+                };
+
+                script.onerror = () => {
+                    clearTimeout(timeoutId);
+                    script.remove();
+                    reject(new Error(`Failed to load from ${url}`));
+                };
+
+                document.head.appendChild(script);
+            });
+        }
+
+        // Load script with fallback CDNs
+        async function loadScriptWithFallback() {
+            let lastError = null;
+            for (const url of CONFIG.CDN_URLS) {
+                try {
+                    showLoading(`Trying to load from ${new URL(url).hostname}...`);
+                    await tryLoadScript(url, CONFIG.TIMEOUT);
+                    return true;
+                } catch (error) {
+                    console.warn(`Failed to load from ${url}:`, error);
+                    lastError = error;
+                }
+            }
+            throw lastError || new Error('All CDNs failed');
+        }
+
+        // Initialize the model with progress tracking
+        async function initializeModel(modelName) {
+            try {
+                showLoading('Initializing model...');
+                const pipeline = await window.transformers.pipeline(
+                    'text-classification',
+                    modelName,
+                    {
+                        progress_callback: (progress) => {
+                            if (progress.status === 'progress') {
+                                const percent = Math.round(progress.progress * 100);
+                                showLoading(`Loading model: ${percent}%`);
+                            }
+                        }
+                    }
+                );
+                return pipeline;
+            } catch (error) {
+                console.error('Model initialization error:', error);
+                throw error;
+            }
+        }
+
+        // Main initialization function
+        async function initializeApp() {
+            try {
+                // First try to load the transformers library
+                await loadScriptWithFallback();
+                
+                // Then try to load the model
+                let pipeline = null;
+                for (let i = 0; i < CONFIG.MAX_RETRIES; i++) {
+                    try {
+                        const modelName = i === 0 ? CONFIG.MODELS.primary : CONFIG.MODELS.fallback;
+                        showLoading(`Attempting to load ${modelName} (Attempt ${i + 1}/${CONFIG.MAX_RETRIES})`);
+                        pipeline = await initializeModel(modelName);
+                        break;
+                    } catch (error) {
+                        console.error(`Attempt ${i + 1} failed:`, error);
+                        if (i === CONFIG.MAX_RETRIES - 1) {
+                            throw new Error('Failed to load any model after multiple attempts');
+                        }
+                        await new Promise(resolve => setTimeout(resolve, 2000));
+                    }
+                }
+
+                if (pipeline) {
+                    hideLoading();
+                    updateStatus('Model loaded successfully!', 'success');
+                    modelStatus.textContent = 'Model loaded';
+                    modelStatus.classList.remove('bg-gray-200', 'bg-red-200', 'text-red-800');
+                    modelStatus.classList.add('bg-green-200', 'text-green-800');
+                    loadModelBtn.style.display = 'none';
+                    inputArea.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error('Initialization error:', error);
+                hideLoading();
+                updateStatus('Failed to initialize. Please try refreshing the page or check your connection.', 'error');
+                modelStatus.textContent = 'Model load failed';
+                modelStatus.classList.remove('bg-gray-200');
+                modelStatus.classList.add('bg-red-200', 'text-red-800');
+            }
+        }
+
+        // Start the initialization process when the page loads
+        window.addEventListener('load', () => {
+            showLoading('Starting initialization...');
+            initializeApp()
+                .then(() => {
+                    mainApp(); // Iniciar mainApp una vez que initializeApp haya completado
+                })
+                .catch(error => {
+                    console.error('Fatal error:', error);
+                    hideLoading();
+                    updateStatus('A critical error occurred. Please refresh the page.', 'error');
+                });
+        });
+    </script>
+
+    <!-- Main application script -->
+    <script>
+        function mainApp() {
+            const config = {
+                modelName: 'google/flan-t5-base',
+                fallbackModel: 'google/flan-t5-small',
+                maxNewTokens: 100,
+                temperature: 0.7,
+                repetitionPenalty: 1.2,
+                maxTurns: 6,
+                timeoutDuration: 30000,
+                retryDelay: 2000
+            };
+
+            const statusEl = document.getElementById('status');
+            const loadModelBtn = document.getElementById('load-model-btn');
+            const inputArea = document.getElementById('input-area');
+            const startBtn = document.getElementById('start-btn');
+            const conversationEl = document.getElementById('conversation');
+            const modelStatus = document.getElementById('model-status');
+            const loadingSpinner = document.getElementById('loading-spinner');
+
+            let pipeline = null;
+            let conversationHistory = '';
+            let recognizing = false;
+            let lastInteractionTime = Date.now();
+
+            // Check for online status
+            window.addEventListener('online', () => {
+                updateStatus('Connection restored', 'success');
+            });
+
+            window.addEventListener('offline', () => {
+                updateStatus('No internet connection', 'error');
+            });
+
+            // Preload the transformers.js script with error handling
+            async function loadTransformersLibrary() {
+                return new Promise((resolve, reject) => {
+                    const script = document.createElement('script');
+                    script.src = 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.6.1/dist/transformers.min.js';
+                    script.async = true;
+                    script.onload = () => resolve();
+                    script.onerror = () => reject(new Error('Failed to load transformers.js library'));
+                    document.head.appendChild(script);
+                });
+            }
+
+            // Enhanced model loading with progress updates
+            async function loadModelWithRetry(retries = 3) {
+                updateStatus('Initializing model loader...', 'info');
+                
+                try {
+                    await loadTransformersLibrary();
+                } catch (error) {
+                    updateStatus('Failed to load required library. Please check your internet connection.', 'error');
+                    return false;
+                }
+
+                for (let i = 0; i < retries; i++) {
+                    try {
+                        updateStatus(`Loading model (attempt ${i + 1}/${retries})...`, 'info');
+                        
+                        const modelToTry = i === retries - 1 ? config.fallbackModel : config.modelName;
+                        pipeline = await window.transformers.pipeline('text2text-generation', modelToTry, {
+                            progress_callback: (progress) => {
+                                if (progress.status === 'progress') {
+                                    const percent = Math.round(progress.progress * 100);
+                                    updateStatus(`Loading model: ${percent}%`, 'info');
+                                }
+                            }
+                        });
+                        
+                        updateStatus('Model loaded successfully!', 'success');
+                        return true;
+                    } catch (error) {
+                        console.error(`Attempt ${i + 1} failed:`, error);
+                        if (i < retries - 1) {
+                            updateStatus(`Retrying in ${config.retryDelay/1000} seconds...`, 'info');
+                            await new Promise(resolve => setTimeout(resolve, config.retryDelay));
+                        }
+                    }
+                }
+                return false;
+            }
+
+            function updateStatus(text, type = 'info') {
+                statusEl.textContent = text;
+                statusEl.className = 'text-sm text-center p-2 rounded';
+                
+                switch(type) {
+                    case 'error':
+                        statusEl.classList.add('status-error');
+                        break;
+                    case 'listening':
+                        statusEl.classList.add('status-listening');
+                        break;
+                    case 'success':
+                        statusEl.classList.add('status-success');
+                        break;
+                    default:
+                        statusEl.classList.add('text-gray-600');
+                }
+            }
+
+            function truncateConversation(history, maxTurns = config.maxTurns) {
+                const lines = history.trim().split('\n');
+                const allowedLines = maxTurns * 2;
+                if (lines.length > allowedLines) {
+                    return lines.slice(lines.length - allowedLines).join('\n') + '\n';
+                }
+                return history;
+            }
+
+            function addMessage(role, text) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('chat-bubble');
+                bubble.textContent = text;
+                if (role === 'user') {
+                    bubble.classList.add('user-bubble');
+                } else {
+                    bubble.classList.add('assistant-bubble');
+                }
+                conversationEl.appendChild(bubble);
+                conversationEl.scrollTop = conversationEl.scrollHeight;
+            }
+
+            async function handleUserQuery(query) {
+                if (!query.trim()) {
+                    updateStatus('No speech detected', 'error');
+                    return;
+                }
+
+                if (!navigator.onLine) {
+                    updateStatus('No internet connection', 'error');
+                    return;
+                }
+
+                addMessage('user', query);
+                conversationHistory += `User: ${query}\nAssistant: `;
+                conversationHistory = truncateConversation(conversationHistory, config.maxTurns);
+                updateStatus('Thinking...', 'info');
+
+                try {
+                    if (!pipeline) {
+                        const loaded = await loadModelWithRetry();
+                        if (!loaded) throw new Error('Failed to load model');
+                    }
+
+                    const timeoutPromise = new Promise((_, reject) => {
+                        setTimeout(() => reject(new Error('Response timeout')), config.timeoutDuration);
+                    });
+
+                    const result = await Promise.race([
+                        pipeline(conversationHistory, {
+                            max_new_tokens: config.maxNewTokens,
+                            temperature: config.temperature,
+                            repetition_penalty: config.repetitionPenalty
+                        }),
+                        timeoutPromise
+                    ]);
+
+                    const response = result[0].generated_text.trim();
+                    if (!response) {
+                        throw new Error('Empty response from model');
+                    }
+
+                    conversationHistory += response + '\n';
+                    addMessage('assistant', response);
+                    updateStatus('Ready for next input', 'success');
+                    lastInteractionTime = Date.now();
+                } catch (error) {
+                    console.error('Generation error:', error);
+                    updateStatus(error.message || 'Error generating response', 'error');
+                    if (error.message === 'Response timeout') {
+                        pipeline = null; // Reset pipeline on timeout
+                    }
+                }
+            }
+
+            async function startConversation() {
+                if (recognizing) return;
+                
+                if (!navigator.onLine) {
+                    updateStatus('No internet connection', 'error');
+                    return;
+                }
+
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                if (!SpeechRecognition) {
+                    updateStatus('Speech Recognition not supported in this browser', 'error');
+                    return;
+                }
+
+                const recognition = new SpeechRecognition();
+                recognition.lang = 'en-US';
+                recognition.interimResults = false;
+                recognition.maxAlternatives = 1;
+                recognition.continuous = false;
+
+                recognition.onstart = () => {
+                    recognizing = true;
+                    updateStatus('Listening... Speak now', 'listening');
+                    startBtn.classList.add('mic-active');
+                };
+
+                recognition.onresult = (event) => {
+                    const transcript = event.results[0][0].transcript.trim();
+                    handleUserQuery(transcript);
+                };
+
+                recognition.onerror = (event) => {
+                    console.error('Speech Recognition Error:', event.error);
+                    let errorMessage = 'Speech Recognition Error';
+                    switch(event.error) {
+                        case 'no-speech':
+                            errorMessage = 'No speech detected. Please try again.';
+                            break;
+                        case 'audio-capture':
+                            errorMessage = 'No microphone found. Please check your device.';
+                            break;
+                        case 'not-allowed':
+                            errorMessage = 'Microphone access denied. Please allow access.';
+                            break;
+                        case 'network':
+                            errorMessage = 'Network error. Please check your connection.';
+                            break;
+                        default:
+                            errorMessage = `Error: ${event.error}`;
+                    }
+                    updateStatus(errorMessage, 'error');
+                    startBtn.classList.remove('mic-active');
+                    recognizing = false;
+                };
+
+                recognition.onend = () => {
+                    recognizing = false;
+                    startBtn.classList.remove('mic-active');
+                    if (Date.now() - lastInteractionTime > config.timeoutDuration) {
+                        updateStatus('Ready for next input', 'success');
+                    }
+                };
+
+                try {
+                    await recognition.start();
+                } catch (error) {
+                    console.error('Failed to start recognition:', error);
+                    updateStatus('Failed to start speech recognition', 'error');
+                    recognizing = false;
+                    startBtn.classList.remove('mic-active');
+                }
+            }
+
+            loadModelBtn.addEventListener('click', async () => {
+                loadModelBtn.disabled = true;
+                loadingSpinner.classList.remove('hidden');
+                
+                try {
+                    const loaded = await loadModelWithRetry();
+                    if (loaded) {
+                        modelStatus.textContent = 'Model loaded';
+                        modelStatus.classList.remove('bg-gray-200', 'bg-red-200', 'text-red-800');
+                        modelStatus.classList.add('bg-green-200', 'text-green-800');
+                        loadModelBtn.style.display = 'none';
+                        inputArea.classList.remove('hidden');
+                    } else {
+                        throw new Error('Failed to load model after multiple attempts');
+                    }
+                } catch (error) {
+                    console.error('Model load error:', error);
+                    modelStatus.textContent = 'Model load failed';
+                    modelStatus.classList.remove('bg-gray-200', 'bg-green-200', 'text-green-800');
+                    modelStatus.classList.add('bg-red-200', 'text-red-800');
+                    updateStatus('Failed to load model. Please check your internet connection and try again.', 'error');
+                    loadModelBtn.disabled = false;
+                } finally {
+                    loadingSpinner.classList.add('hidden');
+                }
+            });
+
+            startBtn.addEventListener('click', () => {
+                startConversation();
+            });
+
+            updateStatus('Click "Load Model" to start.');
+
+            // Add connection check before any model operation
+            function checkConnection() {
+                if (!navigator.onLine) {
+                    updateStatus('No internet connection. Please check your connection and try again.', 'error');
+                    return false;
+                }
+                return true;
+            }
+        }
+    </script>
+</body>
+</html>
